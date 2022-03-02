@@ -14,7 +14,8 @@ new p5((p5) => {
 
     player = new Player(p5);
 
-    p5.createCanvas(800, 400);
+    // FIXME: Will not update canvas size when user resizes browser window!
+    p5.createCanvas(p5.windowWidth, p5.windowHeight);
   };
 
   p5.draw = () => {
