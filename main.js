@@ -149,6 +149,15 @@ function draw() {
     playerTankSprite.velocity.y = 0;
   }
 
+  if (mouse_moved) {
+    // const rotation = playerTankCannon.position.angleBetween(mouseVector);
+    const rotation = atan2(
+      mouseY - playerTankCannon.position.y,
+      mouseX - playerTankCannon.position.x
+    );
+    // const rotation = mouseVector.angleBetween(playerTankCannon.position);
+    playerTankCannon.rotation = rotation + 90;
+  }
   // playerTankCannon.setSpeed(5, rotation++);
   // playerTankCannon.rotation += rotation++;
 
