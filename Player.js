@@ -4,6 +4,7 @@ export default class Player extends GameObject {
   constructor(p5) {
     super(p5);
     this.isMoving = false;
+    this.movementSpeed = 2;
 
     // Animations
     this.bodyAnimation = p5.loadAnimation(
@@ -38,19 +39,19 @@ export default class Player extends GameObject {
     this.isMoving = false;
 
     if (this.p5.keyIsDown(this.p5.LEFT_ARROW)) {
-      this.bodySprite.velocity.x = -2;
+      this.bodySprite.velocity.x = -this.movementSpeed;
       this.isMoving = true;
     }
     if (this.p5.keyIsDown(this.p5.RIGHT_ARROW)) {
-      this.bodySprite.velocity.x = 2;
+      this.bodySprite.velocity.x = this.movementSpeed;
       this.isMoving = true;
     }
     if (this.p5.keyIsDown(this.p5.UP_ARROW)) {
-      this.bodySprite.velocity.y = -2;
+      this.bodySprite.velocity.y = -this.movementSpeed;
       this.isMoving = true;
     }
     if (this.p5.keyIsDown(this.p5.DOWN_ARROW)) {
-      this.bodySprite.velocity.y = 2;
+      this.bodySprite.velocity.y = this.movementSpeed;
       this.isMoving = true;
     }
 
