@@ -67,8 +67,6 @@ export default class Player extends GameObject {
   }
 
   mouseMoved() {
-    console.log("test");
-
     const rotation = this.p5.atan2(
       this.p5.mouseY - this.cannonSprite.position.y,
       this.p5.mouseX - this.cannonSprite.position.x
