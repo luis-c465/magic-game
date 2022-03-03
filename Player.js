@@ -37,7 +37,7 @@ class Player extends GameObject {
     this.setup();
   }
 
-  loop() {
+  update() {
     this.isMoving = false;
 
     // If any arrow keys are pressed move the character in that direction
@@ -87,7 +87,7 @@ class Player extends GameObject {
 
     // Loop through all bullets and call their loop function updating them
     // TODO: Add children array into `GameObject.js` and when update is called update children
-    this.bullets.forEach((bullet) => bullet.loop());
+    this.bullets.forEach((bullet) => bullet.update());
   }
 
   /**

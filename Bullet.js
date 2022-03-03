@@ -1,5 +1,8 @@
 // import GameObject from "./GameObject.js";
 
+/**
+ * A bullet that moves forward ever time the update function is called
+ */
 class Bullet extends GameObject {
   constructor(initialPosition, trajectory, rotation) {
     super();
@@ -8,10 +11,6 @@ class Bullet extends GameObject {
     this.initialPosition = initialPosition;
     this.trajectory = trajectory;
     this.trajectory.setMag(this.BULLET_SPEED);
-    // this.position = initialPosition.copy();
-
-    // this.initialPosition.rotate(90);
-    // this.trajectory.rotate(90);
 
     // Creates a sprite at its initial position with an aspect ratio of the image
     this.sprite = createSprite(
@@ -20,6 +19,7 @@ class Bullet extends GameObject {
       5,
       5 * (240 / 112)
     );
+    // Adds an image for the sprite
     this.sprite.addImage(loadImage("assets/bullet.png"));
     // Lower the sprites scale.
     // Other wise the bullet is too big
@@ -27,7 +27,8 @@ class Bullet extends GameObject {
     this.sprite.rotation = rotation;
   }
 
-  loop() {
+  update() {
+    // Makes the bullet move
     this.sprite.position.add(this.trajectory);
   }
 }

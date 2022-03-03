@@ -1,3 +1,7 @@
+/**
+ * Base class for game objects
+ * Adds all sprite for the game object into a p5.play group
+ */
 class GameObject {
   constructor() {
     this.group = new Group();
