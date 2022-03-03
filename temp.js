@@ -1,3 +1,8 @@
+/**
+ * This file is a TEMPORARY file and can be deleted
+ * This file was made to understand how to create and fire the bullets
+ */
+
 const BULLET_SPEED = 5;
 
 let player;

@@ -1,9 +1,12 @@
+// Adds references to global p5.js functions
 /// <reference types="p5/global" />
 
 import Player from "./Player.js";
 
 let player;
 
+// p5.js does'nt work when using Javascript ES6 modules so this launches p5.js in "instance mode"
+// read more here https://p5js.org/reference/#/p5/p5
 new p5((p5) => {
   p5.preload = () => {
     // Preload things here
