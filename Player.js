@@ -1,24 +1,22 @@
-import Bullet from "./Bullet.js";
-import GameObject from "./GameObject.js";
+class Player extends GameObject {
+  constructor() {
+    super();
 
-export default class Player extends GameObject {
-  constructor(p5) {
-    super(p5);
     this.isMoving = false;
     this.movementSpeed = 2;
     this.bullets = [];
 
     // Animations
-    this.bodyAnimation = p5.loadAnimation(
-      new p5.SpriteSheet("assets/tanks.png", [
+    this.bodyAnimation = loadAnimation(
+      new SpriteSheet("assets/tanks.png", [
         {
           name: "stand",
           frame: { x: 123, y: 11, width: 80, height: 89 },
         },
       ])
     );
-    this.cannonAnimation = p5.loadAnimation(
-      new p5.SpriteSheet("assets/tanks.png", [
+    this.cannonAnimation = loadAnimation(
+      new SpriteSheet("assets/tanks.png", [
         {
           name: "stand",
           frame: { x: 79, y: 0, width: 40, height: 76 },
@@ -27,11 +25,11 @@ export default class Player extends GameObject {
     );
 
     // Create sprites
-    this.bodySprite = p5.createSprite(100, 284, 70, 94);
+    this.bodySprite = createSprite(100, 284, 70, 94);
     this.bodySprite.addAnimation("stand", this.bodyAnimation);
     this.sprites.push(this.bodySprite);
 
-    this.cannonSprite = p5.createSprite(100, 284, 70, 94);
+    this.cannonSprite = createSprite(100, 284, 70, 94);
     this.cannonSprite.addAnimation("default", this.cannonAnimation);
     this.sprites.push(this.cannonSprite);
 
@@ -42,19 +40,19 @@ export default class Player extends GameObject {
     this.isMoving = false;
 
     // If any arrow keys are pressed move the character in that direction
-    if (this.p5.keyIsDown(this.p5.LEFT_ARROW)) {
+    if (keyIsDown(LEFT_ARROW)) {
       this.bodySprite.velocity.x = -this.movementSpeed;
       this.isMoving = true;
     }
-    if (this.p5.keyIsDown(this.p5.RIGHT_ARROW)) {
+    if (keyIsDown(RIGHT_ARROW)) {
       this.bodySprite.velocity.x = this.movementSpeed;
       this.isMoving = true;
     }
-    if (this.p5.keyIsDown(this.p5.UP_ARROW)) {
+    if (keyIsDown(UP_ARROW)) {
       this.bodySprite.velocity.y = -this.movementSpeed;
       this.isMoving = true;
     }
-    if (this.p5.keyIsDown(this.p5.DOWN_ARROW)) {
+    if (keyIsDown(DOWN_ARROW)) {
       this.bodySprite.velocity.y = this.movementSpeed;
       this.isMoving = true;
     }
@@ -70,11 +68,11 @@ export default class Player extends GameObject {
     }
 
     // If mouse is pressed
-    if (this.p5.mouseIsPressed) {
+    if (mouseIsPressed) {
       // Do calculations for bullet position
-      const mouseVector = this.p5
-        .createVector(this.p5.mouseX, this.p5.mouseY)
-        .sub(this.bodySprite.position);
+      const mouseVector = createVector(mouseX, mouseY).sub(
+        this.bodySprite.position
+      );
 
       const dirOffset = this.bodySprite.position.copy();
       // dirOffset.add(this.bodySprite.position, mouseVector);
@@ -82,7 +80,7 @@ export default class Player extends GameObject {
       dirOffset.x += 50;
 
       // Fire bullet
-      const bullet = new Bullet(this.p5, dirOffset, mouseVector);
+      const bullet = new Bullet(dirOffset, mouseVector);
       this.bullets.push(bullet);
     }
 
@@ -95,9 +93,9 @@ export default class Player extends GameObject {
    * Function called when mouse is dragged
    */
   mouseDragged() {
-    const rotation = this.p5.atan2(
-      this.p5.mouseY - this.cannonSprite.position.y,
-      this.p5.mouseX - this.cannonSprite.position.x
+    const rotation = atan2(
+      mouseY - this.cannonSprite.position.y,
+      mouseX - this.cannonSprite.position.x
     );
     this.cannonSprite.rotation = rotation + 90;
   }

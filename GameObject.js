@@ -1,7 +1,6 @@
-export default class GameObject {
-  constructor(p5) {
-    this.p5 = p5;
-    this.group = new p5.Group();
+class GameObject {
+  constructor() {
+    this.group = new Group();
     this.sprites = [];
   }
 
