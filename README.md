@@ -2,6 +2,76 @@
 
 A game for the terra hackathon in the coding club
 
+## Playing
+
+<!-- TODO: Add instructions here of how to play -->
+
+Go to [https://luis-c465.github.io/magic-game/](https://luis-c465.github.io/magic-game/)
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- You have installed the latest version of [Git](https://git-scm.com/download/win)
+
+## Installing magic game
+
+To install magic game, follow these steps:
+
+<!-- Linux and macOS: -->
+
+Enter the following command in the terminal
+
+```bash
+git clone https://github.com/luis-c465/magic-game.git
+```
+
+<!-- Windows:
+
+```cmd
+git clone https://github.com/luis-c465/magic-game.git
+``` -->
+
+## Using magic game
+
+### Hosting
+
+To use magic game loccaly you need to start a localhost server
+
+Bellow are multiple options of how to start one
+
+#### Python
+
+First install [Python](https://www.python.org/downloads/) if you have not done so already
+
+1. Enter the following command in the terminal
+
+   ```bash
+   python3 -m http.server
+   ```
+
+   It will then give an output similar to
+
+   ```bash
+   Serving HTTP on :: port 8000 (http://[::]:8000/) ...
+   ```
+
+2. Open the link shown in parentheses in youir browser
+
+   In this example it would be `http://[::]:8000/`
+
+---
+
+#### Visual Studio Code extension (live server)
+
+First install [Visual Studio Code](https://code.visualstudio.com/download) if you have not done so already
+
+1. Open magic game folder in Visual Studio Code
+
+2. Install the extension [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+
+3. After installing the extension click the `Go Live` button at the bottom right of the screen
+
 ## Idea
 
 Endless game where the player fights off increasingly harder tanks on preset levels blocks with random tank amounts. After defeating all the tanks in that wave the player can upgrade his wand and move to the next wave in a different map.
