@@ -1,6 +1,6 @@
 # Magic game
 
-A game for the terra hackathon in the coding club
+A game for the [2022 Terra Game Jam](https://itch.io/jam/terra-2022-coding-club-annual-game-jam)
 
 ## Playing
 
