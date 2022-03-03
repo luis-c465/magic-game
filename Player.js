@@ -5,6 +5,7 @@ class Player extends GameObject {
     this.isMoving = false;
     this.movementSpeed = 2;
     this.bullets = [];
+    this.rotation = 0;
 
     // Animations
     this.bodyAnimation = loadAnimation(
@@ -80,7 +81,7 @@ class Player extends GameObject {
       dirOffset.x += 50;
 
       // Fire bullet
-      const bullet = new Bullet(dirOffset, mouseVector);
+      const bullet = new Bullet(dirOffset, mouseVector, this.rotation);
       this.bullets.push(bullet);
     }
 
@@ -93,10 +94,10 @@ class Player extends GameObject {
    * Function called when mouse is dragged
    */
   mouseDragged() {
-    const rotation = atan2(
+    this.rotation = atan2(
       mouseY - this.cannonSprite.position.y,
       mouseX - this.cannonSprite.position.x
     );
-    this.cannonSprite.rotation = rotation + 90;
+    this.cannonSprite.rotation = this.rotation + 90;
   }
 }

@@ -1,7 +1,7 @@
 // import GameObject from "./GameObject.js";
 
 class Bullet extends GameObject {
-  constructor(initialPosition, trajectory) {
+  constructor(initialPosition, trajectory, rotation) {
     super();
 
     this.BULLET_SPEED = 5;
@@ -24,6 +24,7 @@ class Bullet extends GameObject {
     // Lower the sprites scale.
     // Other wise the bullet is too big
     this.sprite.scale = 0.2;
+    this.sprite.rotation = rotation;
   }
 
   loop() {
