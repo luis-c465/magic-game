@@ -27,7 +27,7 @@ new p5((p5) => {
     p5.drawSprites();
   };
 
-  p5.mouseMoved = () => {
-    player.mouseMoved();
+  p5.mouseDragged = () => {
+    player.mouseDragged();
   };
 });

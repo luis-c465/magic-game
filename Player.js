@@ -84,7 +84,7 @@ export default class Player extends GameObject {
     this.bullets.forEach((bullet) => bullet.loop());
   }
 
-  mouseMoved() {
+  mouseDragged() {
     const rotation = this.p5.atan2(
       this.p5.mouseY - this.cannonSprite.position.y,
       this.p5.mouseX - this.cannonSprite.position.x
