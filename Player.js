@@ -1,3 +1,4 @@
+import Bullet from "./Bullet.js";
 import GameObject from "./GameObject.js";
 
 export default class Player extends GameObject {
@@ -5,6 +6,7 @@ export default class Player extends GameObject {
     super(p5);
     this.isMoving = false;
     this.movementSpeed = 2;
+    this.bullets = [];
 
     // Animations
     this.bodyAnimation = p5.loadAnimation(
@@ -64,6 +66,22 @@ export default class Player extends GameObject {
       this.bodySprite.velocity.x = 0;
       this.bodySprite.velocity.y = 0;
     }
+
+    if (this.p5.mouseIsPressed) {
+      const mouseVector = this.p5
+        .createVector(this.p5.mouseX, this.p5.mouseY)
+        .sub(this.bodySprite.position);
+
+      const dirOffset = this.bodySprite.position.copy();
+      // dirOffset.add(this.bodySprite.position, mouseVector);
+      // dirOffset.x = this.bodySprite.position.x;
+      dirOffset.x += 50;
+
+      const bullet = new Bullet(this.p5, dirOffset, mouseVector);
+      this.bullets.push(bullet);
+    }
+
+    this.bullets.forEach((bullet) => bullet.loop());
   }
 
   mouseMoved() {

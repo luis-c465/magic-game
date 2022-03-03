@@ -6,8 +6,12 @@ export default class GameObject {
   }
 
   setup() {
-    this.sprites.forEach((sprite) => {
-      this.group.add(sprite);
-    });
+    if (this.sprite) {
+      this.group.add(this.sprite);
+    } else {
+      this.sprites.forEach((sprite) => {
+        this.group.add(sprite);
+      });
+    }
   }
 }
