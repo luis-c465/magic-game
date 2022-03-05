@@ -27,7 +27,8 @@ class Bullet extends GameObject {
     this.sprite.rotation = rotation;
   }
 
-  loop() {
+  update() {
+    // Makes the bullet move
     this.sprite.position.add(this.trajectory);
   }
 }

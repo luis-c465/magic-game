@@ -37,7 +37,7 @@ class Player extends GameObject {
     this.setup();
   }
 
-  loop() {
+  update() {
     this.isMoving = false;
 
     // If any arrow keys are pressed move the character in that direction

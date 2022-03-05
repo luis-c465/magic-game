@@ -46,7 +46,7 @@ function draw() {
   clear();
   background(255);
 
-  player.loop();
+  player.update();
 
   drawSprites();
 }
