@@ -29,9 +29,10 @@ class Wall extends GameObject {
   }
 
   /**
-   * Function called when wall is hit by a bullet
+   * @param {Sprite} bullet
+   * @param {Sprite} wall
    */
-  collisionWithBullet() {
+  collisionWithBullet(wall, bullet) {
     throw new Error("onBulletHit function has not been overridden!");
   }
 }

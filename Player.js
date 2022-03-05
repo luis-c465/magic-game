@@ -8,6 +8,7 @@ class Player extends GameObject {
     this.rotation = 0;
 
     // Animations
+    /** @type {Animation} */
     this.bodyAnimation = loadAnimation(
       new SpriteSheet("assets/tanks.png", [
         {
@@ -16,6 +17,7 @@ class Player extends GameObject {
         },
       ])
     );
+    /** @type {Animation} */
     this.cannonAnimation = loadAnimation(
       new SpriteSheet("assets/tanks.png", [
         {
@@ -26,6 +28,7 @@ class Player extends GameObject {
     );
 
     // Create sprites
+    /** @type {Sprite} */
     this.bodySprite = createSprite(100, 284, 70, 94);
     this.bodySprite.addAnimation("stand", this.bodyAnimation);
     this.sprites.push(this.bodySprite);

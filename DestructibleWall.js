@@ -17,8 +17,8 @@ class DestructibleWall extends Wall {
   }
 
   /**
-   * @param bullet bullet sprite
-   * @param wall wall sprite
+   * @param {Sprite} bullet
+   * @param {Sprite} wall
    */
   collisionWithBullet(wall, bullet) {
     wall.remove();

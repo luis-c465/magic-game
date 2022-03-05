@@ -13,6 +13,7 @@ class Bullet extends GameObject {
     this.trajectory.setMag(this.BULLET_SPEED);
 
     // Creates a sprite at its initial position with an aspect ratio of the image
+    /** @type {Sprite} */
     this.sprite = createSprite(
       this.initialPosition.x,
       this.initialPosition.y,
@@ -52,8 +53,8 @@ class Bullet extends GameObject {
   }
 
   /**
-   * @param bullet bullet sprite
-   * @param wall wall sprite
+   * @param {Sprite} bullet
+   * @param {Sprite} wall
    */
   collisionWithWall(bullet, wall) {
     // bullet.remove();

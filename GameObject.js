@@ -4,8 +4,12 @@
  */
 class GameObject {
   constructor() {
+    /** @type {Group} */
     this.spriteGroup = new Group();
+    /** @type {Sprite[]} */
     this.sprites = [];
+    /** @type {Sprite} */
+    this.sprite = undefined;
   }
 
   /**

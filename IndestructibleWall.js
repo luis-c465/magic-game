@@ -7,6 +7,7 @@ class IndestructibleWall extends Wall {
     // Pass all arguments passed to constructor into constructing Wall
     super(x, y);
 
+    /** @type {Sprite} */
     this.sprite = createSprite(x, y, this.WALL_WIDTH, this.WALL_HEIGHT);
     this.sprite.immovable = true;
 
@@ -17,8 +18,8 @@ class IndestructibleWall extends Wall {
   }
 
   /**
-   * @param bullet bullet sprite
-   * @param wall wall sprite
+   * @param {Sprite} bullet
+   * @param {Sprite} wall
    */
   collisionWithBullet(wall, bullet) {
     console.log("collision with bullet immovable");
