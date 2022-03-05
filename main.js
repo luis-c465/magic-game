@@ -33,14 +33,15 @@ function preload() {
 
   images.tanks = loadImage("assets/tanks.png");
   images.bullet = loadImage("assets/bullet.png");
-  images.iceWand = loadImage("assets/ice-wand.png");
+  images.iceWand = loadImage("assets/ice-wand.png", (img) => {
+    img.resize(50, 50);
+  });
   images.iceBullet = loadImage("assets/ice-bullet.png");
-
-  images.iceWand.resize(50, 50);
 }
 
 function setup() {
   angleMode(DEGREES);
+  rectMode(CENTER);
 
   player = new Player();
   testEnemy = new TestEnemy();
