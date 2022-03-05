@@ -82,12 +82,12 @@ class Player extends GameObject {
 
       // Fire bullet
       const bullet = new Bullet(dirOffset, mouseVector, this.rotation);
-      this.bullets.push(bullet);
+      bullets.push(bullet);
     }
 
     // Loop through all bullets and call their loop function updating them
     // TODO: Add children array into `GameObject.js` and when update is called update children
-    this.bullets.forEach((bullet) => bullet.loop());
+    this.bullets.forEach((bullet) => bullet.update());
   }
 
   /**
