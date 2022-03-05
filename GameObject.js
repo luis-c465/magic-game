@@ -1,6 +1,8 @@
 /**
  * Base class for game objects
  * Adds all sprite for the game object into a p5.play group
+ *
+ * @typedef {"player" | "bullet" | "wall"} gameSprite
  */
 class GameObject {
   constructor() {
@@ -14,7 +16,6 @@ class GameObject {
     /**
      * The array of game sprites that the gameObject can collide with
      *
-     * @typedef {"player" | "bullet" | "wall"} gameSprite
      * @type {gameSprite[]}
      * @default []
      */
@@ -43,49 +44,46 @@ class GameObject {
   updateCollisions() {
     // TODO: Change order of parameters by changing from self.collide to sprite.collide
     if (this.collidesWith.includes("player")) {
-      this.spriteGroup.collide(player.spriteGroup, this.collisionWithPlayer);
+      this.spriteGroup.collide(
+        player.spriteGroup,
+        this._collisionWith("player")
+      );
     }
 
     if (this.collidesWith.includes("bullet")) {
       bullets.forEach((bullet) => {
-        this.spriteGroup.collide(bullet.spriteGroup, this.collisionWithBullet);
+        this.spriteGroup.collide(
+          bullet.spriteGroup,
+          this._collisionWith("bullet")
+        );
       });
     }
 
     if (this.collidesWith.includes("wall")) {
       walls.forEach((wall) => {
-        this.spriteGroup.collide(wall.spriteGroup, this.collisionWithWall);
+        this.spriteGroup.collide(wall.spriteGroup, this._collisionWith("wall"));
       });
     }
   }
 
   /**
-   * Function called colliding with a player
+   * If the function `collideWith${spriteName}` exists on the game object it will be returned
+   * else a function which does nothing is returned
    *
-   * @param {Sprite} self
-   * @param {Sprite} player
+   * @param {gameSprite} spriteName
+   * @returns {(self: Sprite, collidedWith: Sprite) => void}
    */
-  collisionWithPlayer(self, player) {
-    // Do nothing
-  }
+  _collisionWith(spriteName) {
+    const collisionWithSpriteName = this[`collisionWith${spriteName}`];
 
-  /**
-   * Function called when colliding with a bullet
-   *
-   * @param {Sprite} self
-   * @param {Sprite} bullet
-   */
-  collisionWithBullet(self, bullet) {
-    // Do nothing
-  }
-
-  /**
-   * Function called when colliding with a wall
-   *
-   * @param {Sprite} self
-   * @param {Sprite} wall
-   */
-  collisionWithWall(self, wall) {
-    // Do nothing
+    // If collisionWithSpriteName exists return it
+    // Else return a function which does nothing
+    if (collisionWithSpriteName != null) {
+      return collisionWithSpriteName;
+    } else {
+      return () => {
+        // Do nothing
+      };
+    }
   }
 }
