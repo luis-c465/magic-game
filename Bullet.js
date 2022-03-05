@@ -46,16 +46,18 @@ class Bullet extends GameObject {
 
     // If sprite is destroyed destroy instance of Bullet
     // TODO: Also remove itself from the array of bullets
-    if (this.sprite <= 0) {
+    if (this.sprite.life <= 0) {
       delete this;
     }
   }
 
   /**
-   * @param {Wall} wall
    * @param {Bullet} bullet
+   * @param {Wall} wall
    */
-  collisionWithWall(wall, bullet) {
-    console.log("sus");
+  collisionWithWall(bullet, wall) {
+    console.log("collision with wall");
+    bullet.remove();
+    delete this;
   }
 }
