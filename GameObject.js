@@ -48,7 +48,7 @@ class GameObject {
     if (this.collidesWith.includes("player")) {
       this.spriteGroup.collide(
         player.spriteGroup,
-        this._collisionWith("player")
+        this._collisionWith("Player")
       );
     }
 
@@ -56,14 +56,14 @@ class GameObject {
       bullets.forEach((bullet) => {
         this.spriteGroup.collide(
           bullet.spriteGroup,
-          this._collisionWith("bullet")
+          this._collisionWith("Bullet")
         );
       });
     }
 
     if (this.collidesWith.includes("wall")) {
       walls.forEach((wall) => {
-        this.spriteGroup.collide(wall.spriteGroup, this._collisionWith("wall"));
+        this.spriteGroup.collide(wall.spriteGroup, this._collisionWith("Wall"));
       });
     }
   }
@@ -73,7 +73,7 @@ class GameObject {
    * else a function which does nothing is returned
    *
    * @param {gameSprite} spriteName
-   * @returns {(self: Sprite, collidedWith: Sprite) => void}
+   * @returns {(collidedWith: Sprite, self: Sprite) => void}
    */
   _collisionWith(spriteName) {
     const collisionWithSpriteName = this[`collisionWith${spriteName}`];

@@ -58,6 +58,6 @@ class Bullet extends GameObject {
    */
   collisionWithWall(bullet, wall) {
     // bullet.remove();
-    delete this;
+    // delete this;
   }
 }

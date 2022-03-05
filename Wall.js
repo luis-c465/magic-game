@@ -33,6 +33,7 @@ class Wall extends GameObject {
    * @param {Sprite} player
    */
   collisionWithPlayer(wall, player) {
+    // console.log(wall);
     // Do nothing
   }
 }
