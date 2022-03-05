@@ -13,6 +13,8 @@ class DestructibleWall extends Wall {
     // Enable debugging for sprite
     this.sprite.debug = true;
 
+    /** @type {number} @default 1 */
+    this.life = 10;
     this.setup();
   }
 
