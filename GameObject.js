@@ -80,7 +80,7 @@ class GameObject {
 
     // If collisionWithSpriteName exists return it
     // Else return a function which does nothing
-    if (collisionWithSpriteName != null) {
+    if (collisionWithSpriteName != undefined) {
       return collisionWithSpriteName;
     } else {
       return () => {
