@@ -38,7 +38,9 @@ class GameObject {
 
   /**
    * Updates the collisions for the game object
+   *
    * Depends on `this.collidesWith` so adding "Player" to the array will call `this.collisionWithPlayer`
+   *
    * Should be called in the update function to have the Object collide with things
    */
   updateCollisions() {
