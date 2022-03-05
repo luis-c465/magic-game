@@ -28,7 +28,7 @@ function setup() {
   angleMode(DEGREES);
 
   player = new Player();
-  walls.push(new IndestructibleWall(500, 500));
+  walls.push(new IndestructibleWall(500, 500), new DestructibleWall(500, 400));
   // objLayer = new GameLayer();
 
   // FIXME: Will not update canvas size when user resizes browser window!

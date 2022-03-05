@@ -1,7 +1,7 @@
-class IndestructibleWall extends Wall {
+class DestructibleWall extends Wall {
   /**
-   * @param {number} x
-   * @param {number} y
+   * @param {number} x X coordinate for where the block will be placed on the canvas
+   * @param {number} y Y coordinate for where the block will be placed on the canvas
    */
   constructor(x, y) {
     // Pass all arguments passed to constructor into constructing Wall
@@ -21,8 +21,6 @@ class IndestructibleWall extends Wall {
    * @param wall wall sprite
    */
   collisionWithBullet(wall, bullet) {
-    console.log("collision with bullet immovable");
-    // Do nothing
-    // Wall is immovable and cannot be destroyed
+    wall.remove();
   }
 }

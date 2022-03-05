@@ -52,12 +52,11 @@ class Bullet extends GameObject {
   }
 
   /**
-   * @param {Bullet} bullet
-   * @param {Wall} wall
+   * @param bullet bullet sprite
+   * @param wall wall sprite
    */
   collisionWithWall(bullet, wall) {
-    console.log("collision with wall");
-    bullet.remove();
+    // bullet.remove();
     delete this;
   }
 }
