@@ -3,5 +3,6 @@
     "module": "CommonJS",
     "target": "ES6"
   },
-  "exclude": ["node_modules"]
+  "include": ["*.js", "node_modules/p5/**/*.d.ts"],
+  "exclude": ["node_modules", "**/node_modules"]
 }
