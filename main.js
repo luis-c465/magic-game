@@ -12,6 +12,18 @@ var bullets = [];
 /** @type {Array<Wall>} */
 var walls = [];
 
+/**
+ * Function called before setup
+ * Should be used to preload sprites that are used multiple times like Bullet.js bullet sprite
+ */
+function preLoad() {
+  /**
+   * TODO: Preload bullet sprite
+   * Currently ever time a new bullet is created is requests the bullet sprite image from the server
+   * which may cause performance problems when playing on a mobile device or on poor internet connection
+   */
+}
+
 function setup() {
   angleMode(DEGREES);
 
