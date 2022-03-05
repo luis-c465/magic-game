@@ -19,8 +19,11 @@ class Bullet extends GameObject {
       5,
       5 * (240 / 112)
     );
-    // Adds an image for the sprite
-    this.sprite.addImage(loadImage("assets/bullet.png"));
+    // Adds an image for the sprites
+    this.sprite.addImage("bullet", images.bullet);
+    this.sprite.changeImage("bullet");
+
+    this.sprite.addImage("iceBullet", images.iceBullet);
 
     // Lower the sprites scale.
     // Other wise the bullet is too big
@@ -29,7 +32,7 @@ class Bullet extends GameObject {
     this.sprite.rotation = rotation;
 
     // Sets the amount of times the sprite will the drawn before destroyed
-    this.sprite.life = 500;
+    this.sprite.life = 300;
 
     this.sprite.debug = true;
 
@@ -56,6 +59,6 @@ class Bullet extends GameObject {
    * @param {Bullet} bullet
    */
   collisionWithWall(wall, bullet) {
-    console.log("sus");
+    console.log("collision with wall");
   }
 }

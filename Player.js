@@ -2,6 +2,9 @@ class Player extends GameObject {
   constructor() {
     super();
 
+    /** @type {IceWand} */
+    this.iceWand = new IceWand();
+
     this.isMoving = false;
     this.movementSpeed = 2;
     this.bullets = [];
@@ -9,7 +12,7 @@ class Player extends GameObject {
 
     // Animations
     this.bodyAnimation = loadAnimation(
-      new SpriteSheet("assets/tanks.png", [
+      new SpriteSheet(images.tanks, [
         {
           name: "stand",
           frame: { x: 123, y: 11, width: 80, height: 89 },
@@ -17,7 +20,7 @@ class Player extends GameObject {
       ])
     );
     this.cannonAnimation = loadAnimation(
-      new SpriteSheet("assets/tanks.png", [
+      new SpriteSheet(images.tanks, [
         {
           name: "stand",
           frame: { x: 79, y: 0, width: 40, height: 76 },
@@ -39,6 +42,8 @@ class Player extends GameObject {
 
   update() {
     this.isMoving = false;
+    // this.bodySprite.addImage("bullet", images.bullet);
+    // this.bodySprite.changeImage("bullet");
 
     // If any arrow keys are pressed move the character in that direction
     if (keyIsDown(LEFT_ARROW)) {
@@ -61,6 +66,9 @@ class Player extends GameObject {
     if (this.isMoving) {
       this.cannonSprite.position.x = this.bodySprite.position.x - 1;
       this.cannonSprite.position.y = this.bodySprite.position.y - 5;
+
+      this.iceWand.x = this.cannonSprite.position.x;
+      this.iceWand.y = this.cannonSprite.position.x;
     }
 
     // If player is not moving (not arrow keys are pressed) set its velocity to zero
@@ -71,24 +79,25 @@ class Player extends GameObject {
 
     // If mouse is pressed
     if (mouseIsPressed) {
-      // Do calculations for bullet position
-      const mouseVector = createVector(mouseX, mouseY).sub(
-        this.bodySprite.position
-      );
+      this.iceWand.cast();
 
-      const dirOffset = this.bodySprite.position.copy();
-      // dirOffset.add(this.bodySprite.position, mouseVector);
-      // dirOffset.x = this.bodySprite.position.x;
-      dirOffset.x += 50;
+      // // Do calculations for bullet position
+      // const mouseVector = createVector(mouseX, mouseY).sub(
+      //   this.bodySprite.position
+      // );
 
-      // Fire bullet
-      const bullet = new Bullet(dirOffset, mouseVector, this.rotation);
-      bullets.push(bullet);
+      // const dirOffset = this.bodySprite.position.copy();
+      // // dirOffset.add(this.bodySprite.position, mouseVector);
+      // // dirOffset.x = this.bodySprite.position.x;
+      // dirOffset.x += 50;
+
+      // // Fire bullet
+      // const bullet = new Bullet(dirOffset, mouseVector, this.rotation);
+      // bullets.push(bullet);
     }
 
     // Loop through all bullets and call their loop function updating them
-    // TODO: Add children array into `GameObject.js` and when update is called update children
-    this.bullets.forEach((bullet) => bullet.update());
+    this.iceWand.update();
   }
 
   /**
