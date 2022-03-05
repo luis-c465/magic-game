@@ -6,6 +6,7 @@ class Player extends GameObject {
     this.movementSpeed = 2;
     this.bullets = [];
     this.rotation = 0;
+    this.collidesWith = ["wall"];
 
     // Animations
     /** @type {Animation} */
@@ -92,6 +93,16 @@ class Player extends GameObject {
     // Loop through all bullets and call their loop function updating them
     // TODO: Add children array into `GameObject.js` and when update is called update children
     this.bullets.forEach((bullet) => bullet.update());
+
+    this.updateCollisions();
+  }
+
+  /**
+   * @param {Sprite} self
+   * @param {Sprite} wall
+   */
+  collisionWithWall(self, wall) {
+    // Do nothing
   }
 
   /**

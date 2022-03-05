@@ -17,22 +17,22 @@ class Wall extends GameObject {
 
     /** @type {number} */
     this.y = y;
+
+    this.collidesWith = ["player", "bullet"];
   }
 
   update() {
     // Prevents crash when sprite has not been set yet
     if (!this.sprite) return;
 
-    bullets.forEach((bullet) => {
-      this.sprite.collide(bullet.sprite, this.collisionWithBullet);
-    });
+    this.updateCollisions();
   }
 
   /**
    * @param {Sprite} bullet
-   * @param {Sprite} wall
+   * @param {Sprite} player
    */
-  collisionWithBullet(wall, bullet) {
-    throw new Error("onBulletHit function has not been overridden!");
+  collisionWithPlayer(wall, player) {
+    // Do nothing
   }
 }
