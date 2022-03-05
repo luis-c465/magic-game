@@ -63,6 +63,7 @@ class Player extends GameObject {
       this.cannonSprite.position.y = this.bodySprite.position.y - 5;
     }
 
+    // If player is not moving (not arrow keys are pressed) set its velocity to zero
     if (!this.isMoving) {
       this.bodySprite.velocity.x = 0;
       this.bodySprite.velocity.y = 0;
