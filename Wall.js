@@ -6,22 +6,32 @@ class Wall extends GameObject {
   constructor(x, y) {
     super();
 
+    /** @type {number} @constant @default */
+    this.WALL_WIDTH = 100;
+
+    /** @type {number} @constant  @default 100 */
+    this.WALL_HEIGHT = 100;
+
     /** @type {number} */
     this.x = x;
 
     /** @type {number} */
     this.y = y;
-
-    this.sprite = createSprite(x, y, 100, 100);
-
-    // Enable debugging for sprite
-    this.sprite.debug = true;
-    // this.sprite.immovable = true;
-
-    this.setup();
   }
 
   update() {
-    // Do something here
+    // Prevents crash when sprite has not been set yet
+    if (!this.sprite) return;
+
+    bullets.forEach((bullet) => {
+      this.sprite.collide(bullet.sprite, this.collisionWithBullet);
+    });
+  }
+
+  /**
+   * Function called when wall is hit by a bullet
+   */
+  collisionWithBullet() {
+    throw new Error("onBulletHit function has not been overridden!");
   }
 }
