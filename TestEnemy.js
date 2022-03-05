@@ -7,8 +7,6 @@ class TestEnemy extends GameObject {
     this.bullets = [];
     this.rotation = 0;
 
-    this.iceWand = new IceWand();
-
     // Animations
     this.bodyAnimation = loadAnimation(
       new SpriteSheet("assets/tanks.png", [

@@ -41,7 +41,6 @@ function preload() {
 
 function setup() {
   angleMode(DEGREES);
-  rectMode(CENTER);
 
   player = new Player();
   testEnemy = new TestEnemy();

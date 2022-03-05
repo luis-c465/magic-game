@@ -5,30 +5,35 @@
 class Wand extends GameObject {
   constructor() {
     super();
+    // Default sprite
+    // this.sprite = createSprite(100, 100, 50, 50);
 
     /** @type {boolean} */
     this.isCasting = false;
 
-    /** @type 0 @default 0 */
+    /** @type {number} @default 0 */
     this.x = 0;
 
-    /** @type 0 @default 0 */
+    /** @type {number} @default 0 */
     this.y = 0;
 
-    this.wandHitBox = createSprite(this.x, this.y, 9999, 600);
-    this.wandHitBox.visible = false;
+    /** @type {number} @default 0 */
+    this.rotation = 0;
+
+    this.wandHitBox = createSprite(this.x, this.y, 9999, 10);
     this.wandHitBox.immovable = true;
     this.wandHitBox.debug = true;
   }
 
   cast() {
-    this.wandHitBox.position.x = this.x;
-    this.wandHitBox.position.y = this.y;
-
     this.isCasting = true;
   }
 
   update() {
+    this.sprite.position.x = this.x;
+    this.sprite.position.y = this.y;
+    this.wandHitBox.rotation = this.rotation;
+
     if (this.isCasting) {
       bullets.forEach((bullet) => {
         this.wandHitBox.collide(bullet.spriteGroup, this.onCastHit);

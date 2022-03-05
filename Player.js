@@ -31,6 +31,7 @@ class Player extends GameObject {
     // Create sprites
     this.bodySprite = createSprite(100, 284, 70, 94);
     this.bodySprite.addAnimation("stand", this.bodyAnimation);
+    // this.bodySprite.rotateToDirection = true;
     this.sprites.push(this.bodySprite);
 
     this.cannonSprite = createSprite(100, 284, 70, 94);
@@ -68,7 +69,8 @@ class Player extends GameObject {
       this.cannonSprite.position.y = this.bodySprite.position.y - 5;
 
       this.iceWand.x = this.cannonSprite.position.x;
-      this.iceWand.y = this.cannonSprite.position.x;
+      this.iceWand.y = this.cannonSprite.position.y - 60;
+      this.iceWand.rotation = this.rotation;
     }
 
     // If player is not moving (not arrow keys are pressed) set its velocity to zero
