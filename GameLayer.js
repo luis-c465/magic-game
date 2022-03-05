@@ -1,0 +1,3 @@
+class GameLayer {
+  constructor() {}
+}
