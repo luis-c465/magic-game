@@ -7,10 +7,19 @@ class Player extends GameObject {
   constructor(layer, x, y) {
     super(layer);
 
+    /** @type {boolean} */
     this.isMoving = false;
+
+    /** @type {number} @default 2 */
     this.movementSpeed = 2;
+
+    /** @type {Bullet[]} @default [] */
     this.bullets = [];
+
+    /** @type {number} @default 0 */
     this.rotation = 0;
+
+    /** @type {gameSprite[]} */
     this.collidesWith = ["wall"];
 
     // Animations
@@ -39,7 +48,8 @@ class Player extends GameObject {
     this.bodySprite.addAnimation("stand", this.bodyAnimation);
     this.sprites.push(this.bodySprite);
 
-    this.cannonSprite = createSprite(100, 284, 70, 94);
+    /** @type {Sprite} */
+    this.cannonSprite = createSprite(x, y, 70, 94);
     this.cannonSprite.addAnimation("default", this.cannonAnimation);
     this.sprites.push(this.cannonSprite);
 
