@@ -6,8 +6,10 @@ class Player extends GameObject {
     this.movementSpeed = 2;
     this.bullets = [];
     this.rotation = 0;
+    this.collidesWith = ["wall"];
 
     // Animations
+    /** @type {Animation} */
     this.bodyAnimation = loadAnimation(
       new SpriteSheet("assets/tanks.png", [
         {
@@ -16,6 +18,7 @@ class Player extends GameObject {
         },
       ])
     );
+    /** @type {Animation} */
     this.cannonAnimation = loadAnimation(
       new SpriteSheet("assets/tanks.png", [
         {
@@ -26,6 +29,7 @@ class Player extends GameObject {
     );
 
     // Create sprites
+    /** @type {Sprite} */
     this.bodySprite = createSprite(100, 284, 70, 94);
     this.bodySprite.addAnimation("stand", this.bodyAnimation);
     this.sprites.push(this.bodySprite);
@@ -63,6 +67,7 @@ class Player extends GameObject {
       this.cannonSprite.position.y = this.bodySprite.position.y - 5;
     }
 
+    // If player is not moving (not arrow keys are pressed) set its velocity to zero
     if (!this.isMoving) {
       this.bodySprite.velocity.x = 0;
       this.bodySprite.velocity.y = 0;
@@ -82,12 +87,22 @@ class Player extends GameObject {
 
       // Fire bullet
       const bullet = new Bullet(dirOffset, mouseVector, this.rotation);
-      this.bullets.push(bullet);
+      bullets.push(bullet);
     }
 
     // Loop through all bullets and call their loop function updating them
     // TODO: Add children array into `GameObject.js` and when update is called update children
     this.bullets.forEach((bullet) => bullet.update());
+
+    this.updateCollisions();
+  }
+
+  /**
+   * @param {Sprite} self
+   * @param {Sprite} wall
+   */
+  collisionWithWall(self, wall) {
+    // Do nothing
   }
 
   /**
