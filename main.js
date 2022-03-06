@@ -4,6 +4,9 @@
 /** @type {GameLayer<Player>} */
 var playerLayer = new Layer();
 
+/** @type {GameLayer<Wand>} */
+var wandsLayer = new Layer();
+
 /** @type {GameLayer<Bullet>} */
 var bulletsLayer = new Layer();
 
@@ -73,6 +76,7 @@ function generalUpdate() {
   playerLayer.update();
   bulletsLayer.update();
   wallsLayer.update();
+  wandsLayer.update();
 }
 
 /**

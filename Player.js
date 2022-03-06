@@ -8,7 +8,7 @@ class Player extends GameObject {
     super(layer);
 
     /** @type {IceWand} */
-    this.iceWand = new IceWand();
+    this.iceWand = new IceWand(wandsLayer);
 
     /** @type {boolean} */
     this.isMoving = false;
@@ -150,10 +150,6 @@ class Player extends GameObject {
     if (this.isMoving) {
       this.cannonSprite.position.x = this.bodySprite.position.x - 1;
       this.cannonSprite.position.y = this.bodySprite.position.y - 5;
-
-      this.iceWand.x = this.cannonSprite.position.x;
-      this.iceWand.y = this.cannonSprite.position.y - 60;
-      this.iceWand.rotation = this.rotation;
     }
 
     // If player is not moving (not arrow keys are pressed) set its velocity to zero
@@ -164,7 +160,7 @@ class Player extends GameObject {
 
     // If mouse is pressed
     if (mouseIsPressed) {
-      this.iceWand.cast();
+      this._cast();
 
       // // Do calculations for bullet position
       // const mouseVector = createVector(mouseX, mouseY).sub(
@@ -180,9 +176,18 @@ class Player extends GameObject {
       // const bullet = new Bullet(dirOffset, mouseVector, this.rotation);
       // bullets.push(bullet);
     }
+  }
 
-    // Loop through all bullets and call their loop function updating them
-    this.iceWand.update();
+  /**
+   * Casts a wand
+   * @private
+   */
+  _cast() {
+    this.iceWand.x = this.cannonSprite.position.x;
+    this.iceWand.y = this.cannonSprite.position.y;
+    this.iceWand.rotation = this.rotation;
+
+    this.iceWand.cast();
   }
 
   /**

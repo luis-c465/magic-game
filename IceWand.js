@@ -1,17 +1,24 @@
 class IceWand extends Wand {
-  constructor() {
-    super();
+  /**
+   * @param {Layer} layer
+   */
+  constructor(layer) {
+    super(layer);
 
-    this.sprite = createSprite(10, 10, 50, 50);
-    this.sprite.addImage(images.iceWand);
-
-    /** @type {Image} */
-    // this.iceBulletImage = images.iceBullet;
+    this.wand = createSprite(10, 10, 50, 50);
+    this.wand.addImage(images.iceWand);
 
     this.setup();
   }
 
-  onCastHit(wandHitBox, bulletSprite) {
+  /**
+   * Function called a bullet comes into contact with the wandHitBox
+   * Likely will need to overridden by a class which inherits from this one
+   *
+   * @param {Sprite} bullet
+   * @param {Sprite} wandHitBox
+   */
+  collisionWithBullet(wandHitBox, bulletSprite) {
     bulletSprite.changeImage("iceBullet");
   }
 }

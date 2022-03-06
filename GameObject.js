@@ -2,7 +2,7 @@
  * Base class for game objects
  * Adds all sprite for the game object into a p5.play group
  *
- * @typedef {"player" | "bullet" | "wall"} gameSprite
+ * @typedef {"player" | "bullet" | "wall" | "wand"} gameSprite
  */
 class GameObject {
   /**
@@ -86,6 +86,7 @@ class GameObject {
     this._collidesWith(playerLayer, "player");
     this._collidesWith(bulletsLayer, "bullet");
     this._collidesWith(wallsLayer, "wall");
+    this._collidesWith(wandsLayer, "wand");
 
     // if (this.collidesWith.includes("player")) {
     //   this.spriteGroup.collide(
