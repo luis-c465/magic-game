@@ -4,7 +4,8 @@
 /** @type {Player} */
 var player;
 
-// var objLayer;
+/** @type {GameLayer} */
+var gameLayer;
 
 /** @type {Array<Bullet>} */
 var bullets = [];
@@ -27,7 +28,9 @@ function preLoad() {
 function setup() {
   angleMode(DEGREES);
 
-  player = new Player();
+  gameLayer = new GameLayer();
+
+  player = new Player(gameLayer, 250, 250);
   walls.push(new IndestructibleWall(500, 500), new DestructibleWall(500, 400));
   // objLayer = new GameLayer();
 

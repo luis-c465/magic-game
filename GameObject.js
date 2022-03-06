@@ -46,6 +46,13 @@ class GameObject {
      */
     this.deleteCheck = false;
 
+    /**
+     * Controls weather the GameObject will collide with other objects
+     * @type {boolean}
+     * @default true
+     */
+    this.collisionCheck = true;
+
     layer.add(this);
   }
 
@@ -66,12 +73,14 @@ class GameObject {
   /**
    * Updates the collisions for the game object
    *
-   * Depends on `this.collidesWith` so adding "Player" to the array will call `this.collisionWithPlayer`
+   * Depends on `this.collidesWith` so adding `"Player"` to the array will call `this.collisionWithPlayer`
    *
    * Should be called in the update function to have the Object collide with things
    */
   updateCollisions() {
-    // TODO: Change order of parameters by changing from self.collide to sprite.collide
+    // If false returns and stops executing the function
+    if (!this.collisionCheck) return;
+
     if (this.collidesWith.includes("player")) {
       this.spriteGroup.collide(
         player.spriteGroup,
@@ -93,6 +102,17 @@ class GameObject {
         this.spriteGroup.collide(wall.spriteGroup, this._collisionWith("Wall"));
       });
     }
+  }
+
+  /**
+   * Deletes the game objects sprite then deletes the object if `this.deleteCheck` is set to `true`
+   */
+  updateDelete() {
+    // If false returns and stops executing the function
+    if (!this.deleteCheck) return;
+
+    this.spriteGroup.removeSprites();
+    delete this;
   }
 
   /**

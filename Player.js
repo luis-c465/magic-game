@@ -1,6 +1,11 @@
 class Player extends GameObject {
-  constructor() {
-    super();
+  /**
+   * @param {GameLayer} layer
+   * @param {number} x
+   * @param {number} y
+   */
+  constructor(layer, x, y) {
+    super(layer);
 
     this.isMoving = false;
     this.movementSpeed = 2;
@@ -30,7 +35,7 @@ class Player extends GameObject {
 
     // Create sprites
     /** @type {Sprite} */
-    this.bodySprite = createSprite(100, 284, 70, 94);
+    this.bodySprite = createSprite(x, y, 70, 94);
     this.bodySprite.addAnimation("stand", this.bodyAnimation);
     this.sprites.push(this.bodySprite);
 
@@ -42,6 +47,9 @@ class Player extends GameObject {
   }
 
   update() {
+    // If false returns and stops executing the function
+    if (!this.updateCheck) return;
+
     this.isMoving = false;
 
     // If any arrow keys are pressed move the character in that direction
@@ -95,6 +103,7 @@ class Player extends GameObject {
     this.bullets.forEach((bullet) => bullet.update());
 
     this.updateCollisions();
+    this.deleteCheck();
   }
 
   /**
@@ -109,6 +118,8 @@ class Player extends GameObject {
    * Function called when mouse is dragged
    */
   mouseDragged() {
+    if (!this.updateCheck) return;
+
     this.rotation = atan2(
       mouseY - this.cannonSprite.position.y,
       mouseX - this.cannonSprite.position.x
