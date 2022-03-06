@@ -88,4 +88,20 @@ class GameObject {
       };
     }
   }
+
+  /**
+   * Updates the GameObject.
+   * Should be overridden by inheriting objects
+   */
+  update() {
+    // Does nothing
+  }
+
+  /**
+   * Displays the GameObject.
+   * Should be overridden by inheriting objects
+   */
+  display() {
+    // Does nothing
+  }
 }
