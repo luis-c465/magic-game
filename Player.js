@@ -88,6 +88,42 @@ class Player extends GameObject {
       this.canShootNow = this.updates % this.SHOOT_EVERY_N_UPDATES === 0;
     }
 
+    this._updateMovement();
+
+    // If mouse is pressed
+    if (mouseIsPressed && this.canShootNow) {
+      this._shoot();
+    }
+
+    this.updateCollisions();
+  }
+
+  /**
+   * @param {Sprite} self
+   * @param {Sprite} wall
+   */
+  collisionWithWall(self, wall) {
+    // Do nothing
+  }
+
+  /**
+   * Function called when mouse is dragged
+   */
+  mouseDragged() {
+    if (!this.updateCheck) return;
+
+    this.rotation = atan2(
+      mouseY - this.cannonSprite.position.y,
+      mouseX - this.cannonSprite.position.x
+    );
+    this.cannonSprite.rotation = this.rotation + 90;
+  }
+
+  /**
+   * Updates the movement of the player
+   * @private
+   */
+  _updateMovement() {
     this.isMoving = false;
 
     // If any arrow keys are pressed move the character in that direction
@@ -118,56 +154,32 @@ class Player extends GameObject {
       this.bodySprite.velocity.x = 0;
       this.bodySprite.velocity.y = 0;
     }
-
-    // If mouse is pressed
-    if (mouseIsPressed && this.canShootNow) {
-      this.canShootNow = false;
-
-      // Do calculations for bullet position
-      const mouseVector = createVector(mouseX, mouseY).sub(
-        this.bodySprite.position
-      );
-
-      const dirOffset = this.bodySprite.position.copy();
-      // dirOffset.add(this.bodySprite.position, mouseVector);
-      // dirOffset.x = this.bodySprite.position.x;
-      dirOffset.x += 50;
-
-      // Fire bullet
-      const bullet = new Bullet(
-        this.layer,
-        dirOffset,
-        mouseVector,
-        this.rotation
-      );
-      bullets.push(bullet);
-    }
-
-    // Loop through all bullets and call their loop function updating them
-    // TODO: Add children array into `GameObject.js` and when update is called update children
-    this.bullets.forEach((bullet) => bullet.update());
-
-    this.updateCollisions();
   }
 
   /**
-   * @param {Sprite} self
-   * @param {Sprite} wall
+   * Shoots a bullet from the cannon to the mouses current location
+   * @private
    */
-  collisionWithWall(self, wall) {
-    // Do nothing
-  }
+  _shoot() {
+    this.canShootNow = false;
 
-  /**
-   * Function called when mouse is dragged
-   */
-  mouseDragged() {
-    if (!this.updateCheck) return;
-
-    this.rotation = atan2(
-      mouseY - this.cannonSprite.position.y,
-      mouseX - this.cannonSprite.position.x
+    // Do calculations for bullet position
+    const mouseVector = createVector(mouseX, mouseY).sub(
+      this.bodySprite.position
     );
-    this.cannonSprite.rotation = this.rotation + 90;
+
+    const dirOffset = this.bodySprite.position.copy();
+    // dirOffset.add(this.bodySprite.position, mouseVector);
+    // dirOffset.x = this.bodySprite.position.x;
+    dirOffset.x += 50;
+
+    // Fire bullet
+    const bullet = new Bullet(
+      this.layer,
+      dirOffset,
+      mouseVector,
+      this.rotation
+    );
+    bullets.push(bullet);
   }
 }
