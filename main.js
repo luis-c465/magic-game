@@ -31,7 +31,10 @@ function setup() {
   gameLayer = new GameLayer();
 
   player = new Player(gameLayer, 250, 250);
-  walls.push(new IndestructibleWall(500, 500), new DestructibleWall(500, 400));
+  walls.push(
+    new IndestructibleWall(gameLayer, 500, 500),
+    new DestructibleWall(gameLayer, 500, 400)
+  );
   // objLayer = new GameLayer();
 
   // FIXME: Will not update canvas size when user resizes browser window!
@@ -39,16 +42,65 @@ function setup() {
 }
 
 function draw() {
-  clear();
-  background(255);
+  // background(255);
 
-  player.update();
-  bullets.forEach((bullet) => bullet.update());
-  walls.forEach((wall) => wall.update());
+  // player.update();
+  // bullets.forEach((bullet) => bullet.update());
+  // walls.forEach((wall) => wall.update());
 
-  drawSprites();
+  fixedUpdate();
+  generalUpdate();
+  lateUpdate();
+  staticDisplay();
+  generalDisplay();
 }
 
 function mouseDragged() {
   player.mouseDragged();
+}
+
+//
+//
+/**
+ * Calculates the physics of the game
+ *
+ * Used to tell the game how the layers should run.
+ * Not so much used since update in each class should determine physics of the object.
+ */
+function fixedUpdate() {
+  //
+}
+
+/**
+ * Updates game objects
+ */
+function generalUpdate() {
+  // Clears the screen of old sprites
+  // Fixes bug with old sprites not being cleared after being displayed again
+  clear();
+
+  gameLayer.update();
+}
+
+/**
+ * Calculates any after moments/anything else
+ */
+function lateUpdate() {
+  //
+}
+
+/**
+ * Displays non-changing elements of the game
+ */
+function staticDisplay() {
+  background(255);
+}
+
+/**
+ * Displays game objects
+ */
+function generalDisplay() {
+  gameLayer.display();
+
+  drawSprites();
 }

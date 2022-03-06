@@ -47,6 +47,8 @@ class Player extends GameObject {
   }
 
   update() {
+    this.updateDelete();
+
     // If false returns and stops executing the function
     if (!this.updateCheck) return;
 
@@ -94,7 +96,12 @@ class Player extends GameObject {
       dirOffset.x += 50;
 
       // Fire bullet
-      const bullet = new Bullet(dirOffset, mouseVector, this.rotation);
+      const bullet = new Bullet(
+        this.layer,
+        dirOffset,
+        mouseVector,
+        this.rotation
+      );
       bullets.push(bullet);
     }
 
@@ -103,7 +110,6 @@ class Player extends GameObject {
     this.bullets.forEach((bullet) => bullet.update());
 
     this.updateCollisions();
-    this.deleteCheck();
   }
 
   /**

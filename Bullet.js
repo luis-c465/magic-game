@@ -4,8 +4,14 @@
  * A bullet that moves forward ever time the update function is called
  */
 class Bullet extends GameObject {
-  constructor(initialPosition, trajectory, rotation) {
-    super();
+  /**
+   * @param {GameLayer} layer
+   * @param {Vector} initialPosition
+   * @param {Vector} trajectory
+   * @param {number} rotation
+   */
+  constructor(layer, initialPosition, trajectory, rotation) {
+    super(layer);
 
     this.BULLET_SPEED = 5;
     this.initialPosition = initialPosition;

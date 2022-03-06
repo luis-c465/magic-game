@@ -53,6 +53,8 @@ class GameObject {
      */
     this.collisionCheck = true;
 
+    /** @type {GameLayer} */
+    this.layer = layer;
     layer.add(this);
   }
 
@@ -106,6 +108,7 @@ class GameObject {
 
   /**
    * Deletes the game objects sprite then deletes the object if `this.deleteCheck` is set to `true`
+   * Will be called even if `this.updateCheck === false`
    */
   updateDelete() {
     // If false returns and stops executing the function

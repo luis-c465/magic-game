@@ -1,10 +1,11 @@
 class Wall extends GameObject {
   /**
+   * @param {GameLayer} layer
    * @param {number} x
    * @param {number} y
    */
-  constructor(x, y) {
-    super();
+  constructor(layer, x, y) {
+    super(layer);
 
     /** @type {number} @constant @default */
     this.WALL_WIDTH = 100;
