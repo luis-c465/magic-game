@@ -23,6 +23,7 @@ class IndestructibleWall extends Wall {
    * @param {Sprite} wall
    */
   collisionWithBullet(wall, bullet) {
+    // bullet.remove();
     console.log("collision with bullet immovable");
     // Do nothing
     // Wall is immovable and cannot be destroyed

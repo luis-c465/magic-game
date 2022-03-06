@@ -83,27 +83,48 @@ class GameObject {
     // If false returns and stops executing the function
     if (!this.collisionCheck) return;
 
-    if (this.collidesWith.includes("player")) {
+    this._collidesWith(playerLayer, "player");
+    this._collidesWith(bulletsLayer, "bullet");
+    this._collidesWith(wallsLayer, "wall");
+
+    // if (this.collidesWith.includes("player")) {
+    //   this.spriteGroup.collide(
+    //     player.spriteGroup,
+    //     this._collisionWith("Player")
+    //   );
+    // }
+
+    // if (this.collidesWith.includes("bullet")) {
+    //   bullets.forEach((bullet) => {
+    //     this.spriteGroup.collide(
+    //       bullet.spriteGroup,
+    //       this._collisionWith("Bullet")
+    //     );
+    //   });
+    // }
+
+    // if (this.collidesWith.includes("wall")) {
+    //   walls.forEach((wall) => {
+    //     this.spriteGroup.collide(wall.spriteGroup, this._collisionWith("Wall"));
+    //   });
+    // }
+  }
+
+  /**
+   * Updates the collisions for that layer and calls `_collisionWith` if there is a collision
+   *
+   * @param {Layer} layer
+   * @param {string} name
+   */
+  _collidesWith(layer, name) {
+    if (!this.collidesWith.includes(name)) return;
+
+    layer.objects.forEach((obj) => {
       this.spriteGroup.collide(
-        player.spriteGroup,
-        this._collisionWith("Player")
+        obj.spriteGroup,
+        this._collisionWith(capitalizeFirstLetter(name))
       );
-    }
-
-    if (this.collidesWith.includes("bullet")) {
-      bullets.forEach((bullet) => {
-        this.spriteGroup.collide(
-          bullet.spriteGroup,
-          this._collisionWith("Bullet")
-        );
-      });
-    }
-
-    if (this.collidesWith.includes("wall")) {
-      walls.forEach((wall) => {
-        this.spriteGroup.collide(wall.spriteGroup, this._collisionWith("Wall"));
-      });
-    }
+    });
   }
 
   /**

@@ -40,6 +40,9 @@ class Bullet extends GameObject {
 
     this.sprite.debug = true;
 
+    /** @type {gameSprite[]} */
+    this.collidesWith = ["wall"];
+
     this.setup();
   }
 
@@ -47,15 +50,14 @@ class Bullet extends GameObject {
     // Makes the bullet move
     this.sprite.position.add(this.trajectory);
 
-    walls.forEach((wall) => {
-      this.sprite.collide(wall.spriteGroup, this.collisionWithWall);
-    });
-
     // If sprite is destroyed destroy instance of Bullet
     // TODO: Also remove itself from the array of bullets
     if (this.sprite.life <= 0) {
+      this.sprite.remove();
       delete this;
     }
+
+    this.updateCollisions();
   }
 
   /**

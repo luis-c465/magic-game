@@ -171,12 +171,8 @@ class Player extends GameObject {
     dirOffset.x += 50;
 
     // Fire bullet
-    const bullet = new Bullet(
-      this.layer,
-      dirOffset,
-      mouseVector,
-      this.rotation
-    );
-    bullets.push(bullet);
+    new Bullet(bulletsLayer, dirOffset, mouseVector, this.rotation);
+    // bulletsLayer.add(bullet);
+    // bullets.push(bullet);
   }
 }

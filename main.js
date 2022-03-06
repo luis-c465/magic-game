@@ -1,17 +1,14 @@
 // Adds references to global p5.js functions
 /// <reference types="p5/global" />
 
-/** @type {Player} */
-var player;
+/** @type {GameLayer<Player>} */
+var playerLayer = new Layer();
 
-/** @type {GameLayer} */
-var gameLayer;
+/** @type {GameLayer<Bullet>} */
+var bulletsLayer = new Layer();
 
-/** @type {Array<Bullet>} */
-var bullets = [];
-
-/** @type {Array<Wall>} */
-var walls = [];
+/** @type {GameLayer<Wall>} */
+var wallsLayer = new Layer();
 
 /**
  * Function called before setup
@@ -28,13 +25,18 @@ function preLoad() {
 function setup() {
   angleMode(DEGREES);
 
-  gameLayer = new GameLayer();
+  // playerLayer = new Layer();
+  // bulletsLayer = new Layer();
+  // wallsLayer = new Layer();
 
-  player = new Player(gameLayer, 250, 250);
-  walls.push(
-    new IndestructibleWall(gameLayer, 500, 500),
-    new DestructibleWall(gameLayer, 500, 400)
-  );
+  new Player(playerLayer, 250, 250);
+
+  new IndestructibleWall(wallsLayer, 500, 500);
+  new DestructibleWall(wallsLayer, 500, 400);
+  // walls.push(
+  //   new IndestructibleWall(playerLayer, 500, 500),
+  //   new DestructibleWall(playerLayer, 500, 400)
+  // );
   // objLayer = new GameLayer();
 
   // FIXME: Will not update canvas size when user resizes browser window!
@@ -73,7 +75,9 @@ function generalUpdate() {
   // Fixes bug with old sprites not being cleared after being displayed again
   clear();
 
-  gameLayer.update();
+  playerLayer.update();
+  bulletsLayer.update();
+  wallsLayer.update();
 }
 
 /**
@@ -94,7 +98,7 @@ function staticDisplay() {
  * Displays game objects
  */
 function generalDisplay() {
-  gameLayer.display();
+  playerLayer.display();
 
   drawSprites();
 }

@@ -15,7 +15,11 @@ function keyPressed() {
 }
 
 function mouseDragged() {
-  player.mouseDragged();
+  // Calls mouseDragged function for each player in player layer
+  // Allows for multiple players to exist at the same time
+  playerLayer.objects.forEach((player) => {
+    player.mouseDragged();
+  });
 }
 
 function keyTyped() {
