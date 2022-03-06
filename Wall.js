@@ -1,10 +1,17 @@
 class Wall extends GameObject {
   /**
+   * @param {GameLayer} layer
    * @param {number} x
    * @param {number} y
    */
-  constructor(x, y) {
-    super();
+  constructor(layer, x, y) {
+    super(layer);
+
+    /** @type {number} @constant @default */
+    this.WALL_WIDTH = 100;
+
+    /** @type {number} @constant  @default 100 */
+    this.WALL_HEIGHT = 100;
 
     /** @type {number} */
     this.x = x;
@@ -12,16 +19,22 @@ class Wall extends GameObject {
     /** @type {number} */
     this.y = y;
 
-    this.sprite = createSprite(x, y, 100, 100);
-
-    // Enable debugging for sprite
-    this.sprite.debug = true;
-    // this.sprite.immovable = true;
-
-    this.setup();
+    this.collidesWith = ["player", "bullet"];
   }
 
   update() {
-    // Do something here
+    // Prevents crash when sprite has not been set yet
+    if (!this.sprite) return;
+
+    this.updateCollisions();
+  }
+
+  /**
+   * @param {Sprite} bullet
+   * @param {Sprite} player
+   */
+  collisionWithPlayer(wall, player) {
+    // console.log(wall);
+    // Do nothing
   }
 }

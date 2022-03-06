@@ -1,3 +1,6 @@
-class GameLayer {
-  constructor() {}
+/** @template [T=GameObject] */
+class GameLayer extends Layer {
+  constructor() {
+    super();
+  }
 }

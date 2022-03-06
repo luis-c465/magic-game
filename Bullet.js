@@ -4,8 +4,14 @@
  * A bullet that moves forward ever time the update function is called
  */
 class Bullet extends GameObject {
-  constructor(initialPosition, trajectory, rotation) {
-    super();
+  /**
+   * @param {GameLayer} layer
+   * @param {Vector} initialPosition
+   * @param {Vector} trajectory
+   * @param {number} rotation
+   */
+  constructor(layer, initialPosition, trajectory, rotation) {
+    super(layer);
 
     this.BULLET_SPEED = 5;
     this.initialPosition = initialPosition;
@@ -13,6 +19,7 @@ class Bullet extends GameObject {
     this.trajectory.setMag(this.BULLET_SPEED);
 
     // Creates a sprite at its initial position with an aspect ratio of the image
+    /** @type {Sprite} */
     this.sprite = createSprite(
       this.initialPosition.x,
       this.initialPosition.y,
@@ -36,6 +43,9 @@ class Bullet extends GameObject {
 
     this.sprite.debug = true;
 
+    /** @type {gameSprite[]} */
+    this.collidesWith = ["wall"];
+
     this.setup();
   }
 
@@ -43,22 +53,22 @@ class Bullet extends GameObject {
     // Makes the bullet move
     this.sprite.position.add(this.trajectory);
 
-    walls.forEach((wall) => {
-      this.sprite.collide(wall.spriteGroup, this.collisionWithWall);
-    });
-
     // If sprite is destroyed destroy instance of Bullet
     // TODO: Also remove itself from the array of bullets
-    if (this.sprite <= 0) {
+    if (this.sprite.life <= 0) {
+      this.sprite.remove();
       delete this;
     }
+
+    this.updateCollisions();
   }
 
   /**
-   * @param {Wall} wall
-   * @param {Bullet} bullet
+   * @param {Sprite} bullet
+   * @param {Sprite} wall
    */
-  collisionWithWall(wall, bullet) {
-    console.log("collision with wall");
+  collisionWithWall(bullet, wall) {
+    // bullet.remove();
+    // delete this;
   }
 }

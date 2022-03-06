@@ -1,21 +1,14 @@
 // Adds references to global p5.js functions
 /// <reference types="p5/global" />
 
-// JSDoc type declarations (adds intellisense and autocompletion)
+/** @type {GameLayer<Player>} */
+var playerLayer = new Layer();
 
-/** @type {Player} */
-var player;
+/** @type {GameLayer<Bullet>} */
+var bulletsLayer = new Layer();
 
-/** @type {TestEnemy} */
-var testEnemy;
-
-// var objLayer;
-
-/** @type {Array<Bullet>} */
-var bullets = [];
-
-/** @type {Array<Wall>} */
-var walls = [];
+/** @type {GameLayer<Wall>} */
+var wallsLayer = new Layer();
 
 /** @type {Object.<string, Image>} */
 var images = {};
@@ -42,27 +35,65 @@ function preload() {
 function setup() {
   angleMode(DEGREES);
 
-  player = new Player();
-  testEnemy = new TestEnemy();
-  walls.push(new Wall(500, 500));
-  // objLayer = new GameLayer();
+  new Player(playerLayer, 250, 250);
+
+  new IndestructibleWall(wallsLayer, 500, 500);
+  new DestructibleWall(wallsLayer, 500, 400);
 
   // FIXME: Will not update canvas size when user resizes browser window!
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  clear();
-  background(255);
-
-  player.update();
-  testEnemy.update();
-  bullets.forEach((bullet) => bullet.update());
-  walls.forEach((wall) => wall.update());
-
-  drawSprites();
+  fixedUpdate();
+  generalUpdate();
+  lateUpdate();
+  staticDisplay();
+  generalDisplay();
 }
 
-function mouseDragged() {
-  player.mouseDragged();
+/**
+ * Calculates the physics of the game
+ *
+ * Used to tell the game how the layers should run.
+ * Not so much used since update in each class should determine physics of the object.
+ */
+function fixedUpdate() {
+  //
+}
+
+/**
+ * Updates game objects
+ */
+function generalUpdate() {
+  // Clears the screen of old sprites
+  // Fixes bug with old sprites not being cleared after being displayed again
+  clear();
+
+  playerLayer.update();
+  bulletsLayer.update();
+  wallsLayer.update();
+}
+
+/**
+ * Calculates any after moments/anything else
+ */
+function lateUpdate() {
+  //
+}
+
+/**
+ * Displays non-changing elements of the game
+ */
+function staticDisplay() {
+  background(255);
+}
+
+/**
+ * Displays game objects
+ */
+function generalDisplay() {
+  playerLayer.display();
+
+  drawSprites();
 }

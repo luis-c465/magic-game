@@ -2,7 +2,8 @@
   "compilerOptions": {
     "module": "CommonJS",
     "target": "ES6"
+    // "checkJs": true
   },
-  "include": ["*.js", "node_modules/p5/**/*.d.ts"],
-  "exclude": ["node_modules", "**/node_modules"]
+  "include": ["*.js", "lib/*.d.ts", "node_modules/p5/**/*.d.ts"],
+  "exclude": ["node_modules", "**/node_modules", "dist"]
 }

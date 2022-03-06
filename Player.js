@@ -1,16 +1,50 @@
 class Player extends GameObject {
-  constructor() {
-    super();
+  /**
+   * @param {GameLayer} layer
+   * @param {number} x
+   * @param {number} y
+   */
+  constructor(layer, x, y) {
+    super(layer);
 
     /** @type {IceWand} */
     this.iceWand = new IceWand();
 
+    /** @type {boolean} */
     this.isMoving = false;
+
+    /** @type {number} @default 2 */
     this.movementSpeed = 2;
-    this.bullets = [];
+
+    /** @type {number} @default 0 */
     this.rotation = 0;
 
+    /** @type {gameSprite[]} */
+    this.collidesWith = ["wall"];
+
+    /**
+     * The number of times that the players `update` function has been called
+     *  @type {number}
+     * @default 0
+     */
+    this.updates = 0;
+    /**
+     * The number of updates that must happen till the player can shoot again
+     * @type {number}
+     * @constant
+     * @default 15
+     */
+    this.SHOOT_EVERY_N_UPDATES = 15;
+
+    /**
+     * Determines if the player can shoot when the mouse is pressed
+     * @type {boolean}
+     * @default true
+     */
+    this.canShootNow = true;
+
     // Animations
+    /** @type {Animation} */
     this.bodyAnimation = loadAnimation(
       new SpriteSheet(images.tanks, [
         {
@@ -19,6 +53,7 @@ class Player extends GameObject {
         },
       ])
     );
+    /** @type {Animation} */
     this.cannonAnimation = loadAnimation(
       new SpriteSheet(images.tanks, [
         {
@@ -29,12 +64,14 @@ class Player extends GameObject {
     );
 
     // Create sprites
-    this.bodySprite = createSprite(100, 284, 70, 94);
+    /** @type {Sprite} */
+    this.bodySprite = createSprite(x, y, 70, 94);
     this.bodySprite.addAnimation("stand", this.bodyAnimation);
     // this.bodySprite.rotateToDirection = true;
     this.sprites.push(this.bodySprite);
 
-    this.cannonSprite = createSprite(100, 284, 70, 94);
+    /** @type {Sprite} */
+    this.cannonSprite = createSprite(x, y, 70, 94);
     this.cannonSprite.addAnimation("default", this.cannonAnimation);
     this.sprites.push(this.cannonSprite);
 
@@ -42,6 +79,52 @@ class Player extends GameObject {
   }
 
   update() {
+    this.updateDelete();
+
+    // If false returns and stops executing the function
+    if (!this.updateCheck) return;
+
+    this.updates++;
+    if (!this.canShootNow) {
+      this.canShootNow = this.updates % this.SHOOT_EVERY_N_UPDATES === 0;
+    }
+
+    this._updateMovement();
+
+    // If mouse is pressed
+    if (mouseIsPressed && this.canShootNow) {
+      this._shoot();
+    }
+
+    this.updateCollisions();
+  }
+
+  /**
+   * @param {Sprite} self
+   * @param {Sprite} wall
+   */
+  collisionWithWall(self, wall) {
+    // Do nothing
+  }
+
+  /**
+   * Function called when mouse is dragged
+   */
+  mouseDragged() {
+    if (!this.updateCheck) return;
+
+    this.rotation = atan2(
+      mouseY - this.cannonSprite.position.y,
+      mouseX - this.cannonSprite.position.x
+    );
+    this.cannonSprite.rotation = this.rotation + 90;
+  }
+
+  /**
+   * Updates the movement of the player
+   * @private
+   */
+  _updateMovement() {
     this.isMoving = false;
     // this.bodySprite.addImage("bullet", images.bullet);
     // this.bodySprite.changeImage("bullet");
@@ -103,13 +186,25 @@ class Player extends GameObject {
   }
 
   /**
-   * Function called when mouse is dragged
+   * Shoots a bullet from the cannon to the mouses current location
+   * @private
    */
-  mouseDragged() {
-    this.rotation = atan2(
-      mouseY - this.cannonSprite.position.y,
-      mouseX - this.cannonSprite.position.x
+  _shoot() {
+    this.canShootNow = false;
+
+    // Do calculations for bullet position
+    const mouseVector = createVector(mouseX, mouseY).sub(
+      this.bodySprite.position
     );
-    this.cannonSprite.rotation = this.rotation + 90;
+
+    const dirOffset = this.bodySprite.position.copy();
+    // dirOffset.add(this.bodySprite.position, mouseVector);
+    // dirOffset.x = this.bodySprite.position.x;
+    dirOffset.x += 50;
+
+    // Fire bullet
+    new Bullet(bulletsLayer, dirOffset, mouseVector, this.rotation);
+    // bulletsLayer.add(bullet);
+    // bullets.push(bullet);
   }
 }
