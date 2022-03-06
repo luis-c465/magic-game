@@ -55,12 +55,6 @@ function draw() {
   generalDisplay();
 }
 
-function mouseDragged() {
-  player.mouseDragged();
-}
-
-//
-//
 /**
  * Calculates the physics of the game
  *
