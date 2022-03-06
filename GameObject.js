@@ -5,7 +5,10 @@
  * @typedef {"player" | "bullet" | "wall"} gameSprite
  */
 class GameObject {
-  constructor() {
+  /**
+   * @param {GameLayer} layer Layer that the game object will be added to
+   */
+  constructor(layer) {
     /** @type {Group} */
     this.spriteGroup = new Group();
     /** @type {Sprite[]} */
@@ -20,6 +23,30 @@ class GameObject {
      * @default []
      */
     this.collidesWith = [];
+
+    // State machine variables
+    /**
+     * Controls weather the GameObject will be drawn to the screen
+     * @type {boolean}
+     * @default true
+     */
+    this.drawCheck = true;
+
+    /**
+     * Controls weather the GameObject will be updated
+     * @type {boolean}
+     * @default true
+     */
+    this.updateCheck = true;
+
+    /**
+     * Controls weather the GameObject will be deleted
+     * @type {boolean}
+     * @default false
+     */
+    this.deleteCheck = false;
+
+    layer.add(this);
   }
 
   /**
@@ -91,6 +118,8 @@ class GameObject {
 
   /**
    * Updates the GameObject.
+   *
+   * Will only work run code if `this.updateCheck` is set to `true`.
    * Should be overridden by inheriting objects
    */
   update() {
@@ -99,6 +128,8 @@ class GameObject {
 
   /**
    * Displays the GameObject.
+   *
+   * Will only work run code if `this.drawCheck` is set to `true`.
    * Should be overridden by inheriting objects
    */
   display() {
