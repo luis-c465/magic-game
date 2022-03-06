@@ -22,6 +22,27 @@ class Player extends GameObject {
     /** @type {gameSprite[]} */
     this.collidesWith = ["wall"];
 
+    /**
+     * The number of times that the players `update` function has been called
+     *  @type {number}
+     * @default 0
+     */
+    this.updates = 0;
+    /**
+     * The number of updates that must happen till the player can shoot again
+     * @type {number}
+     * @constant
+     * @default 15
+     */
+    this.SHOOT_EVERY_N_UPDATES = 15;
+
+    /**
+     * Determines if the player can shoot when the mouse is pressed
+     * @type {boolean}
+     * @default true
+     */
+    this.canShootNow = true;
+
     // Animations
     /** @type {Animation} */
     this.bodyAnimation = loadAnimation(
@@ -62,6 +83,11 @@ class Player extends GameObject {
     // If false returns and stops executing the function
     if (!this.updateCheck) return;
 
+    this.updates++;
+    if (!this.canShootNow) {
+      this.canShootNow = this.updates % this.SHOOT_EVERY_N_UPDATES === 0;
+    }
+
     this.isMoving = false;
 
     // If any arrow keys are pressed move the character in that direction
@@ -94,7 +120,9 @@ class Player extends GameObject {
     }
 
     // If mouse is pressed
-    if (mouseIsPressed) {
+    if (mouseIsPressed && this.canShootNow) {
+      this.canShootNow = false;
+
       // Do calculations for bullet position
       const mouseVector = createVector(mouseX, mouseY).sub(
         this.bodySprite.position
