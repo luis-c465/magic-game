@@ -152,6 +152,8 @@ class GameObject {
   /**
    * Displays the GameObject.
    *
+   * Does nothing as p5.play automatically handles displaying sprites
+   *
    * Will only work run code if `this.drawCheck` is set to `true`.
    * Should be overridden by inheriting objects
    */
