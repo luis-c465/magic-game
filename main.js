@@ -25,31 +25,16 @@ function preLoad() {
 function setup() {
   angleMode(DEGREES);
 
-  // playerLayer = new Layer();
-  // bulletsLayer = new Layer();
-  // wallsLayer = new Layer();
-
   new Player(playerLayer, 250, 250);
 
   new IndestructibleWall(wallsLayer, 500, 500);
   new DestructibleWall(wallsLayer, 500, 400);
-  // walls.push(
-  //   new IndestructibleWall(playerLayer, 500, 500),
-  //   new DestructibleWall(playerLayer, 500, 400)
-  // );
-  // objLayer = new GameLayer();
 
   // FIXME: Will not update canvas size when user resizes browser window!
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  // background(255);
-
-  // player.update();
-  // bullets.forEach((bullet) => bullet.update());
-  // walls.forEach((wall) => wall.update());
-
   fixedUpdate();
   generalUpdate();
   lateUpdate();
