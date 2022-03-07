@@ -2,6 +2,8 @@
 
 /**
  * A bullet that moves forward ever time the update function is called
+ *
+ * @typedef {"bullet" | "iceBullet"} bulletType
  */
 class Bullet extends GameObject {
   /**
@@ -26,6 +28,16 @@ class Bullet extends GameObject {
       5,
       5 * (240 / 112)
     );
+
+    /**
+     * Changes how the bullet will react when colliding with things
+     * Is updated every time the `update` function is called
+     *
+     * @type {"bullet" | "iceBullet"}
+     * @default "bullet"
+     */
+    this.bulletType = "bullet";
+
     // Adds an image for the sprites
     this.sprite.addImage("bullet", images.bullet);
     this.sprite.changeImage("bullet");
@@ -46,13 +58,13 @@ class Bullet extends GameObject {
     /** @type {gameSprite[]} */
     this.collidesWith = ["wall"];
 
-    this.bulletType = null;
-
     this.setup();
   }
 
   update() {
-    console.log(this.sprite.getAnimationLabel());
+    // Updates the current bullet type equal to the animation label
+    this.bulletType = this.sprite.getAnimationLabel();
+
     // Makes the bullet move
     this.sprite.position.add(this.trajectory);
 
