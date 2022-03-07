@@ -46,10 +46,13 @@ class Bullet extends GameObject {
     /** @type {gameSprite[]} */
     this.collidesWith = ["wall"];
 
+    this.bulletType = null;
+
     this.setup();
   }
 
   update() {
+    console.log(this.sprite.getAnimationLabel());
     // Makes the bullet move
     this.sprite.position.add(this.trajectory);
 
