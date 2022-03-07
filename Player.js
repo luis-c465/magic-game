@@ -100,10 +100,9 @@ class Player extends GameObject {
   }
 
   /**
-   * @param {Sprite} self
-   * @param {Sprite} wall
+   * @type {collisionWith}
    */
-  collisionWithWall(self, wall) {
+  collisionWithWall(self, player, wall) {
     // Do nothing
   }
 
