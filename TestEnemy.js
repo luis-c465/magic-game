@@ -1,6 +1,9 @@
 class TestEnemy extends GameObject {
-  constructor() {
-    super();
+  /**
+   * @param {GameLayer} layer Layer that the game object will be added to
+   */
+  constructor(layer) {
+    super(layer);
 
     this.isMoving = false;
     this.movementSpeed = 2;
@@ -47,8 +50,12 @@ class TestEnemy extends GameObject {
       dirOffset.x += 50;
 
       // Fire bullet
-      const bullet = new Bullet(dirOffset, mouseVector, this.rotation);
-      bullets.push(bullet);
+      const bullet = new Bullet(
+        bulletsLayer,
+        dirOffset,
+        mouseVector,
+        this.rotation
+      );
     }, 500);
 
     this.setup();

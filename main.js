@@ -1,17 +1,20 @@
 // Adds references to global p5.js functions
 /// <reference types="p5/global" />
 
-/** @type {GameLayer<Player>} */
+/** @type {Layer<Player>} */
 var playerLayer = new Layer();
 
-/** @type {GameLayer<Wand>} */
+/** @type {Layer<Wand>} */
 var wandsLayer = new Layer();
 
-/** @type {GameLayer<Bullet>} */
+/** @type {Layer<Bullet>} */
 var bulletsLayer = new Layer();
 
-/** @type {GameLayer<Wall>} */
+/** @type {Layer<Wall>} */
 var wallsLayer = new Layer();
+
+/** @type {Layer<TestEnemy>} */
+var enemiesLayer = new Layer();
 
 /** @type {Object.<string, Image>} */
 var images = {};
@@ -42,6 +45,8 @@ function setup() {
 
   new IndestructibleWall(wallsLayer, 500, 500);
   new DestructibleWall(wallsLayer, 500, 400);
+
+  new TestEnemy(enemiesLayer, 400, 400);
 
   // FIXME: Will not update canvas size when user resizes browser window!
   createCanvas(windowWidth, windowHeight);
@@ -75,8 +80,11 @@ function generalUpdate() {
 
   playerLayer.update();
   bulletsLayer.update();
+  console.log("Bullets", bulletsLayer.objects.length);
+  console.log("Bullets", bulletsLayer.objects);
   wallsLayer.update();
   wandsLayer.update();
+  enemiesLayer.update();
 }
 
 /**
