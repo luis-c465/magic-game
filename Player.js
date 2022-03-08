@@ -94,13 +94,6 @@ class Player extends GameObject {
   }
 
   /**
-   * @type {collisionWith}
-   */
-  collisionWithWall(self, player, wall) {
-    // Do nothing
-  }
-
-  /**
    * Function called when mouse is dragged
    */
   mouseDragged() {
