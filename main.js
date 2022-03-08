@@ -19,23 +19,24 @@ var enemiesLayer = new Layer();
 /** @type {Object.<string, Image>} */
 var images = {};
 
+/** @type {Object.<number, levelJSON} */
+var levels = {};
+
 /**
  * Function called before setup
  * Should be used to preload sprites that are used multiple times like Bullet.js bullet sprite
  */
 function preload() {
-  /**
-   * TODO: Preload bullet sprite
-   * Currently ever time a new bullet is created is requests the bullet sprite image from the server
-   * which may cause performance problems when playing on a mobile device or on poor internet connection
-   */
-
+  // Load images
   images.tanks = loadImage("assets/tanks.png");
   images.bullet = loadImage("assets/bullet.png");
   images.iceWand = loadImage("assets/ice-wand.png", (img) => {
     img.resize(50, 50);
   });
   images.iceBullet = loadImage("assets/ice-bullet.png");
+
+  // Load levels
+  levels[1] = loadJSON("assets/level1.json");
 }
 
 function setup() {
@@ -43,10 +44,12 @@ function setup() {
 
   new Player(playerLayer, 250, 250);
 
-  new IndestructibleWall(wallsLayer, 500, 500);
-  new DestructibleWall(wallsLayer, 500, 400);
+  // new IndestructibleWall(wallsLayer, 500, 500);
+  // new DestructibleWall(wallsLayer, 500, 400);
 
   new TestEnemy(enemiesLayer, 400, 400);
+
+  new Level(1);
 
   // FIXME: Will not update canvas size when user resizes browser window!
   createCanvas(windowWidth, windowHeight);
@@ -80,8 +83,6 @@ function generalUpdate() {
 
   playerLayer.update();
   bulletsLayer.update();
-  console.log("Bullets", bulletsLayer.objects.length);
-  console.log("Bullets", bulletsLayer.objects);
   wallsLayer.update();
   wandsLayer.update();
   enemiesLayer.update();

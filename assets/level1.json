@@ -1,0 +1,6 @@
+{
+  "walls": [
+    { "x": 100, "y": 100, "type": "destructible" },
+    { "x": 200, "y": 500, "type": "destructible" }
+  ]
+}
