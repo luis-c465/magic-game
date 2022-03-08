@@ -78,9 +78,7 @@ class Player extends GameObject {
     this.setup();
   }
 
-  update() {
-    this.updateDelete();
-
+  _update() {
     // If false returns and stops executing the function
     if (!this.updateCheck) return;
 
@@ -95,8 +93,6 @@ class Player extends GameObject {
     if (mouseIsPressed && this.canShootNow) {
       this._shoot();
     }
-
-    this.updateCollisions();
   }
 
   /**

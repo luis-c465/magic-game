@@ -18,14 +18,8 @@ class IndestructibleWall extends Wall {
     this.setup();
   }
 
-  /**
-   * @param {Sprite} bullet
-   * @param {Sprite} wall
-   */
-  collisionWithBullet(wall, bullet) {
-    // bullet.remove();
+  /** @type {collisionWith} */
+  collisionWithBullet(self, wall, bullet) {
     console.log("collision with bullet immovable");
-    // Do nothing
-    // Wall is immovable and cannot be destroyed
   }
 }

@@ -23,9 +23,7 @@ class DestructibleWall extends Wall {
     this.setup();
   }
 
-  /**
-   * @type {collisionWith}
-   */
+  /** @type {collisionWith} */
   collisionWithBullet(self, wall, bullet) {
     bullet.remove();
     self.life--;

@@ -1,3 +1,6 @@
+/**
+ * Abstract class for wall objects
+ */
 class Wall extends GameObject {
   /**
    * @param {GameLayer} layer
@@ -22,19 +25,8 @@ class Wall extends GameObject {
     this.collidesWith = ["player", "bullet"];
   }
 
-  update() {
+  _update() {
     // Prevents crash when sprite has not been set yet
     if (!this.sprite) return;
-
-    this.updateCollisions();
-  }
-
-  /**
-   * @param {Sprite} bullet
-   * @param {Sprite} player
-   */
-  collisionWithPlayer(wall, player) {
-    // console.log(wall);
-    // Do nothing
   }
 }

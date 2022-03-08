@@ -1,4 +1,4 @@
-/** @template [T=GameObject] */
+/** @template {GameObject} T  */
 class Layer {
   constructor() {
     /** @type {T[]} */
@@ -41,5 +41,16 @@ class Layer {
     this.objects.forEach((obj) => {
       obj.display();
     });
+  }
+
+  /**
+   * Deletes all objects in the layer
+   */
+  deleteAll() {
+    this.objects.forEach((obj) => {
+      obj.deleteCheck = true;
+      obj.update();
+    });
+    this.objects = [];
   }
 }

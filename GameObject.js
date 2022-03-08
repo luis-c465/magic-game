@@ -130,15 +130,35 @@ class GameObject {
   }
 
   /**
-   * Deletes the game objects sprite then deletes the object if `this.deleteCheck` is set to `true`
-   * Will be called even if `this.updateCheck === false`
+   * Function that should be called before any other in the game objects update method
+   *
+   * @return {boolean} Returns if the update function should continue executing
    */
-  updateDelete() {
-    // If false returns and stops executing the function
-    if (!this.deleteCheck) return;
+  preUpdate() {
+    // If sprites life is zero (sprite does not exist) remove the sprites from the screen
+    // and set object to be deleted
+    if (this.sprite?.life === 0) {
+      this.deleteCheck = true;
+    }
+    if (this.deleteCheck) {
+      this.spriteGroup.removeSprites();
+      return false;
+    }
 
-    this.spriteGroup.removeSprites();
-    delete this;
+    if (!this.updateCheck) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Function that should be called last in the game object `update` method
+   *
+   * Updates the object collisions
+   */
+  postUpdate() {
+    this.updateCollisions();
   }
 
   /**
@@ -171,7 +191,22 @@ class GameObject {
    * Should be overridden by inheriting objects
    */
   update() {
-    // Does nothing
+    if (!this.preUpdate()) return false;
+
+    this._update();
+
+    this.postUpdate();
+  }
+
+  /**
+   * Updates the gameObject
+   * Should be overridden by inheriting classes
+   *
+   * Should not be called directly (PRIVATE METHOD)
+   * @private
+   */
+  _update() {
+    // Do nothing
   }
 
   /**
@@ -184,5 +219,15 @@ class GameObject {
    */
   display() {
     // Does nothing
+  }
+
+  /** @type {collisionWith} */
+  collisionWithPlayer(self, thisSprite, playerSprite) {
+    // console.log(wall);
+  }
+
+  /** @type {collisionWith} */
+  collisionWithBullet(self, thisSprite, bulletSprite) {
+    // Do nothing
   }
 }

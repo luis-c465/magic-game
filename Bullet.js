@@ -61,7 +61,7 @@ class Bullet extends GameObject {
     this.setup();
   }
 
-  update() {
+  _update() {
     // Updates the current bullet type equal to the animation label
     this.bulletType = this.sprite.getAnimationLabel();
 
@@ -74,8 +74,6 @@ class Bullet extends GameObject {
       this.sprite.remove();
       this.deleteCheck = true;
     }
-
-    this.updateCollisions();
   }
 
   /**
