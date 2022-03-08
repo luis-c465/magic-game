@@ -26,7 +26,6 @@ class Wall extends GameObject {
   }
 
   _update() {
-    // Prevents crash when sprite has not been set yet
-    if (!this.sprite) return;
+    // Do nothing
   }
 }

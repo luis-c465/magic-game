@@ -77,12 +77,13 @@ class Bullet extends GameObject {
   }
 
   /**
-   * @type {collisionWith}
+   * @param {Wall} wall
+   * @param {Bullet} self
    */
-  collisionWithWall(self, bullet, wall) {
+  collisionWithWall(wall, self) {
+    self.deleteCheck = true;
     if (self.bulletType === "iceBullet") {
-      wall.remove();
-      self.deleteCheck = true;
+      wall.deleteCheck = true;
     }
   }
 }

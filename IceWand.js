@@ -14,9 +14,10 @@ class IceWand extends Wand {
    * Function called a bullet comes into contact with the wandHitBox
    * Likely will need to overridden by a class which inherits from this one
    *
-   * @type {collisionWith}
+   * @param {Bullet} bullet
+   * @param {IceWand} self
    */
-  collisionWithBullet(self, wandHitBox, bulletSprite) {
-    bulletSprite.changeImage("iceBullet");
+  collisionWithBullet(bullet, self) {
+    bullet.sprite.changeImage("iceBullet");
   }
 }

@@ -3,7 +3,8 @@
  * Adds all sprite for the game object into a p5.play group
  *
  * @typedef {"player" | "bullet" | "wall" | "wand"} gameSprite
- * @typedef {(self: GameObject, thisSprite: Sprite, collidedWithSprite: Sprite) => void} collisionWith
+ *
+ * @typedef {(collidedWith: GameObject, self, GameObject) => void} collisionWith
  */
 class GameObject {
   /**
@@ -124,7 +125,7 @@ class GameObject {
     layer.objects.forEach((obj) => {
       this.spriteGroup.collide(
         obj.spriteGroup,
-        this._collisionWith(capitalizeFirstLetter(name))
+        this._collisionWith(capitalizeFirstLetter(name), obj)
       );
     });
   }
@@ -168,7 +169,7 @@ class GameObject {
    * @param {gameSprite} spriteName
    * @returns {(...args) => (collidedWith: Sprite, self: Sprite) => void}
    */
-  _collisionWith(spriteName) {
+  _collisionWith(spriteName, collidedWith) {
     /** @type  {(collidedWith: Sprite, self: Sprite) => void} */
     const collisionWithSpriteName = this[`collisionWith${spriteName}`];
 
@@ -176,7 +177,7 @@ class GameObject {
     // Else return a function which does nothing
     if (collisionWithSpriteName != undefined) {
       // Returns a function which takes any amount of arguments which then calls the function
-      return (...args) => collisionWithSpriteName(this, ...args);
+      return (...args) => collisionWithSpriteName(collidedWith, this, ...args);
     } else {
       return () => {
         // Do nothing

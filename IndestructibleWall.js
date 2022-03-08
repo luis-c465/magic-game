@@ -17,9 +17,4 @@ class IndestructibleWall extends Wall {
 
     this.setup();
   }
-
-  /** @type {collisionWith} */
-  collisionWithBullet(self, wall, bullet) {
-    console.log("collision with bullet immovable");
-  }
 }

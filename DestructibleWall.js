@@ -23,13 +23,18 @@ class DestructibleWall extends Wall {
     this.setup();
   }
 
-  /** @type {collisionWith} */
-  collisionWithBullet(self, wall, bullet) {
-    bullet.remove();
+  /**
+   * @param {DestructibleWall} self
+   * @param {Bullet} bullet
+   */
+  collisionWithBullet(bullet, self) {
+    bullet.deleteCheck = true;
+    // bullet.remove();
     self.life--;
 
     if (self.life <= 0) {
-      wall.remove();
+      self.deleteCheck = true;
+      // wall.remove();
     }
   }
 }
