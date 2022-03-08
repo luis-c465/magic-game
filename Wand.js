@@ -32,10 +32,6 @@ class Wand extends GameObject {
     /** @type {Sprite[]} */
     this.hitBox = [];
 
-    this.wandHitBox = createSprite(this.x, this.y, 9999, 10);
-    this.wandHitBox.immovable = true;
-    this.wandHitBox.debug = true;
-
     this.sprites.push(...this.hitBox);
 
     /** @type {gameSprite[]} */
@@ -43,7 +39,6 @@ class Wand extends GameObject {
   }
 
   cast() {
-    this._updateHitBox();
     this.isCasting = true;
   }
 
@@ -52,11 +47,7 @@ class Wand extends GameObject {
     this.wand.position.y = this.y - 60;
 
     if (this.isCasting) {
-      // bulletsLayer.objects.forEach((bullet) => {
-      this.wandHitBox.position.x = this.x;
-      this.wandHitBox.position.y = this.y;
-      this.wandHitBox.rotation = this.rotation;
-
+      this._updateHitBox();
       this.updateCollisions();
 
       //   this.wandHitBox.collide(bullet.spriteGroup, this.onCastHit);
