@@ -23,6 +23,12 @@ var images = {};
 var levels = {};
 
 /**
+ * Used to scale the canvas to fit the screen
+ * @type {number} @default 1
+ */
+var canvasScale = 1;
+
+/**
  * Function called before setup
  * Should be used to preload sprites that are used multiple times like Bullet.js bullet sprite
  */

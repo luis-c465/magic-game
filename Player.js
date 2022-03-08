@@ -79,9 +79,6 @@ class Player extends GameObject {
   }
 
   _update() {
-    // If false returns and stops executing the function
-    if (!this.updateCheck) return;
-
     this.updates++;
     if (!this.canShootNow) {
       this.canShootNow = this.updates % this.SHOOT_EVERY_N_UPDATES === 0;
@@ -92,6 +89,7 @@ class Player extends GameObject {
     // If mouse is pressed
     if (mouseIsPressed && this.canShootNow) {
       this._shoot();
+      this._cast();
     }
   }
 
@@ -145,31 +143,15 @@ class Player extends GameObject {
     if (this.isMoving) {
       this.cannonSprite.position.x = this.bodySprite.position.x - 1;
       this.cannonSprite.position.y = this.bodySprite.position.y - 5;
+
+      this.iceWand.x = this.cannonSprite.position.x;
+      this.iceWand.y = this.cannonSprite.position.y;
     }
 
     // If player is not moving (not arrow keys are pressed) set its velocity to zero
     if (!this.isMoving) {
       this.bodySprite.velocity.x = 0;
       this.bodySprite.velocity.y = 0;
-    }
-
-    // If mouse is pressed
-    if (mouseIsPressed) {
-      this._cast();
-
-      // // Do calculations for bullet position
-      // const mouseVector = createVector(mouseX, mouseY).sub(
-      //   this.bodySprite.position
-      // );
-
-      // const dirOffset = this.bodySprite.position.copy();
-      // // dirOffset.add(this.bodySprite.position, mouseVector);
-      // // dirOffset.x = this.bodySprite.position.x;
-      // dirOffset.x += 50;
-
-      // // Fire bullet
-      // const bullet = new Bullet(dirOffset, mouseVector, this.rotation);
-      // bullets.push(bullet);
     }
   }
 
@@ -183,8 +165,6 @@ class Player extends GameObject {
     );
     mouseVector.setMag(10000);
 
-    this.iceWand.x = this.cannonSprite.position.x;
-    this.iceWand.y = this.cannonSprite.position.y;
     this.iceWand.trajectory = mouseVector;
     this.iceWand.rotation = this.rotation;
 

@@ -5,7 +5,6 @@ class IceWand extends Wand {
   constructor(layer) {
     super(layer);
 
-    this.wand = createSprite(10, 10, 50, 50);
     this.wand.addImage(images.iceWand);
 
     this.setup();

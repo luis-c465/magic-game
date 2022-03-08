@@ -8,9 +8,8 @@ class Wand extends GameObject {
    */
   constructor(layer) {
     super(layer);
-    // Default sprite
-    // this.sprite = createSprite(100, 100, 50, 50);
 
+    this.wand = createSprite(10, 10, 50, 50);
     // TODO: Add casting delay
     /** @type {boolean} */
     this.isCasting = false;
@@ -42,16 +41,22 @@ class Wand extends GameObject {
     this.isCasting = true;
   }
 
+  /**
+   * Overrides the update function
+   * @override
+   *
+   * Update collision should only be called if the player is casting the wand currently
+   */
   update() {
+    if (!this.preUpdate()) return;
+
     this.wand.position.x = this.x;
     this.wand.position.y = this.y - 60;
 
+    // FIXME: Does not call `postUpdate`. May cause error in the future!
     if (this.isCasting) {
       this._updateHitBox();
       this.updateCollisions();
-
-      //   this.wandHitBox.collide(bullet.spriteGroup, this.onCastHit);
-      // });
 
       this.isCasting = false;
     }
