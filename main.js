@@ -116,3 +116,7 @@ function generalDisplay() {
 
   drawSprites();
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
