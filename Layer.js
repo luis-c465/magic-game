@@ -21,9 +21,15 @@ class Layer {
    * and `.deleteCheck` field
    */
   update() {
-    this.objects.forEach((obj) => {
-      obj.update();
-    });
+    for (let i = this.objects.length - 1; i >= 0; i--) {
+      /** @type {GameObject} */
+      let obj = this.objects[i];
+      if (!obj.deleteCheck) {
+        obj.update();
+      } else {
+        this.objects.splice(i, 1);
+      }
+    }
   }
 
   /**

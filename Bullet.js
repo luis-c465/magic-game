@@ -72,7 +72,7 @@ class Bullet extends GameObject {
     // TODO: Also remove itself from the array of bullets
     if (this.sprite.life <= 0) {
       this.sprite.remove();
-      delete this;
+      this.deleteCheck = true;
     }
 
     this.updateCollisions();
@@ -84,6 +84,7 @@ class Bullet extends GameObject {
   collisionWithWall(self, bullet, wall) {
     if (self.bulletType === "iceBullet") {
       wall.remove();
+      self.deleteCheck = true;
     }
   }
 }
