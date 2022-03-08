@@ -58,7 +58,7 @@ function setup() {
   new Level(1);
 
   // FIXME: Will not update canvas size when user resizes browser window!
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(1600, 900);
 }
 
 function draw() {
@@ -115,8 +115,4 @@ function generalDisplay() {
   playerLayer.display();
 
   drawSprites();
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
 }
