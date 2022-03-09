@@ -1,6 +1,9 @@
 {
   "walls": [
-    { "x": 50, "y": 50, "type": "indestructible" },
-    { "x": 200, "y": 500, "type": "destructible" }
+    { "x": 10, "y": 25, "type": "horizontalIndestructible" },
+    { "x": 10, "y": 875, "type": "horizontalIndestructible" },
+
+    { "x": 20, "y": 0, "type": "verticalIndestructible" },
+    { "x": 1575, "y": 0, "type": "verticalIndestructible" }
   ]
 }

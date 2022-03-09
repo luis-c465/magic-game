@@ -11,10 +11,13 @@ class Wall extends GameObject {
     super(layer);
 
     /** @type {number} @constant @default */
-    this.WALL_WIDTH = 100;
+    this.WALL_WIDTH = 50;
 
     /** @type {number} @constant  @default 100 */
-    this.WALL_HEIGHT = 100;
+    this.WALL_HEIGHT = 50;
+
+    /** @type {Sprite} */
+    this.sprite = createSprite(x, y, this.WALL_WIDTH, this.WALL_HEIGHT);
 
     /** @type {number} */
     this.x = x;

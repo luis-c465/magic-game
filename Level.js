@@ -56,6 +56,12 @@ class Level {
       case "destructible":
         return new DestructibleWall(wallsLayer, wall.x, wall.y);
 
+      case "verticalIndestructible":
+        return new VerticalIndestructibleWall(wallsLayer, wall.x, wall.y);
+
+      case "horizontalIndestructible":
+        return new HorizontalIndestructibleWall(wallsLayer, wall.x, wall.y);
+
       default:
         return new IndestructibleWall(wallsLayer, wall.x, wall.y);
     }

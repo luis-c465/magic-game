@@ -83,7 +83,7 @@ class Bullet extends GameObject {
   collisionWithWall(wall, self) {
     self.deleteCheck = true;
     if (self.bulletType === "iceBullet") {
-      wall.deleteCheck = true;
+      // wall.deleteCheck = true;
     }
   }
 }
