@@ -123,6 +123,11 @@ Transforms a bullet into many small ones which go out in a short shotgun cone fr
 
 - Transform into that tank for 1.5 seconds with better stats
 
+## Tine rewind wand
+
+- Make the bullet go back from where it was shot
+- Reverse the bullet speed
+
 ## Tanks
 
 ### Pixel art ideas
@@ -157,3 +162,9 @@ Transforms a bullet into many small ones which go out in a short shotgun cone fr
 ### Creeper tank
 
 - Moves toward the player very quickly and explodes
+
+## Extra ideas
+
+### 2 player
+
+- Allow 2 players to fight against each other
