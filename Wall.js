@@ -9,7 +9,7 @@ class Wall extends GameObject {
    * @param {number} width
    * @param {number} height
    */
-  constructor(layer, x, y, width = 50, height = 50) {
+  constructor(layer, x, y, width = 100, height = 100) {
     super(layer);
 
     /** @type {Sprite} */

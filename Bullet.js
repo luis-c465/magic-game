@@ -116,6 +116,10 @@ class Bullet extends GameObject {
    * @param {Wall} wall
    */
   collisionWithWall(wall) {
-    this.deleteCheck = true;
+    // Fix walls not getting collision because bullet is deleted immediately
+    // Deletes the bullet 10ms after colliding with a wall
+    setTimeout(() => {
+      this.deleteCheck = true;
+    }, 10);
   }
 }

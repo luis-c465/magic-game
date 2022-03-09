@@ -26,7 +26,6 @@ class DestructibleWall extends Wall {
    */
   collisionWithBullet(bullet) {
     bullet.deleteCheck = true;
-    // bullet.remove();
     this.life -= bullet.damage;
 
     if (this.life <= 0) {
