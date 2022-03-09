@@ -27,6 +27,7 @@ class Layer {
       if (!obj.deleteCheck) {
         obj.update();
       } else {
+        obj.spriteGroup.removeSprites();
         this.objects.splice(i, 1);
       }
     }
