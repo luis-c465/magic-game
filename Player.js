@@ -163,15 +163,15 @@ class Player extends GameObject {
     );
     mouseVector.setMag(10000);
 
-    this.iceWand.trajectory = mouseVector;
-    this.iceWand.rotation = this.rotation;
+    // this.iceWand.trajectory = mouseVector;
+    // this.iceWand.rotation = this.rotation;
 
-    this.iceWand.cast();
+    // this.iceWand.cast();
 
-    // this.fireWand.trajectory = mouseVector;
-    // this.fireWand.rotation = this.rotation;
+    this.fireWand.trajectory = mouseVector;
+    this.fireWand.rotation = this.rotation;
 
-    // this.fireWand.cast();
+    this.fireWand.cast();
   }
 
   /**
