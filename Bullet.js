@@ -3,7 +3,7 @@
 /**
  * A bullet that moves forward ever time the update function is called
  *
- * @typedef {"bullet" | "iceBullet"} _typeBulletType
+ * @typedef {"bullet" | "iceBullet" | "fireBullet"} _typeBulletType
  */
 class Bullet extends GameObject {
   /**
@@ -32,7 +32,6 @@ class Bullet extends GameObject {
 
     // Adds an image for the sprites
     this.sprite.addImage("bullet", images.bullet);
-    this.sprite.changeImage("bullet");
 
     this.sprite.addImage("iceBullet", images.iceBullet);
     this.sprite.addImage("fireBullet", images.fireBullet);
@@ -88,15 +87,19 @@ class Bullet extends GameObject {
       case "bullet":
         this.speed = 5;
         this.damage = 2;
+        this.sprite.changeImage("bullet");
         break;
 
       case "iceBullet":
         this.speed = 1;
         this.damage = 1;
+        this.sprite.changeImage("iceBullet");
+        break;
 
       case "fireBullet":
         this.speed = 15;
         this.damage = 10;
+        this.sprite.changeImage("fireBullet");
         break;
 
       default:

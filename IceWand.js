@@ -17,6 +17,6 @@ class IceWand extends Wand {
    * @param {Bullet} bullet
    */
   collisionWithBullet(bullet) {
-    bullet.sprite.changeImage("iceBullet");
+    bullet.bulletType = "iceBullet";
   }
 }

@@ -17,6 +17,6 @@ class FireWand extends Wand {
    * @param {Bullet} bullet
    */
   collisionWithBullet(bullet) {
-    bullet.sprite.changeImage("fireBullet");
+    bullet.bulletType = "fireBullet";
   }
 }

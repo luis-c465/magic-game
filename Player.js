@@ -168,10 +168,10 @@ class Player extends GameObject {
 
     this.iceWand.cast();
 
-    this.fireWand.trajectory = mouseVector;
-    this.fireWand.rotation = this.rotation;
+    // this.fireWand.trajectory = mouseVector;
+    // this.fireWand.rotation = this.rotation;
 
-    this.fireWand.cast();
+    // this.fireWand.cast();
   }
 
   /**
