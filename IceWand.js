@@ -15,9 +15,8 @@ class IceWand extends Wand {
    * Likely will need to overridden by a class which inherits from this one
    *
    * @param {Bullet} bullet
-   * @param {IceWand} self
    */
-  collisionWithBullet(bullet, self) {
+  collisionWithBullet(bullet) {
     bullet.sprite.changeImage("iceBullet");
   }
 }

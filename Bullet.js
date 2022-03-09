@@ -15,10 +15,8 @@ class Bullet extends GameObject {
   constructor(layer, initialPosition, trajectory, rotation) {
     super(layer);
 
-    this.BULLET_SPEED = 5;
     this.initialPosition = initialPosition;
     this.trajectory = trajectory;
-    this.trajectory.setMag(this.BULLET_SPEED);
 
     // Creates a sprite at its initial position with an aspect ratio of the image
     /** @type {Sprite} */
@@ -48,9 +46,9 @@ class Bullet extends GameObject {
     this.sprite.life = 10000;
     /**
      * The speed of the bullet
-     * @type {number} @default 1
+     * @type {number} @default 5
      */
-    this.speed = 5;
+    this.speed = 1;
 
     this.sprite.debug = true;
 
@@ -71,11 +69,21 @@ class Bullet extends GameObject {
 
   /** @param {number} value */
   set speed(value) {
+    this._speed = value;
     this.trajectory.setMag(value);
+  }
+
+  get speed() {
+    return this._speed;
   }
 
   /** @param {_typeBulletType} value */
   set bulletType(value) {
+    // If the setting value is the same as the current bullet type return to avoid unnecessary calculations
+    if (value === this.bulletType) return;
+
+    this._bulletType = value;
+
     switch (value) {
       case "bullet":
         this.speed = 5;
@@ -91,9 +99,17 @@ class Bullet extends GameObject {
     }
   }
 
+  get bulletType() {
+    return this._bulletType;
+  }
+
   _update() {
     /** @type {_typeBulletType} */
     this.bulletType = this.sprite.getAnimationLabel();
+
+    if (this.bulletType === "iceBullet") {
+      this.trajectory.setMag(0.5);
+    }
 
     // Makes the bullet move
     this.sprite.position.add(this.trajectory);
