@@ -68,21 +68,17 @@ class Bullet extends GameObject {
     // Makes the bullet move
     this.sprite.position.add(this.trajectory);
 
-    // If sprite is destroyed destroy instance of Bullet
-    // TODO: Also remove itself from the array of bullets
-    if (this.sprite.life <= 0) {
-      this.sprite.remove();
-      this.deleteCheck = true;
+    if (this.bulletType === "iceBullet") {
+      this.trajectory.setMag(0.5);
     }
   }
 
   /**
    * @param {Wall} wall
-   * @param {Bullet} self
    */
-  collisionWithWall(wall, self) {
-    self.deleteCheck = true;
-    if (self.bulletType === "iceBullet") {
+  collisionWithWall(wall) {
+    this.deleteCheck = true;
+    if (this.bulletType === "iceBullet") {
       // wall.deleteCheck = true;
     }
   }

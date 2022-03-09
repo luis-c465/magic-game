@@ -177,7 +177,8 @@ class GameObject {
     // Else return a function which does nothing
     if (collisionWithSpriteName != undefined) {
       // Returns a function which takes any amount of arguments which then calls the function
-      return (...args) => collisionWithSpriteName(collidedWith, this, ...args);
+      return (...args) =>
+        collisionWithSpriteName.call(this, collidedWith, ...args);
     } else {
       return () => {
         // Do nothing

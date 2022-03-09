@@ -25,13 +25,13 @@ class DestructibleWall extends Wall {
    * @param {DestructibleWall} self
    * @param {Bullet} bullet
    */
-  collisionWithBullet(bullet, self) {
+  collisionWithBullet(bullet) {
     bullet.deleteCheck = true;
     // bullet.remove();
-    self.life--;
+    this.life--;
 
-    if (self.life <= 0) {
-      self.deleteCheck = true;
+    if (this.life <= 0) {
+      this.deleteCheck = true;
       // wall.remove();
     }
   }
