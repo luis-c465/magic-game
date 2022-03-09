@@ -51,7 +51,12 @@ class Bullet extends GameObject {
     this.sprite.rotation = rotation;
 
     // Sets the amount of times the sprite will the drawn before destroyed
-    this.sprite.life = 300;
+    this.sprite.life = 10000;
+    /**
+     * The speed of the bullet
+     * @type {number} @default 1
+     */
+    this.speed = 5;
 
     this.sprite.debug = true;
 
@@ -59,6 +64,11 @@ class Bullet extends GameObject {
     this.collidesWith = ["wall"];
 
     this.setup();
+  }
+
+  /** @param {number} value */
+  set speed(value) {
+    this.trajectory.setMag(value);
   }
 
   _update() {
@@ -69,7 +79,7 @@ class Bullet extends GameObject {
     this.sprite.position.add(this.trajectory);
 
     if (this.bulletType === "iceBullet") {
-      this.trajectory.setMag(0.5);
+      this.speed = 0.5;
     }
   }
 
