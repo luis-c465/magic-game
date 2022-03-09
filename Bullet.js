@@ -83,19 +83,21 @@ class Bullet extends GameObject {
     if (value === this.bulletType) return;
 
     this._bulletType = value;
-
     switch (value) {
       case "bullet":
         this.speed = 5;
         this.damage = 2;
+        break;
 
       case "iceBullet":
-        this.speed = 0.5;
+        this.speed = 1;
         this.damage = 1;
+        break;
 
       default:
         this.speed = 5;
         this.damage = 2;
+        break;
     }
   }
 
@@ -106,10 +108,6 @@ class Bullet extends GameObject {
   _update() {
     /** @type {_typeBulletType} */
     this.bulletType = this.sprite.getAnimationLabel();
-
-    if (this.bulletType === "iceBullet") {
-      this.trajectory.setMag(0.5);
-    }
 
     // Makes the bullet move
     this.sprite.position.add(this.trajectory);
