@@ -31,4 +31,27 @@ class Wall extends GameObject {
   _update() {
     // Do nothing
   }
+
+  /**
+   * Converts a JSON object to a wall
+   * Called by the `level` class
+   *
+   * @param {wallJSON} wall
+   * @return {Wall}
+   */
+  static loadWallJSON(wall) {
+    switch (wall.type) {
+      case "smallIndestructible":
+        return new SmallIndestructibleWall(wallsLayer, wall.x, wall.y);
+
+      case "verticalIndestructible":
+        return new VerticalIndestructibleWall(wallsLayer, wall.x, wall.y);
+
+      case "horizontalIndestructible":
+        return new HorizontalIndestructibleWall(wallsLayer, wall.x, wall.y);
+
+      default:
+        return new SmallIndestructibleWall(wallsLayer, wall.x, wall.y);
+    }
+  }
 }
