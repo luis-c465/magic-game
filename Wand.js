@@ -98,7 +98,7 @@ class Wand extends GameObject {
       );
       sprite.setCollider("circle");
       sprite.immovable = true;
-      // sprite.visible = false;
+      sprite.visible = false;
 
       sprite.debug = true;
       // this.hitBox.push(sprite);
