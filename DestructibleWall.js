@@ -16,19 +16,18 @@ class DestructibleWall extends Wall {
     this.sprite.debug = true;
 
     /** @type {number} @default 1 */
-    this.life = 10;
+    this.life = 2;
 
     this.setup();
   }
 
   /**
-   * @param {DestructibleWall} self
    * @param {Bullet} bullet
    */
   collisionWithBullet(bullet) {
     bullet.deleteCheck = true;
     // bullet.remove();
-    this.life--;
+    this.life -= bullet.damage;
 
     if (this.life <= 0) {
       this.deleteCheck = true;

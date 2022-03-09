@@ -3,7 +3,7 @@
 /**
  * A bullet that moves forward ever time the update function is called
  *
- * @typedef {"bullet" | "iceBullet"} bulletType
+ * @typedef {"bullet" | "iceBullet"} _typeBulletType
  */
 class Bullet extends GameObject {
   /**
@@ -29,14 +29,8 @@ class Bullet extends GameObject {
       5 * (240 / 112)
     );
 
-    /**
-     * Changes how the bullet will react when colliding with things
-     * Is updated every time the `update` function is called
-     *
-     * @type {"bullet" | "iceBullet"}
-     * @default "bullet"
-     */
-    this.bulletType = "bullet";
+    /** @type {number} */
+    this.damage = 1;
 
     // Adds an image for the sprites
     this.sprite.addImage("bullet", images.bullet);
@@ -63,6 +57,15 @@ class Bullet extends GameObject {
     /** @type {gameSprite[]} */
     this.collidesWith = ["wall"];
 
+    /**
+     * Changes how the bullet will react when colliding with things
+     * Is updated every time the `update` function is called
+     *
+     * @type {_typeBulletType}
+     * @default "bullet"
+     */
+    this.bulletType = "bullet";
+
     this.setup();
   }
 
@@ -71,16 +74,29 @@ class Bullet extends GameObject {
     this.trajectory.setMag(value);
   }
 
+  /** @param {_typeBulletType} value */
+  set bulletType(value) {
+    switch (value) {
+      case "bullet":
+        this.speed = 5;
+        this.damage = 2;
+
+      case "iceBullet":
+        this.speed = 0.5;
+        this.damage = 1;
+
+      default:
+        this.speed = 5;
+        this.damage = 2;
+    }
+  }
+
   _update() {
-    // Updates the current bullet type equal to the animation label
+    /** @type {_typeBulletType} */
     this.bulletType = this.sprite.getAnimationLabel();
 
     // Makes the bullet move
     this.sprite.position.add(this.trajectory);
-
-    if (this.bulletType === "iceBullet") {
-      this.speed = 0.5;
-    }
   }
 
   /**
@@ -88,8 +104,5 @@ class Bullet extends GameObject {
    */
   collisionWithWall(wall) {
     this.deleteCheck = true;
-    if (this.bulletType === "iceBullet") {
-      // wall.deleteCheck = true;
-    }
   }
 }

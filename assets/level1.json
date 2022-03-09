@@ -6,6 +6,9 @@
     { "x": 10, "y": 25, "height": 1900, "type": "indestructible" },
     { "x": 1575, "y": 25, "height": 1900, "type": "indestructible" },
 
-    { "x": 400, "y": 300, "height": 300, "type": "indestructible" }
+    { "x": 400, "y": 200, "height": 300, "type": "indestructible" },
+
+    { "x": 400, "y": 200, "height": 300, "type": "destructible" },
+    { "x": 400, "y": 200, "width": 300, "type": "destructible" }
   ]
 }
