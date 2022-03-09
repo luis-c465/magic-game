@@ -1,12 +1,14 @@
 class DestructibleWall extends Wall {
   /**
    * @param {GameLayer} layer
-   * @param {number} x X coordinate for where the block will be placed on the canvas
-   * @param {number} y Y coordinate for where the block will be placed on the canvas
+   * @param {number} x
+   * @param {number} y
+   * @param {number} width
+   * @param {number} height
    */
-  constructor(layer, x, y) {
+  constructor(layer, x, y, width, height) {
     // Pass all arguments passed to constructor into constructing Wall
-    super(layer, x, y);
+    super(layer, x, y, width, height);
 
     this.sprite.immovable = true;
 
@@ -15,8 +17,6 @@ class DestructibleWall extends Wall {
 
     /** @type {number} @default 1 */
     this.life = 10;
-
-    this.collidesWith = ["player", "bullet"];
 
     this.setup();
   }

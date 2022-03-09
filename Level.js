@@ -1,7 +1,7 @@
 /**
  * Abstract class for levels
  *
- * @typedef {{x: number, y:number, type: "horizontalIndestructible" | "verticalIndestructible" | "smallIndestructible"}} wallJSON
+ * @typedef {{x: number, y:number, width?:number, height?:number type: "indestructible" | "destructible"}} wallJSON
  *
  * @typedef {"walls"} levelJSONObject
  * @typedef {{walls?: wallJSON}} levelJSON

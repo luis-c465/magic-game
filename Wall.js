@@ -6,18 +6,14 @@ class Wall extends GameObject {
    * @param {GameLayer} layer
    * @param {number} x
    * @param {number} y
+   * @param {number} width
+   * @param {number} height
    */
-  constructor(layer, x, y) {
+  constructor(layer, x, y, width = 50, height = 50) {
     super(layer);
 
-    /** @type {number} @constant @default */
-    this.WALL_WIDTH = 50;
-
-    /** @type {number} @constant  @default 100 */
-    this.WALL_HEIGHT = 50;
-
     /** @type {Sprite} */
-    this.sprite = createSprite(x, y, this.WALL_WIDTH, this.WALL_HEIGHT);
+    this.sprite = createSprite(x, y, width, height);
 
     /** @type {number} */
     this.x = x;
@@ -40,18 +36,20 @@ class Wall extends GameObject {
    * @return {Wall}
    */
   static loadWallJSON(wall) {
+    /** @param {Wall} wallType */
+    const constructWall = (wallType) => {
+      return new wallType(wallsLayer, wall.x, wall.y, wall.width, wall.height);
+    };
+
     switch (wall.type) {
-      case "smallIndestructible":
-        return new SmallIndestructibleWall(wallsLayer, wall.x, wall.y);
+      case "indestructible":
+        return constructWall(IndestructibleWall);
 
-      case "verticalIndestructible":
-        return new VerticalIndestructibleWall(wallsLayer, wall.x, wall.y);
-
-      case "horizontalIndestructible":
-        return new HorizontalIndestructibleWall(wallsLayer, wall.x, wall.y);
+      case "destructible":
+        return constructWall(DestructibleWall);
 
       default:
-        return new SmallIndestructibleWall(wallsLayer, wall.x, wall.y);
+        return new constructWall(DestructibleWall);
     }
   }
 }
