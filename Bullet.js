@@ -35,6 +35,7 @@ class Bullet extends GameObject {
     this.sprite.changeImage("bullet");
 
     this.sprite.addImage("iceBullet", images.iceBullet);
+    this.sprite.addImage("fireBullet", images.fireBullet);
 
     // Lower the sprites scale.
     // Other wise the bullet is too big
@@ -92,6 +93,10 @@ class Bullet extends GameObject {
       case "iceBullet":
         this.speed = 1;
         this.damage = 1;
+
+      case "fireBullet":
+        this.speed = 15;
+        this.damage = 10;
         break;
 
       default:

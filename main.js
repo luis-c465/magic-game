@@ -36,10 +36,16 @@ function preload() {
   // Load images
   images.tanks = loadImage("assets/tanks.png");
   images.bullet = loadImage("assets/bullet.png");
+
   images.iceWand = loadImage("assets/ice-wand.png", (img) => {
     img.resize(50, 50);
   });
+  images.fireWand = loadImage("assets/fire-wand.png", (img) => {
+    img.resize(50, 50);
+  });
+
   images.iceBullet = loadImage("assets/ice-bullet.png");
+  images.fireBullet = loadImage("assets/fire-bullet.png");
 
   // Load levels
   levels[1] = loadJSON("assets/level1.json");

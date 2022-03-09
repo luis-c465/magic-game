@@ -9,6 +9,8 @@ class Player extends GameObject {
 
     /** @type {IceWand} */
     this.iceWand = new IceWand(wandsLayer);
+    /** @type {FireWand} */
+    this.fireWand = new FireWand(wandsLayer);
 
     /** @type {boolean} */
     this.isMoving = false;
@@ -139,6 +141,9 @@ class Player extends GameObject {
 
       this.iceWand.x = this.cannonSprite.position.x;
       this.iceWand.y = this.cannonSprite.position.y;
+
+      this.fireWand.x = this.cannonSprite.position.x;
+      this.fireWand.y = this.cannonSprite.position.y;
     }
 
     // If player is not moving (not arrow keys are pressed) set its velocity to zero
@@ -162,6 +167,11 @@ class Player extends GameObject {
     this.iceWand.rotation = this.rotation;
 
     this.iceWand.cast();
+
+    this.fireWand.trajectory = mouseVector;
+    this.fireWand.rotation = this.rotation;
+
+    this.fireWand.cast();
   }
 
   /**
