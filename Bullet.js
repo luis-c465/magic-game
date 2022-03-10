@@ -113,6 +113,14 @@ class Bullet extends GameObject {
   }
 
   /**
+   * Makes the bullet take a 180 in its trajectory
+   */
+  reflect() {
+    this.trajectory.rotate(180);
+    this.sprite.rotation += 180;
+  }
+
+  /**
    * @param {Wall} wall
    */
   collisionWithWall(wall) {
