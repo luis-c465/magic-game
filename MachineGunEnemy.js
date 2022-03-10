@@ -6,7 +6,7 @@ class MachineGunEnemy extends Tank {
    * @param {typeTankColor} color
    */
   constructor(layer, x, y) {
-    super(layer, x, y, "blue");
+    super(layer, x, y, "red");
   }
 
   _update() {
