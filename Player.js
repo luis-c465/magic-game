@@ -124,19 +124,19 @@ class Player extends GameObject {
     // this.bodySprite.changeImage("bullet");
 
     // If any arrow keys are pressed move the character in that direction
-    if (keyIsDown(LEFT_ARROW)) {
+    if (keyIsDown(KEY_CODES.a) || keyIsDown(LEFT_ARROW)) {
       this.bodySprite.velocity.x = -this.movementSpeed;
       this.isMoving = true;
     }
-    if (keyIsDown(RIGHT_ARROW)) {
+    if (keyIsDown(KEY_CODES.d) || keyIsDown(RIGHT_ARROW)) {
       this.bodySprite.velocity.x = this.movementSpeed;
       this.isMoving = true;
     }
-    if (keyIsDown(UP_ARROW)) {
+    if (keyIsDown(KEY_CODES.w) || keyIsDown(UP_ARROW)) {
       this.bodySprite.velocity.y = -this.movementSpeed;
       this.isMoving = true;
     }
-    if (keyIsDown(DOWN_ARROW)) {
+    if (keyIsDown(KEY_CODES.s) || keyIsDown(DOWN_ARROW)) {
       this.bodySprite.velocity.y = this.movementSpeed;
       this.isMoving = true;
     }
