@@ -5,7 +5,7 @@ class ReflectWand extends Wand {
   constructor(layer) {
     super(layer);
 
-    this.wand.addImage(images.iceWand);
+    this.wand.addImage(images.reflectWand);
 
     this.setup();
   }
