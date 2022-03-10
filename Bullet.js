@@ -54,6 +54,8 @@ class Bullet extends GameObject {
     /** @type {gameSprite[]} */
     this.collidesWith = ["wall"];
 
+    this.updatesTillCanBeReflected = 0;
+
     /**
      * Changes how the bullet will react when colliding with things
      * Is updated every time the `update` function is called
@@ -116,8 +118,15 @@ class Bullet extends GameObject {
    * Makes the bullet take a 180 in its trajectory
    */
   reflect() {
+    if (this.updatesTillCanBeReflected != 0) {
+      this.updatesTillCanBeReflected--;
+      return;
+    }
+
     this.trajectory.rotate(180);
     this.sprite.rotation += 180;
+
+    this.updatesTillCanBeReflected = 2;
   }
 
   /**
