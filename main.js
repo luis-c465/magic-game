@@ -28,6 +28,9 @@ var levels = {};
  */
 var canvasScale = 1;
 
+const CANVAS_WIDTH = 1600;
+const CANVAS_HEIGHT = 900;
+
 /**
  * Function called before setup
  * Should be used to preload sprites that are used multiple times like Bullet.js bullet sprite
@@ -60,11 +63,12 @@ function setup() {
   // new DestructibleWall(wallsLayer, 500, 400);
 
   new MachineGunEnemy(enemiesLayer, 400, 400);
+  new BrokenEnemy(enemiesLayer, 600, 600);
 
   new Level(1);
 
   // FIXME: Will not update canvas size when user resizes browser window!
-  createCanvas(1600, 900);
+  createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
 }
 
 function draw() {
