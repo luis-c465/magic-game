@@ -96,10 +96,11 @@ class Tank extends GameObject {
 
     const updatedTrajectory = trajectory.sub(this.bodySprite.position);
 
-    const dirOffset = this.bodySprite.position.copy();
-    dirOffset.x += 50;
+    // FIXME: Make it so the bullet fires from the cannon of the tank
+    const initialPosition = this.bodySprite.position.copy();
+    // dirOffset.x += 50;
 
-    new Bullet(bulletsLayer, dirOffset, updatedTrajectory, this.rotation);
+    new Bullet(bulletsLayer, initialPosition, updatedTrajectory, this.rotation);
   }
 
   /**
