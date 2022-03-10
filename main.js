@@ -13,7 +13,7 @@ var bulletsLayer = new Layer();
 /** @type {Layer<Wall>} */
 var wallsLayer = new Layer();
 
-/** @type {Layer<TestEnemy>} */
+/** @type {Layer<MachineGunEnemy>} */
 var enemiesLayer = new Layer();
 
 /** @type {Object.<string, Image>} */
@@ -59,7 +59,7 @@ function setup() {
   // new IndestructibleWall(wallsLayer, 500, 500);
   // new DestructibleWall(wallsLayer, 500, 400);
 
-  new TestEnemy(enemiesLayer, 400, 400);
+  new MachineGunEnemy(enemiesLayer, 400, 400);
 
   new Level(1);
 

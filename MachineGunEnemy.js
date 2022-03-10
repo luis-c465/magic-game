@@ -1,4 +1,4 @@
-class TestEnemy extends Tank {
+class MachineGunEnemy extends Tank {
   /**
    * @param {GameLayer} layer
    * @param {number} x
