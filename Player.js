@@ -41,7 +41,7 @@ class Player extends GameObject {
      * @constant
      * @default 15
      */
-    this.SHOOT_EVERY_N_UPDATES = 15;
+    this.SHOOT_EVERY_N_UPDATES = 20;
 
     /**
      * Determines if the player can shoot when the mouse is pressed
@@ -96,8 +96,8 @@ class Player extends GameObject {
 
     // If mouse is pressed
     if (mouseIsPressed && this.canShootNow) {
-      this._shoot();
       this._cast();
+      this.canShootNow = false;
     }
   }
 
@@ -228,6 +228,7 @@ class Player extends GameObject {
   /**
    * Shoots a bullet from the cannon to the mouses current location
    * @private
+   * @deprecated The player should not be able to shoot bullets
    */
   _shoot() {
     this.canShootNow = false;
