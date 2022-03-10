@@ -14,6 +14,9 @@ class Player extends GameObject {
     /** @type {ReflectWand} */
     this.reflectWand = new ReflectWand(wandsLayer);
 
+    /** @type {Wand} @default IceWand */
+    this.currentWand = this.reflectWand;
+
     /** @type {boolean} */
     this.isMoving = false;
 
@@ -89,6 +92,7 @@ class Player extends GameObject {
     }
 
     this._updateMovement();
+    this._updateCurrentWand();
 
     // If mouse is pressed
     if (mouseIsPressed && this.canShootNow) {
@@ -158,6 +162,39 @@ class Player extends GameObject {
     }
   }
 
+  /** @param {Wand} wand */
+  set currentWand(wand) {
+    // If current wand is not set set it to the current value
+    if (this.currentWand === undefined) {
+      this._currentWand = wand;
+    }
+
+    if (this.currentWand === wand) return;
+
+    this.currentWand.hide();
+    this._currentWand = wand;
+    wand.show();
+  }
+
+  get currentWand() {
+    return this._currentWand;
+  }
+
+  /**
+   * Updates the currently equipped wand to the corresponding key press
+   */
+  _updateCurrentWand() {
+    if (keyIsDown(KEY_CODES[1])) {
+      this.currentWand = this.reflectWand;
+    }
+    if (keyIsDown(KEY_CODES[2])) {
+      this.currentWand = this.fireWand;
+    }
+    if (keyIsDown(KEY_CODES[3])) {
+      this.currentWand = this.iceWand;
+    }
+  }
+
   /**
    * Casts a wand
    * @private
@@ -178,10 +215,14 @@ class Player extends GameObject {
 
     // this.fireWand.cast();
 
-    this.reflectWand.trajectory = mouseVector;
-    this.reflectWand.rotation = this.rotation;
+    // this.reflectWand.trajectory = mouseVector;
+    // this.reflectWand.rotation = this.rotation;
 
-    this.reflectWand.cast();
+    // this.reflectWand.cast();
+
+    this.currentWand.trajectory = mouseVector;
+    this.currentWand.rotation = this.rotation;
+    this.currentWand.cast();
   }
 
   /**

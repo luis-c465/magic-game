@@ -31,6 +31,18 @@ var canvasScale = 1;
 const CANVAS_WIDTH = 1600;
 const CANVAS_HEIGHT = 900;
 
+const KEY_CODES = {
+  1: 49,
+  2: 50,
+  3: 51,
+  4: 52,
+  5: 53,
+  6: 54,
+  7: 55,
+  8: 56,
+  9: 56,
+};
+
 /**
  * Function called before setup
  * Should be used to preload sprites that are used multiple times like Bullet.js bullet sprite

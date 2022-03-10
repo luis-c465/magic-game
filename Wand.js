@@ -111,4 +111,12 @@ class Wand extends GameObject {
     // Remakes the group for the game object
     this.setup();
   }
+
+  hide() {
+    this.wand.visible = false;
+  }
+
+  show() {
+    this.wand.visible = true;
+  }
 }
