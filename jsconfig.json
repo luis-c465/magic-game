@@ -4,6 +4,6 @@
     "target": "ES6"
     // "checkJs": true
   },
-  "include": ["src/*.js", "lib/*.d.ts", "node_modules/p5/**/*.d.ts"],
+  "include": ["src/*.js", "lib/*.d.ts", "node_modules/*.d.ts"],
   "exclude": ["node_modules", "**/node_modules", "dist"]
 }

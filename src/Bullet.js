@@ -58,7 +58,7 @@ class Bullet extends GameObject {
     /** @type {gameSprite[]} */
     this.collidesWith = ["wall"];
 
-    this.updatesTillCanBeReflected = 0;
+    this.updatesTillCanBeReflected = 5;
 
     /**
      * Changes how the bullet will react when colliding with things
