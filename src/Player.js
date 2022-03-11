@@ -8,11 +8,11 @@ class Player extends GameObject {
     super(layer);
 
     /** @type {IceWand} */
-    this.iceWand = new IceWand(wandsLayer);
+    this.iceWand = new IceWand(wandsLayer, this);
     /** @type {FireWand} */
-    this.fireWand = new FireWand(wandsLayer);
+    this.fireWand = new FireWand(wandsLayer, this);
     /** @type {ReflectWand} */
-    this.reflectWand = new ReflectWand(wandsLayer);
+    this.reflectWand = new ReflectWand(wandsLayer, this);
 
     /** @type {Wand} @default IceWand */
     this.currentWand = this.reflectWand;

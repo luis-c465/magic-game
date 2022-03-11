@@ -5,9 +5,12 @@
 class Wand extends GameObject {
   /**
    * @param {GameLayer} layer
+   * @param {GameObject} owner
    */
-  constructor(layer) {
+  constructor(layer, owner) {
     super(layer);
+
+    this.owner = owner;
 
     this.wand = createSprite(10, 10, 50, 50);
     // TODO: Add casting delay

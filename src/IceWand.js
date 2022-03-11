@@ -1,9 +1,10 @@
 class IceWand extends Wand {
   /**
    * @param {Layer} layer
+   * @param {GameObject} owner
    */
-  constructor(layer) {
-    super(layer);
+  constructor(layer, owner) {
+    super(layer, owner);
 
     this.wand.addImage(images.iceWand);
 

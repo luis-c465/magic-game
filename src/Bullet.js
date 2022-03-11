@@ -120,12 +120,16 @@ class Bullet extends GameObject {
 
   /**
    * Makes the bullet take a 180 in its trajectory
+   *
+   * @param {GameObject} newFiredBy
    */
-  reflect() {
+  reflect(newFiredBy) {
     if (this.updatesTillCanBeReflected != 0) {
       this.updatesTillCanBeReflected--;
       return;
     }
+
+    this.firedBy = newFiredBy;
 
     this.trajectory.rotate(180);
     this.sprite.rotation += 180;
@@ -133,14 +137,17 @@ class Bullet extends GameObject {
     this.updatesTillCanBeReflected = 2;
   }
 
-  /**
-   * @param {Wall} wall
-   */
+  /** @param {Wall} wall */
   collisionWithWall(wall) {
     // Fix walls not getting collision because bullet is deleted immediately
     // Deletes the bullet 10ms after colliding with a wall
     setTimeout(() => {
       this.deleteCheck = true;
     }, 10);
+  }
+
+  /** @param {Bullet} bullet */
+  collisionWithBullet(bullet) {
+    this.deleteCheck = true;
   }
 }

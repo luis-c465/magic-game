@@ -245,13 +245,12 @@ class GameObject {
     // Does nothing
   }
 
-  /** @type {collisionWith} */
-  collisionWithPlayer(self, thisSprite, playerSprite) {
-    // console.log(wall);
-  }
+  /** @param {Player} player */
+  collisionWithPlayer(player) {}
 
-  /** @type {collisionWith} */
-  collisionWithBullet(self, thisSprite, bulletSprite) {
-    // Do nothing
-  }
+  /** @param {Bullet} bullet */
+  collisionWithBullet(bullet) {}
+
+  /** @param {Wall} wall */
+  collisionWithWall(wall) {}
 }
