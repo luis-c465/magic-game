@@ -87,8 +87,8 @@ class Wand extends GameObject {
     // Create a range of hit boxes between current position and trajectory
     this.hitBox = range(
       0,
-      max(windowWidth, windowHeight) / 10_000,
-      1 / (this.NUM_HIT_BOXES * 10)
+      max(windowWidth, windowHeight) / 90_000,
+      1 / (this.NUM_HIT_BOXES * 90)
     ).map((n) => {
       const positionVector = createVector(this.x, this.y);
       const vectorBetween = positionVector.lerp(this.trajectory, n);

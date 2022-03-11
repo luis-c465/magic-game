@@ -201,9 +201,9 @@ class Player extends GameObject {
    */
   _cast() {
     const mouseVector = createVector(mouseX, mouseY).sub(
-      this.cannonSprite.position
+      this.bodySprite.position
     );
-    mouseVector.setMag(10000);
+    mouseVector.setMag(90_000);
 
     // this.iceWand.trajectory = mouseVector;
     // this.iceWand.rotation = this.rotation;
