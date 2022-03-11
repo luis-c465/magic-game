@@ -7,6 +7,8 @@ class MachineGunEnemy extends Tank {
    */
   constructor(layer, x, y) {
     super(layer, x, y, "red");
+
+    this.SHOOT_EVERY_N_UPDATES = 25;
   }
 
   _update() {
