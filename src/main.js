@@ -81,8 +81,15 @@ function setup() {
   // new IndestructibleWall(wallsLayer, 500, 500);
   // new DestructibleWall(wallsLayer, 500, 400);
 
-  new MachineGunEnemy(enemiesLayer, 400, 400);
-  new BrokenEnemy(enemiesLayer, 600, 600);
+  const spawnEnemies = () => {
+    const player = playerLayer.objects[0];
+
+    new MachineGunEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+    new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+  };
+
+  spawnEnemies();
+  setInterval(spawnEnemies, 10_000);
 
   new Level(1);
 

@@ -257,4 +257,36 @@ class Player extends GameObject {
   whenNoLife() {
     throw new Error("player is dead!");
   }
+
+  /** @return {[number, number]} */
+  getValidEnemyLocation() {
+    const bodySpritePosition = this.bodySprite.position;
+    const invalidRange = 200;
+    return [
+      this._getCoordNotInRange(
+        CANVAS_WIDTH,
+        bodySpritePosition.x - invalidRange,
+        bodySpritePosition.x + invalidRange
+      ),
+      this._getCoordNotInRange(
+        CANVAS_HEIGHT,
+        bodySpritePosition.y - invalidRange,
+        bodySpritePosition.y + invalidRange
+      ),
+    ];
+  }
+
+  /**
+   * @param {number} maxCoord
+   * @param {number} min
+   * @param {number} max
+   */
+  _getCoordNotInRange(maxCoord, min, max) {
+    const isValid = (num) => num >= min && max >= num;
+    let num;
+    do {
+      num = random(maxCoord);
+    } while (isValid(num));
+    return num;
+  }
 }
