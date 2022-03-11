@@ -58,7 +58,8 @@ class Bullet extends GameObject {
     /** @type {gameSprite[]} */
     this.collidesWith = ["wall"];
 
-    this.updatesTillCanBeReflected = 5;
+    this.updatesTillCanBeReflected = 50;
+    this.updatesTillCanBeDired = 5;
 
     /**
      * Changes how the bullet will react when colliding with things
@@ -114,6 +115,8 @@ class Bullet extends GameObject {
   }
 
   _update() {
+    this.updatesTillCanBeReflected--;
+    this.updatesTillCanBeDired--;
     // Makes the bullet move
     this.sprite.position.add(this.trajectory);
   }
@@ -124,8 +127,7 @@ class Bullet extends GameObject {
    * @param {GameObject} newFiredBy
    */
   reflect(newFiredBy) {
-    if (this.updatesTillCanBeReflected != 0) {
-      this.updatesTillCanBeReflected--;
+    if (this.updatesTillCanBeReflected > 0) {
       return;
     }
 
@@ -134,7 +136,7 @@ class Bullet extends GameObject {
     this.trajectory.rotate(180);
     this.sprite.rotation += 180;
 
-    this.updatesTillCanBeReflected = 2;
+    this.updatesTillCanBeReflected = 50;
   }
 
   /** @param {Wall} wall */
@@ -149,5 +151,19 @@ class Bullet extends GameObject {
   /** @param {Bullet} bullet */
   collisionWithBullet(bullet) {
     this.deleteCheck = true;
+  }
+
+  /**
+   * @param {Vector} trajectory
+   * @param {number} newSpeed
+   */
+  updateTrajectory(trajectory, newSpeed) {
+    if (this.updatesTillCanBeDired > 0) return;
+
+    this.trajectory = trajectory;
+    // Updates the bullets mag
+    this.speed = newSpeed;
+
+    this.updatesTillCanBeDired = 5;
   }
 }

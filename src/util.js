@@ -30,3 +30,15 @@ function range(start, stop, step = 1) {
 function randomBoolean() {
   return random(1) >= 0.5;
 }
+
+/**
+ * @param {Vector} v1
+ * @param {Vector} v2
+ *
+ * @return {number}
+ */
+function angleBetween(v1, v2) {
+  const x = v1.x - v2.x;
+  const y = v1.y - v2.y;
+  return atan2(y, x);
+}

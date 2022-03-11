@@ -13,6 +13,8 @@ class Player extends GameObject {
     this.fireWand = new FireWand(wandsLayer, this);
     /** @type {ReflectWand} */
     this.reflectWand = new ReflectWand(wandsLayer, this);
+    /** @type {ReflectWand} */
+    this.dirWand = new DirWand(wandsLayer, this);
 
     /** @type {Wand} @default IceWand */
     this.currentWand = this.reflectWand;
@@ -153,6 +155,9 @@ class Player extends GameObject {
 
       this.reflectWand.x = this.cannonSprite.position.x;
       this.reflectWand.y = this.cannonSprite.position.y;
+
+      this.dirWand.x = this.cannonSprite.position.x;
+      this.dirWand.y = this.cannonSprite.position.y;
     }
 
     // If player is not moving (not arrow keys are pressed) set its velocity to zero
@@ -192,6 +197,9 @@ class Player extends GameObject {
     }
     if (keyIsDown(KEY_CODES[3])) {
       this.currentWand = this.iceWand;
+    }
+    if (keyIsDown(KEY_CODES[4])) {
+      this.currentWand = this.dirWand;
     }
   }
 
