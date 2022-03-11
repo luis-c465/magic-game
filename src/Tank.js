@@ -66,6 +66,8 @@ class Tank extends GameObject {
     /** @type {number} @default 0 */
     this.rotation = 0;
 
+    this.collidesWith.push("bullet");
+
     this.setup();
   }
 
@@ -100,7 +102,13 @@ class Tank extends GameObject {
     const initialPosition = this.bodySprite.position.copy();
     // dirOffset.x += 50;
 
-    new Bullet(bulletsLayer, initialPosition, updatedTrajectory, this.rotation);
+    new Bullet(
+      bulletsLayer,
+      this,
+      initialPosition,
+      updatedTrajectory,
+      this.rotation
+    );
   }
 
   /**
@@ -173,5 +181,12 @@ class Tank extends GameObject {
       },
     ]);
     return loadAnimation(spriteSheet);
+  }
+
+  /** @param {Bullet} bullet */
+  collisionWithBullet(bullet) {
+    if (bullet.firedBy === this) return;
+
+    this.life -= bullet.damage;
   }
 }

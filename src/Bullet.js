@@ -8,12 +8,16 @@
 class Bullet extends GameObject {
   /**
    * @param {GameLayer} layer
+   * @param {GameObject} firedBy
    * @param {Vector} initialPosition
    * @param {Vector} trajectory
    * @param {number} rotation
    */
-  constructor(layer, initialPosition, trajectory, rotation) {
+  constructor(layer, firedBy, initialPosition, trajectory, rotation) {
     super(layer);
+
+    /** @type {GameObject} */
+    this.firedBy = firedBy;
 
     this.initialPosition = initialPosition;
     this.trajectory = trajectory;

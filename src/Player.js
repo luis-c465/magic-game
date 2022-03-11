@@ -27,7 +27,7 @@ class Player extends GameObject {
     this.rotation = 0;
 
     /** @type {gameSprite[]} */
-    this.collidesWith = ["wall"];
+    this.collidesWith = ["wall", "bullet"];
 
     /**
      * The number of times that the players `update` function has been called
@@ -247,5 +247,14 @@ class Player extends GameObject {
     new Bullet(bulletsLayer, dirOffset, mouseVector, this.rotation);
     // bulletsLayer.add(bullet);
     // bullets.push(bullet);
+  }
+
+  /** @param {Bullet} bullet */
+  collisionWithBullet(bullet) {
+    // this.life -= bullet.damage;
+  }
+
+  whenNoLife() {
+    throw new Error("player is dead!");
   }
 }
