@@ -59,7 +59,7 @@ class Bullet extends GameObject {
     this.collidesWith = ["wall"];
 
     this.updatesTillCanBeReflected = 50;
-    this.updatesTillCanBeDired = 5;
+    this.updatesTillCanBeDired = 50;
 
     /**
      * Changes how the bullet will react when colliding with things
