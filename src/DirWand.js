@@ -29,6 +29,7 @@ class DirWand extends Wand {
       vector.sub(bulletSpritePos);
       // bullet.sprite.rotation = angleBetween(vector, bulletSpritePos) - 90;
       bullet.updateTrajectory(vector, speedBefore * 1.5);
+      bullet.firedBy = this.owner;
     }, 400);
   }
 }
