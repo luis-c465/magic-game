@@ -23,3 +23,10 @@ function range(start, stop, step = 1) {
   }
   return b > stop ? a.slice(0, -1) : a;
 }
+
+/**
+ * @returns {boolean}
+ */
+function randomBoolean() {
+  return random(1) >= 0.5;
+}

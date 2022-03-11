@@ -14,10 +14,10 @@ class Tank extends GameObject {
     this.color = color;
 
     /** @type {boolean} */
-    this.isMoving = false;
+    this.isMoving = undefined;
 
     /** @type {number} @default 2 */
-    this.movementSpeed = 2;
+    this.movementSpeed = 1;
 
     /** @type {gameSprite[]} */
     this.collidesWith = ["wall"];
@@ -188,5 +188,25 @@ class Tank extends GameObject {
     if (bullet.firedBy === this) return;
 
     this.life -= bullet.damage;
+  }
+
+  _updateMovement() {
+    if (this.isMoving === undefined) this.isMoving = false;
+
+    if (this.isMoving) {
+      this.cannonSprite.position.x = this.bodySprite.position.x - 1;
+      this.cannonSprite.position.y = this.bodySprite.position.y - 5;
+      return;
+    }
+
+    this.isMoving = true;
+    this.bodySprite.velocity.x = randomBoolean()
+      ? -this.movementSpeed
+      : this.movementSpeed;
+    this.bodySprite.velocity.y = randomBoolean()
+      ? -this.movementSpeed
+      : this.movementSpeed;
+
+    setTimeout(() => (this.isMoving = false), 2000);
   }
 }

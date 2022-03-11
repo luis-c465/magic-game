@@ -21,5 +21,7 @@ class MachineGunEnemy extends Tank {
       const playerVector = player.bodySprite.position.copy();
       this._shoot(playerVector);
     }
+
+    this._updateMovement();
   }
 }
