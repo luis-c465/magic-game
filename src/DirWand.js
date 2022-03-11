@@ -18,18 +18,7 @@ class DirWand extends Wand {
    * @param {Bullet} bullet
    */
   collisionWithBullet(bullet) {
-    const speedBefore = bullet.speed;
-    bullet.speed = 0.3;
-
-    setTimeout(() => {
-      const vector = createVector(mouseX, mouseY);
-      const bulletSpritePos = bullet.sprite.position;
-
-      bullet.sprite.rotation = angleBetween(vector, bulletSpritePos);
-      vector.sub(bulletSpritePos);
-      // bullet.sprite.rotation = angleBetween(vector, bulletSpritePos) - 90;
-      bullet.updateTrajectory(vector, speedBefore * 1.5);
-      bullet.firedBy = this.owner;
-    }, 400);
+    const vector = createVector(mouseX, mouseY);
+    bullet.dir(vector, this.owner);
   }
 }

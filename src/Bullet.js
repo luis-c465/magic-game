@@ -154,16 +154,29 @@ class Bullet extends GameObject {
   }
 
   /**
-   * @param {Vector} trajectory
-   * @param {number} newSpeed
+   * @param {Vector} newTrajectory
+   * @param {GameObject} newOwner
    */
-  updateTrajectory(trajectory, newSpeed) {
+  dir(newTrajectory, newOwner) {
     if (this.updatesTillCanBeDired > 0) return;
 
-    this.trajectory = trajectory;
-    // Updates the bullets mag
-    this.speed = newSpeed;
+    /** Delay between bullet being slowed down and bullet changing trajectory to the new trajectory */
+    const DIR_DELAY = 400;
 
-    this.updatesTillCanBeDired = 5;
+    this.updatesTillCanBeDired = 50;
+
+    const speedBefore = this.speed;
+    this.speed = 0.3;
+
+    setTimeout(() => {
+      const bulletSpritePos = this.sprite.position;
+
+      this.sprite.rotation = angleBetween(newTrajectory, bulletSpritePos);
+      newTrajectory.sub(bulletSpritePos);
+
+      this.trajectory = newTrajectory;
+      this.speed = speedBefore * 1.5;
+      this.firedBy = newOwner;
+    }, DIR_DELAY);
   }
 }
