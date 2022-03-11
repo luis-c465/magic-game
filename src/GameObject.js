@@ -5,6 +5,7 @@
  * @typedef {"player" | "bullet" | "wall" | "wand"} gameSprite
  *
  * @typedef {(collidedWith: GameObject, self, GameObject) => void} collisionWith
+ * @typedef {"collide" | "overlap"} typeCollisionType
  */
 class GameObject {
   /**
@@ -54,6 +55,22 @@ class GameObject {
      * @default true
      */
     this.collisionCheck = true;
+
+    /**
+     * The current life of the GameObject
+     *
+     * When 0 or less the GameObject will be deleted
+     * @default 1
+     */
+    this.life = 1;
+
+    /**
+     * Function called when the current life of the GameObject less than or equal to 0
+     */
+    this.whenNoLife = () => {};
+
+    /** @type {typeCollisionType} @default overlap */
+    this.collisionType = "overlap";
 
     /** @type {GameLayer} */
     this.layer = layer;
@@ -123,7 +140,7 @@ class GameObject {
     if (!this.collidesWith.includes(name)) return;
 
     layer.objects.forEach((obj) => {
-      this.spriteGroup.collide(
+      this.spriteGroup[obj.collisionType](
         obj.spriteGroup,
         this._collisionWith(capitalizeFirstLetter(name), obj)
       );
@@ -138,6 +155,11 @@ class GameObject {
   preUpdate() {
     // If sprites life is zero (sprite does not exist) remove the sprites from the screen
     // and set object to be deleted
+    if (this.life <= 0) {
+      this.deleteCheck = true;
+      this.whenNoLife();
+    }
+
     if (this.sprite?.life === 0) {
       this.deleteCheck = true;
     }

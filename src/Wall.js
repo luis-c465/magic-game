@@ -22,6 +22,8 @@ class Wall extends GameObject {
     this.y = y;
 
     this.collidesWith = ["player", "bullet"];
+    /** @type {typeCollisionType}  */
+    this.collisionType = "collide";
   }
 
   _update() {
