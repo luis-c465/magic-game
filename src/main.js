@@ -90,6 +90,7 @@ function setup() {
 
     new MachineGunEnemy(enemiesLayer, ...player.getValidEnemyLocation());
     new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+    new CreeperEnemy(enemiesLayer, ...player.getValidEnemyLocation());
   };
 
   spawnEnemies();
