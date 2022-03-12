@@ -114,6 +114,7 @@ function draw() {
  *
  * Used to tell the game how the layers should run.
  * Not so much used since update in each class should determine physics of the object.
+ * Consider moving `preUpdate` in `GameObject` to being called in this method
  */
 function fixedUpdate() {
   //
