@@ -9,7 +9,9 @@ class CreeperEnemy extends Tank {
 
     this.SHOOT_EVERY_N_UPDATES = 75;
     this.isMoving = true;
-    this.movementSpeed = 2;
+    this.movementSpeed = 1;
+
+    this.collidesWith.push("player");
   }
 
   _update() {
@@ -31,7 +33,6 @@ class CreeperEnemy extends Tank {
   }
 
   _updateMovement() {
-    const player = playerLayer.objects[0];
     /** @type {Vector} */
     const playerPosition = player.bodySprite.position;
     if (this.isMoving) {
@@ -45,5 +46,11 @@ class CreeperEnemy extends Tank {
       // this.cannonSprite.position.y = this.bodySprite.position.y - 5;
       return;
     }
+  }
+
+  /** @param {Player} player */
+  collisionWithPlayer(player) {
+    player.kill();
+    // player.bodySprite.rotation += 5;
   }
 }

@@ -314,4 +314,8 @@ class Player extends GameObject {
     } while (isValid(num));
     return num;
   }
+
+  kill() {
+    this.deleteCheck = true;
+  }
 }

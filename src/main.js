@@ -82,6 +82,7 @@ function preload() {
 
 function setup() {
   angleMode(DEGREES);
+  // rectMode(CENTER);
 
   player = new Player(playerLayer, 250, 250);
 
@@ -89,8 +90,8 @@ function setup() {
   // new DestructibleWall(wallsLayer, 500, 400);
 
   const spawnEnemies = () => {
-    new MachineGunEnemy(enemiesLayer, ...player.getValidEnemyLocation());
-    new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+    // new MachineGunEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+    // new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
     new CreeperEnemy(enemiesLayer, ...player.getValidEnemyLocation());
   };
 
@@ -161,4 +162,35 @@ function generalDisplay() {
   wallsLayer.display();
   enemiesLayer.display();
   bulletsLayer.display();
+
+  // If player is set to be deleted
+  if (player.deleteCheck) {
+    showGameOverScreen();
+  }
+}
+
+function showGameOverScreen() {
+  const width = 500;
+  const height = CANVAS_HEIGHT - 200;
+
+  const middleX = CANVAS_WIDTH / 2;
+  const middleY = CANVAS_HEIGHT / 2;
+
+  // Background
+  noStroke();
+  fill(color(0, 100));
+  rect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+  // Middle section
+  rectMode(CENTER);
+
+  fill(color(255, 255));
+  rect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, width, height, 20);
+
+  stroke("black");
+  strokeWeight(10);
+  textSize(100);
+  text("You died", middleX - 200, middleY);
+
+  rectMode(CORNER);
 }
