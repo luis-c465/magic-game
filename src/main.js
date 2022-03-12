@@ -199,8 +199,8 @@ function setupGame() {
   // new DestructibleWall(wallsLayer, 500, 400);
 
   const spawnEnemies = () => {
-    // new MachineGunEnemy(enemiesLayer, ...player.getValidEnemyLocation());
-    // new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+    new MachineGunEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+    new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
     new CreeperEnemy(enemiesLayer, ...player.getValidEnemyLocation());
   };
 
