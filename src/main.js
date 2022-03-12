@@ -53,6 +53,10 @@ const KEY_CODES = {
  */
 function preload() {
   // Load images
+  /**
+   * Image made by Eva
+   */
+  images.player = loadImage("assets/player.png");
   images.tanks = loadImage("assets/tanks.png");
   images.bullet = loadImage("assets/bullet.png");
 

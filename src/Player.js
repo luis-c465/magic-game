@@ -54,14 +54,19 @@ class Player extends GameObject {
 
     // Animations
     /** @type {Animation} */
+    // this.bodyAnimation = loadAnimation(
+    //   new SpriteSheet(images.tanks, [
+    //     {
+    //       name: "stand",
+    //       frame: { x: 123, y: 11, width: 80, height: 89 },
+    //     },
+    //   ])
+    // );
+
     this.bodyAnimation = loadAnimation(
-      new SpriteSheet(images.tanks, [
-        {
-          name: "stand",
-          frame: { x: 123, y: 11, width: 80, height: 89 },
-        },
-      ])
+      new SpriteSheet(images.player, 64, 64, 2)
     );
+    this.bodyAnimation.frameDelay = 15;
     /** @type {Animation} */
     this.cannonAnimation = loadAnimation(
       new SpriteSheet(images.tanks, [
@@ -82,6 +87,7 @@ class Player extends GameObject {
     /** @type {Sprite} */
     this.cannonSprite = createSprite(x, y, 70, 94);
     this.cannonSprite.addAnimation("default", this.cannonAnimation);
+    this.cannonSprite.visible = false;
     this.sprites.push(this.cannonSprite);
 
     this.setup();
