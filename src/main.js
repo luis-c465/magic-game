@@ -176,8 +176,13 @@ function showGameOverScreen() {
 
   stroke("black");
   strokeWeight(10);
+
   textSize(100);
   text("You died", middleX - 200, middleY);
+
+  textSize(20);
+  strokeWeight(3);
+  text("Press <Space> to restart the game", middleX - 150, middleY + 200);
 
   rectMode(CORNER);
 
