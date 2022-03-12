@@ -34,7 +34,7 @@ class Wand extends GameObject {
     /** @type {Sprite[]} */
     this.hitBox = [];
 
-    this.sprites.push(...this.hitBox);
+    this.sprites.push(this.wand, ...this.hitBox);
 
     /** @type {gameSprite[]} */
     this.collidesWith = ["bullet"];
@@ -53,8 +53,8 @@ class Wand extends GameObject {
   update() {
     if (!this.preUpdate()) return;
 
-    this.wand.position.x = this.x;
-    this.wand.position.y = this.y - 60;
+    this.wand.position.x = this.x + 32;
+    this.wand.position.y = this.y;
 
     // FIXME: Does not call `postUpdate`. May cause error in the future!
     if (this.isCasting) {

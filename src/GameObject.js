@@ -242,7 +242,7 @@ class GameObject {
    * Should be overridden by inheriting objects
    */
   display() {
-    // Does nothing
+    this.spriteGroup.draw();
   }
 
   /** @param {Player} player */

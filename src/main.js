@@ -123,10 +123,6 @@ function fixedUpdate() {
  * Updates game objects
  */
 function generalUpdate() {
-  // Clears the screen of old sprites
-  // Fixes bug with old sprites not being cleared after being displayed again
-  clear();
-
   playerLayer.update();
   bulletsLayer.update();
   wallsLayer.update();
@@ -152,7 +148,14 @@ function staticDisplay() {
  * Displays game objects
  */
 function generalDisplay() {
-  playerLayer.display();
+  // Clears the screen of old sprites
+  // Fixes bug with old sprites not being cleared after being displayed again
+  clear();
 
-  drawSprites();
+  // The order in which layers are drawn to the screen
+  playerLayer.display();
+  wandsLayer.display();
+  wallsLayer.display();
+  enemiesLayer.display();
+  bulletsLayer.display();
 }
