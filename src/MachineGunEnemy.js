@@ -24,4 +24,17 @@ class MachineGunEnemy extends Tank {
 
     this._updateMovement();
   }
+
+  _updateMovement() {
+    if (this.isMoving) return;
+    this.isMoving = true;
+    this.bodySprite.velocity.x = randomBoolean()
+      ? -this.movementSpeed
+      : this.movementSpeed;
+    this.bodySprite.velocity.y = randomBoolean()
+      ? -this.movementSpeed
+      : this.movementSpeed;
+
+    setTimeout(() => (this.isMoving = false), 2000);
+  }
 }

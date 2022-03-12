@@ -64,6 +64,9 @@ class GameObject {
      */
     this.life = 1;
 
+    /** @type {number} @default 1 */
+    this.movementSpeed = 1;
+
     /**
      * Function called when the current life of the GameObject less than or equal to 0
      */
@@ -178,9 +181,10 @@ class GameObject {
   /**
    * Function that should be called last in the game object `update` method
    *
-   * Updates the object collisions
+   * Updates the object collisions and the objects movements
    */
   postUpdate() {
+    this.updateMovement();
     this.updateCollisions();
   }
 
@@ -253,4 +257,32 @@ class GameObject {
 
   /** @param {Wall} wall */
   collisionWithWall(wall) {}
+
+  _preUpdateMovement() {
+    if (this.isMoving === undefined) {
+      this.isMoving = false;
+      this._updateAttachmentsPositions();
+    }
+
+    if (this.isMoving) {
+      this._updateAttachmentsPositions();
+    }
+  }
+
+  /**
+   * Updates the position of objects that are attached to the `GameObject`
+   */
+  _updateAttachmentsPositions() {}
+
+  /**
+   * Updates the movement of `GameObject`
+   * Should be overridden by inheriting Classes
+   * @private
+   */
+  _updateMovement() {}
+
+  updateMovement() {
+    this._preUpdateMovement();
+    this._updateMovement();
+  }
 }
