@@ -48,6 +48,7 @@ const KEY_CODES = {
   a: 65,
   s: 83,
   d: 68,
+  space: 32,
 };
 
 /**
@@ -83,23 +84,8 @@ function preload() {
 
 function setup() {
   angleMode(DEGREES);
-  // rectMode(CENTER);
 
-  player = new Player(playerLayer, 250, 250);
-
-  // new IndestructibleWall(wallsLayer, 500, 500);
-  // new DestructibleWall(wallsLayer, 500, 400);
-
-  const spawnEnemies = () => {
-    // new MachineGunEnemy(enemiesLayer, ...player.getValidEnemyLocation());
-    // new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
-    new CreeperEnemy(enemiesLayer, ...player.getValidEnemyLocation());
-  };
-
-  spawnEnemies();
-  setInterval(spawnEnemies, 10_000);
-
-  new Level(1);
+  setupGame();
 
   // FIXME: Will not update canvas size when user resizes browser window!
   createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -194,4 +180,35 @@ function showGameOverScreen() {
   text("You died", middleX - 200, middleY);
 
   rectMode(CORNER);
+
+  if (keyIsDown(KEY_CODES.space)) {
+    deleteGame();
+    setupGame();
+  }
+}
+
+function setupGame() {
+  player = new Player(playerLayer, 250, 250);
+
+  // new IndestructibleWall(wallsLayer, 500, 500);
+  // new DestructibleWall(wallsLayer, 500, 400);
+
+  const spawnEnemies = () => {
+    // new MachineGunEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+    // new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+    new CreeperEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+  };
+
+  spawnEnemies();
+  setInterval(spawnEnemies, 10_000);
+
+  new Level(1);
+}
+
+function deleteGame() {
+  playerLayer.deleteAll();
+  bulletsLayer.deleteAll();
+  wallsLayer.deleteAll();
+  wandsLayer.deleteAll();
+  enemiesLayer.deleteAll();
 }
