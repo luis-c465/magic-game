@@ -79,7 +79,7 @@ class Player extends GameObject {
 
     // Create sprites
     /** @type {Sprite} */
-    this.bodySprite = createSprite(x, y, 70, 94);
+    this.bodySprite = createSprite(x, y, 64, 64);
     this.bodySprite.addAnimation("stand", this.bodyAnimation);
     // this.bodySprite.rotateToDirection = true;
     this.sprites.push(this.bodySprite);
