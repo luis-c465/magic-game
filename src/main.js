@@ -72,6 +72,7 @@ function preload() {
   images.reflectWand = loadImage("assets/reflect-wand.png", (img) => {
     img.resize(50, 50);
   });
+  // TODO: Add and load dirWand
 
   images.iceBullet = loadImage("assets/ice-bullet.png");
   images.fireBullet = loadImage("assets/fire-bullet.png");
