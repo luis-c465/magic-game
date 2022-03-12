@@ -177,7 +177,13 @@ class Player extends GameObject {
   set currentWand(wand) {
     // If current wand is not set set it to the current value
     if (this.currentWand === undefined) {
+      this.iceWand.hide();
+      this.fireWand.hide();
+      this.reflectWand.hide();
+      this.dirWand.hide();
+
       this._currentWand = wand;
+      wand.show();
     }
 
     if (this.currentWand === wand) return;

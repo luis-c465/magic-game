@@ -40,6 +40,7 @@ class Layer {
    */
   display() {
     this.objects.forEach((obj) => {
+      if (!obj.drawCheck) return;
       obj.display();
     });
   }

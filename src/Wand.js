@@ -53,7 +53,7 @@ class Wand extends GameObject {
   update() {
     if (!this.preUpdate()) return;
 
-    this.wand.position.x = this.x + 32;
+    this.wand.position.x = this.x + 28;
     this.wand.position.y = this.y;
 
     // FIXME: Does not call `postUpdate`. May cause error in the future!
@@ -116,10 +116,10 @@ class Wand extends GameObject {
   }
 
   hide() {
-    this.wand.visible = false;
+    this.drawCheck = false;
   }
 
   show() {
-    this.wand.visible = true;
+    this.drawCheck = true;
   }
 }
