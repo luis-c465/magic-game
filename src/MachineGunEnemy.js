@@ -17,7 +17,6 @@ class MachineGunEnemy extends Tank {
       this.canShootNow = this.updates % this.SHOOT_EVERY_N_UPDATES === 0;
     }
     if (this.canShootNow) {
-      const player = playerLayer.objects[0];
       const playerVector = player.bodySprite.position.copy();
       this._shoot(playerVector);
     }

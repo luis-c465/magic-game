@@ -28,6 +28,9 @@ var levels = {};
  */
 var canvasScale = 1;
 
+/** @type {Player} */
+var player;
+
 const CANVAS_WIDTH = 1600;
 const CANVAS_HEIGHT = 900;
 
@@ -80,14 +83,12 @@ function preload() {
 function setup() {
   angleMode(DEGREES);
 
-  new Player(playerLayer, 250, 250);
+  player = new Player(playerLayer, 250, 250);
 
   // new IndestructibleWall(wallsLayer, 500, 500);
   // new DestructibleWall(wallsLayer, 500, 400);
 
   const spawnEnemies = () => {
-    const player = playerLayer.objects[0];
-
     new MachineGunEnemy(enemiesLayer, ...player.getValidEnemyLocation());
     new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
     new CreeperEnemy(enemiesLayer, ...player.getValidEnemyLocation());

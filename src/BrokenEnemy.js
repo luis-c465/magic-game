@@ -20,8 +20,6 @@ class BrokenEnemy extends Tank {
 
     if (this.canShootNow) {
       const fireAt = createVector(random(CANVAS_WIDTH), random(CANVAS_HEIGHT));
-
-      const player = playerLayer.objects[0];
       const playerVector = player.bodySprite.position.copy();
       this._shoot(fireAt);
     }
