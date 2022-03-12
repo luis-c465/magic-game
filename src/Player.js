@@ -302,10 +302,15 @@ class Player extends GameObject {
    * @param {number} max
    */
   _getCoordNotInRange(maxCoord, min, max) {
-    const isValid = (num) => num >= min && max >= num;
+    const isValid = (num) => {
+      // const inRange = num >= min && max >= num;
+      return num >= min && max >= num;
+    };
     let num;
     do {
-      num = random(maxCoord);
+      // Picks a random number from 100 to maxCoord - 100
+      // Prevents enemies from spawning in the boundaries of the level
+      num = random(100, maxCoord - 100);
     } while (isValid(num));
     return num;
   }
