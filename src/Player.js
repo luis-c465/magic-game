@@ -28,6 +28,8 @@ class Player extends GameObject {
     /** @type {number} @default 0 */
     this.rotation = 0;
 
+    this.life = 5;
+
     /** @type {gameSprite[]} */
     this.collidesWith = ["wall", "bullet"];
 
@@ -271,7 +273,7 @@ class Player extends GameObject {
 
   /** @param {Bullet} bullet */
   collisionWithBullet(bullet) {
-    // this.life -= bullet.damage;
+    this.life -= bullet.damage;
   }
 
   whenNoLife() {

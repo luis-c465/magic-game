@@ -56,7 +56,7 @@ class Bullet extends GameObject {
     this.sprite.debug = true;
 
     /** @type {gameSprite[]} */
-    this.collidesWith = ["wall"];
+    this.collidesWith = ["wall", "player"];
 
     this.updatesTillCanBeReflected = 50;
     this.updatesTillCanBeDired = 50;
@@ -148,8 +148,8 @@ class Bullet extends GameObject {
     }, 10);
   }
 
-  /** @param {Bullet} bullet */
-  collisionWithBullet(bullet) {
+  /** @param {Player} player */
+  collisionWithPlayer(player) {
     this.deleteCheck = true;
   }
 
