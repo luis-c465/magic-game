@@ -31,6 +31,9 @@ var canvasScale = 1;
 /** @type {Player} */
 var player;
 
+/** @type {number} */
+var spawnEnemiesTimer;
+
 const CANVAS_WIDTH = 1600;
 const CANVAS_HEIGHT = 900;
 
@@ -205,7 +208,7 @@ function setupGame() {
   };
 
   spawnEnemies();
-  setInterval(spawnEnemies, 10_000);
+  spawnEnemiesTimer = setInterval(spawnEnemies, 30_000);
 
   new Level(1);
 }
@@ -216,4 +219,6 @@ function deleteGame() {
   wallsLayer.deleteAll();
   wandsLayer.deleteAll();
   enemiesLayer.deleteAll();
+
+  clearInterval(spawnEnemiesTimer);
 }
