@@ -31,8 +31,14 @@ var canvasScale = 1;
 /** @type {Player} */
 var player;
 
+/**
+ * Time between increasing the difficulty of the game
+ *  @type {number}
+ */
+var increaseDifficultlyTimer = 10_000;
+
 /** @type {number} */
-var spawnEnemiesTimer;
+var increaseDifficultyTimerId;
 
 /** @type {number} @default 1 */
 var gameDifficulty = 1;
@@ -218,7 +224,6 @@ function setupGame() {
   // new DestructibleWall(wallsLayer, 500, 400);
 
   increaseDifficulty();
-  spawnEnemiesTimer = setInterval(increaseDifficulty, 10_000);
 
   new Level(1);
 }
@@ -230,18 +235,35 @@ function deleteGame() {
   wandsLayer.deleteAll();
   enemiesLayer.deleteAll();
 
-  clearInterval(spawnEnemiesTimer);
+  gameDifficulty = 1;
+  increaseDifficultlyTimer = 10_000;
+  clearTimeout(increaseDifficultyTimerId);
 }
 
 function increaseDifficulty() {
   switch (true) {
     case 1 <= gameDifficulty && gameDifficulty < 3:
       BrokenEnemy.spawnInValidLocation();
-      // new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+      break;
+
+    case 3 <= gameDifficulty && gameDifficulty < 10:
+      MachineGunEnemy.spawnInValidLocation();
+      break;
+
+    case 10 <= gameDifficulty && gameDifficulty < 15:
+      BrokenEnemy.spawnInValidLocation();
+      CreeperEnemy.spawnInValidLocation();
       break;
 
     default:
-      break;
+      const num = random(100);
+      if (33 >= num) {
+        BrokenEnemy.spawnInValidLocation();
+      } else if (66 >= num) {
+        MachineGunEnemy.spawnInValidLocation();
+      } else {
+        CreeperEnemy.spawnInValidLocation();
+      }
   }
 
   // new MachineGunEnemy(enemiesLayer, ...player.getValidEnemyLocation());
@@ -249,4 +271,13 @@ function increaseDifficulty() {
   // new CreeperEnemy(enemiesLayer, ...player.getValidEnemyLocation());
 
   gameDifficulty++;
+  increaseDifficultlyTimer = max(
+    increaseDifficultlyTimer - gameDifficulty * 50,
+    500
+  );
+
+  increaseDifficultyTimerId = setTimeout(
+    increaseDifficulty,
+    increaseDifficultlyTimer
+  );
 }
