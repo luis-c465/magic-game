@@ -34,6 +34,9 @@ var player;
 /** @type {number} */
 var spawnEnemiesTimer;
 
+/** @type {number} @default 1 */
+var gameDifficulty = 1;
+
 const CANVAS_WIDTH = 1600;
 const CANVAS_HEIGHT = 900;
 
@@ -214,14 +217,8 @@ function setupGame() {
   // new IndestructibleWall(wallsLayer, 500, 500);
   // new DestructibleWall(wallsLayer, 500, 400);
 
-  const spawnEnemies = () => {
-    new MachineGunEnemy(enemiesLayer, ...player.getValidEnemyLocation());
-    new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
-    new CreeperEnemy(enemiesLayer, ...player.getValidEnemyLocation());
-  };
-
-  spawnEnemies();
-  spawnEnemiesTimer = setInterval(spawnEnemies, 30_000);
+  increaseDifficulty();
+  spawnEnemiesTimer = setInterval(increaseDifficulty, 10_000);
 
   new Level(1);
 }
@@ -234,4 +231,22 @@ function deleteGame() {
   enemiesLayer.deleteAll();
 
   clearInterval(spawnEnemiesTimer);
+}
+
+function increaseDifficulty() {
+  switch (true) {
+    case 1 <= gameDifficulty && gameDifficulty < 3:
+      BrokenEnemy.spawnInValidLocation();
+      // new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+      break;
+
+    default:
+      break;
+  }
+
+  // new MachineGunEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+  // new BrokenEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+  // new CreeperEnemy(enemiesLayer, ...player.getValidEnemyLocation());
+
+  gameDifficulty++;
 }

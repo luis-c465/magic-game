@@ -191,4 +191,14 @@ class Tank extends GameObject {
     this.cannonSprite.position.x = this.bodySprite.position.x - 1;
     this.cannonSprite.position.y = this.bodySprite.position.y - 5;
   }
+
+  /**
+   * Spawns the enemy in a random valid location
+   */
+  static spawnInValidLocation() {
+    new this.prototype.constructor(
+      enemiesLayer,
+      ...player.getValidEnemyLocation()
+    );
+  }
 }
