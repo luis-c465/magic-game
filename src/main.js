@@ -121,6 +121,8 @@ function preload() {
 
   // Load levels
   levels[1] = loadJSON("assets/level1.json");
+  levels[2] = loadJSON("assets/level2.json");
+  levels[3] = loadJSON("assets/level3.json");
 }
 
 function setup() {
@@ -241,7 +243,7 @@ function setupGame() {
 
   increaseDifficulty();
 
-  new Level(1);
+  Level.loadRandomLevel();
 }
 
 function deleteGame() {

@@ -7,19 +7,9 @@
     { "x": 1575, "y": 25, "height": 1900, "type": "indestructible" },
 
     { "x": 400, "y": 200, "height": 300, "type": "indestructible" },
-    { "x": 1300, "y": 500, "height": 300, "type": "indestructible" },
+    { "x": 400, "y": 500, "height": 300, "type": "indestructible" },
 
-    {
-      "x": 210,
-      "y": 750,
-      "height": 150,
-      "width": 300,
-      "type": "indestructible"
-    },
-
-    { "x": 500, "y": 500, "width": 300, "type": "destructible" },
-
-    { "x": 1000, "y": 675, "type": "destructible" },
-    { "x": 1000, "y": 775, "type": "destructible" }
+    { "x": 800, "y": 700, "height": 200, "type": "indestructible" },
+    { "x": 1000, "y": 300, "height": 200, "type": "indestructible" }
   ]
 }
