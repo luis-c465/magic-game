@@ -52,6 +52,7 @@ const KEY_CODES = {
   s: 83,
   d: 68,
   space: 32,
+  tab: 192,
 };
 
 /**

@@ -30,6 +30,15 @@ class Player extends GameObject {
 
     this.life = 5;
 
+    /**
+     * @type {number}
+     * The number of updates that must happen between wand switched
+     */
+    this.CAN_SWITCH_EVERY = 12;
+
+    /** @type {boolean} */
+    this.canSwitchNow = true;
+
     /** @type {gameSprite[]} */
     this.collidesWith = ["wall", "bullet"];
 
@@ -45,14 +54,14 @@ class Player extends GameObject {
      * @constant
      * @default 15
      */
-    this.SHOOT_EVERY_N_UPDATES = 20;
+    this.CAST_EVERY_N_UPDATES = 20;
 
     /**
      * Determines if the player can shoot when the mouse is pressed
      * @type {boolean}
      * @default true
      */
-    this.canShootNow = true;
+    this.canCastNow = true;
 
     // Animations
     /** @type {Animation} */
@@ -96,18 +105,21 @@ class Player extends GameObject {
   }
 
   _update() {
-    this.updates++;
-    if (!this.canShootNow) {
-      this.canShootNow = this.updates % this.SHOOT_EVERY_N_UPDATES === 0;
+    if (!this.canCastNow) {
+      this.canCastNow = this.updates % this.CAST_EVERY_N_UPDATES === 0;
+    }
+
+    if (!this.canSwitchNow) {
+      this.canSwitchNow = this.updates % this.CAN_SWITCH_EVERY === 0;
     }
 
     this._updateMovement();
     this._updateCurrentWand();
 
     // If mouse is pressed
-    if (mouseIsPressed && this.canShootNow) {
+    if (mouseIsPressed && this.canCastNow) {
       this._cast();
-      this.canShootNow = false;
+      this.canCastNow = false;
     }
   }
 
@@ -215,6 +227,32 @@ class Player extends GameObject {
     if (keyIsDown(KEY_CODES[4])) {
       this.currentWand = this.dirWand;
     }
+
+    const keyPressed = keyIsDown(KEY_CODES.space);
+    if (this.canSwitchNow && keyPressed) {
+      this.canSwitchNow = false;
+
+      switch (this.currentWand) {
+        case this.reflectWand:
+          this.currentWand = this.fireWand;
+          break;
+
+        case this.fireWand:
+          this.currentWand = this.iceWand;
+          break;
+
+        case this.iceWand:
+          this.currentWand = this.dirWand;
+          break;
+
+        case this.dirWand:
+          this.currentWand = this.reflectWand;
+          break;
+
+        default:
+          break;
+      }
+    }
   }
 
   /**
@@ -253,7 +291,7 @@ class Player extends GameObject {
    * @deprecated The player should not be able to shoot bullets
    */
   _shoot() {
-    this.canShootNow = false;
+    this.canCastNow = false;
 
     // Do calculations for bullet position
     const mouseVector = createVector(mouseX, mouseY).sub(
