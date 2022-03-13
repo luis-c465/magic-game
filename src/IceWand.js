@@ -6,7 +6,7 @@ class IceWand extends Wand {
   constructor(layer, owner) {
     super(layer, owner);
 
-    this.wand.addImage(images.iceWand);
+    this.icon.addImage(images.snowFlake);
 
     this.setup();
   }

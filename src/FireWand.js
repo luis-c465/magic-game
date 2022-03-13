@@ -6,7 +6,7 @@ class FireWand extends Wand {
   constructor(layer, owner) {
     super(layer, owner);
 
-    this.wand.addImage(images.fireWand);
+    this.icon.addImage(images.fire);
 
     this.setup();
   }

@@ -12,7 +12,7 @@ class Wand extends GameObject {
 
     this.owner = owner;
 
-    this.wand = createSprite(10, 10, 50, 50);
+    this.icon = createSprite(10, 10, 50, 50);
     // TODO: Add casting delay
     /** @type {boolean} */
     this.isCasting = false;
@@ -34,7 +34,7 @@ class Wand extends GameObject {
     /** @type {Sprite[]} */
     this.hitBox = [];
 
-    this.sprites.push(this.wand, ...this.hitBox);
+    this.sprites.push(this.icon, ...this.hitBox);
 
     /** @type {gameSprite[]} */
     this.collidesWith = ["bullet"];
@@ -53,8 +53,10 @@ class Wand extends GameObject {
   update() {
     if (!this._preUpdate()) return;
 
-    this.wand.position.x = this.x + 28;
-    this.wand.position.y = this.y;
+    this.icon.position.x = this.x;
+    this.icon.position.y = this.y - 50;
+
+    this.icon.scale = 1.25;
 
     // FIXME: Does not call `postUpdate`. May cause error in the future!
     if (this.isCasting) {

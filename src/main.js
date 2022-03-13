@@ -64,6 +64,11 @@ function preload() {
   /**
    * Image made by Eva
    */
+
+  const resizeTo = (n) => {
+    return (img) => img.resize(n, n);
+  };
+
   images.player = loadImage("assets/player.png");
   images.tanks = loadImage("assets/tanks.png");
   images.bullet = loadImage("assets/bullet.png");
@@ -81,6 +86,13 @@ function preload() {
 
   images.iceBullet = loadImage("assets/ice-bullet.png");
   images.fireBullet = loadImage("assets/fire-bullet.png");
+
+  // Load icons
+  const ICON_SIZE = 50;
+  images.reflect = loadImage("assets/reflect.png", resizeTo(ICON_SIZE));
+  images.snowFlake = loadImage("assets/snowFlake.png", resizeTo(ICON_SIZE));
+  images.fire = loadImage("assets/fire.png", resizeTo(ICON_SIZE));
+  images.mouse = loadImage("assets/mouse.png", resizeTo(ICON_SIZE));
 
   // Load levels
   levels[1] = loadJSON("assets/level1.json");

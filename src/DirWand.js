@@ -6,7 +6,7 @@ class DirWand extends Wand {
   constructor(layer, owner) {
     super(layer, owner);
 
-    this.wand.addImage(images.reflectWand);
+    this.icon.addImage(images.mouse);
 
     this.setup();
   }
