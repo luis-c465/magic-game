@@ -260,6 +260,7 @@ function deleteGame() {
   wandsLayer.deleteAll();
   enemiesLayer.deleteAll();
 
+  finalScore = undefined;
   gameDifficulty = 1;
   increaseDifficultlyTimer = 10_000;
   clearTimeout(increaseDifficultyTimerId);
