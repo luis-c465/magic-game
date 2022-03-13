@@ -18,7 +18,6 @@ class DirWand extends Wand {
    * @param {Bullet} bullet
    */
   collisionWithBullet(bullet) {
-    const vector = createVector(mouseX, mouseY);
-    bullet.dir(vector, this.owner);
+    bullet.dir(() => createVector(mouseX, mouseY), this.owner);
   }
 }

@@ -154,7 +154,7 @@ class Bullet extends GameObject {
   }
 
   /**
-   * @param {Vector} newTrajectory
+   * @param {() => Vector} newTrajectory
    * @param {GameObject} newOwner
    */
   dir(newTrajectory, newOwner) {
@@ -170,11 +170,12 @@ class Bullet extends GameObject {
 
     setTimeout(() => {
       const bulletSpritePos = this.sprite.position;
+      const trajectory = newTrajectory();
 
-      this.sprite.rotation = angleBetween(newTrajectory, bulletSpritePos);
-      newTrajectory.sub(bulletSpritePos);
+      this.sprite.rotation = angleBetween(trajectory, bulletSpritePos);
+      trajectory.sub(bulletSpritePos);
 
-      this.trajectory = newTrajectory;
+      this.trajectory = trajectory;
       this.speed = speedBefore * 1.5;
       this.firedBy = newOwner;
     }, DIR_DELAY);
