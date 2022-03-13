@@ -115,7 +115,7 @@ function preload() {
   // Load icons
   const ICON_SIZE = 30;
   images.reflect = loadImage("assets/reflect.png", resizeTo(ICON_SIZE));
-  images.snowFlake = loadImage("assets/snowFlake.png", resizeTo(ICON_SIZE));
+  images.snowFlake = loadImage("assets/snowflake.png", resizeTo(ICON_SIZE));
   images.fire = loadImage("assets/fire.png", resizeTo(ICON_SIZE));
   images.mouse = loadImage("assets/mouse.png", resizeTo(ICON_SIZE));
 
