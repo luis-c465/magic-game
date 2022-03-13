@@ -41,4 +41,14 @@ class Level {
       }
     }
   }
+
+  static loadRandomLevel() {
+    const levelsArr = Object.keys(levels).map((s) => +s);
+    const maxLevel = Math.max(...levelsArr);
+    const minLevel = Math.min(...levelsArr);
+
+    const randomLevel = round(random(minLevel, maxLevel));
+
+    new this.prototype.constructor(randomLevel);
+  }
 }

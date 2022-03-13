@@ -243,7 +243,7 @@ function setupGame() {
 
   increaseDifficulty();
 
-  new Level(1);
+  Level.loadRandomLevel();
 }
 
 function deleteGame() {
