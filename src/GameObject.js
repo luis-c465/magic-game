@@ -13,11 +13,23 @@ class GameObject {
    */
   constructor(layer) {
     /** @type {Group} */
-    this.spriteGroup = new Group();
+    this.spritesNoCollisionGroup = new Group();
+
+    /** @type {Group} */
+    this.spriteCollisionGroup = new Group();
     /** @type {Sprite[]} */
-    this.sprites = [];
+    this.spritesWithCollision = [];
     /** @type {Sprite} */
     this.sprite = undefined;
+
+    /** @type {Sprite[] | undefined}  */
+    this.spritesWithNoCollision = undefined;
+
+    /**
+     * Defines weather `this.sprite` will have collision
+     * @type {boolean}
+     */
+    this.spriteHasCollision = true;
 
     /**
      * The array of game sprites that the gameObject can collide with
@@ -92,11 +104,11 @@ class GameObject {
    * Adds all the sprites into a group so they will be rendered together on the same layer
    */
   setup() {
-    if (this.sprite) {
-      this.spriteGroup.add(this.sprite);
+    if (this.sprite && this.spriteHasCollision) {
+      this.spriteCollisionGroup.add(this.sprite);
     } else {
-      this.sprites.forEach((sprite) => {
-        this.spriteGroup.add(sprite);
+      this.spritesWithCollision.forEach((sprite) => {
+        this.spriteCollisionGroup.add(sprite);
       });
     }
   }
@@ -149,12 +161,14 @@ class GameObject {
   _collidesWith(layer, name) {
     if (!this.collidesWith.includes(name)) return;
 
-    layer.objects.forEach((obj) => {
-      this.spriteGroup[obj.collisionType](
-        obj.spriteGroup,
-        this._collisionWith(capitalizeFirstLetter(name), obj)
-      );
-    });
+    layer.objects.forEach(
+      /** @param {GameObject} obj */ (obj) => {
+        this.spriteCollisionGroup[obj.collisionType](
+          obj.spriteCollisionGroup,
+          this._collisionWith(capitalizeFirstLetter(name), obj)
+        );
+      }
+    );
   }
 
   /**
@@ -174,7 +188,7 @@ class GameObject {
       this.deleteCheck = true;
     }
     if (this.deleteCheck) {
-      this.spriteGroup.removeSprites();
+      this.spriteCollisionGroup.removeSprites();
       return false;
     }
 
@@ -267,7 +281,8 @@ class GameObject {
    * Should be overridden by inheriting objects
    */
   display() {
-    this.spriteGroup.draw();
+    this.spriteCollisionGroup.draw();
+    this.spritesNoCollisionGroup.draw();
   }
 
   /** @param {Player} player */

@@ -93,13 +93,13 @@ class Player extends GameObject {
     this.bodySprite = createSprite(x, y, 64, 64);
     this.bodySprite.addAnimation("stand", this.bodyAnimation);
     // this.bodySprite.rotateToDirection = true;
-    this.sprites.push(this.bodySprite);
+    this.spritesWithCollision.push(this.bodySprite);
 
     /** @type {Sprite} */
     this.cannonSprite = createSprite(x, y, 70, 94);
     this.cannonSprite.addAnimation("default", this.cannonAnimation);
     this.cannonSprite.visible = false;
-    this.sprites.push(this.cannonSprite);
+    this.spritesWithCollision.push(this.cannonSprite);
 
     this._updateWandPositions();
 

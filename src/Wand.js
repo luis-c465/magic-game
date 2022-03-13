@@ -34,7 +34,8 @@ class Wand extends GameObject {
     /** @type {Sprite[]} */
     this.hitBox = [];
 
-    this.sprites.push(this.icon, ...this.hitBox);
+    this.spritesWithCollision.push(...this.hitBox);
+    this.spritesNoCollisionGroup.push(this.icon);
 
     /** @type {gameSprite[]} */
     this.collidesWith = ["bullet"];
@@ -112,7 +113,7 @@ class Wand extends GameObject {
 
     circle(this.trajectory.x, this.trajectory.y, 100);
 
-    this.sprites = this.hitBox;
+    this.spritesWithCollision = this.hitBox;
     // Remakes the group for the game object
     this.setup();
   }

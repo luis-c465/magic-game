@@ -47,12 +47,12 @@ class Tank extends GameObject {
     this.bodySprite = createSprite(x, y, 70, 94);
     this.bodySprite.addAnimation("stand", this.bodyAnimation);
     // this.bodySprite.rotateToDirection = true;
-    this.sprites.push(this.bodySprite);
+    this.spritesWithCollision.push(this.bodySprite);
 
     /** @type {Sprite} */
     this.cannonSprite = createSprite(x, y, 70, 94);
     this.cannonSprite.addAnimation("default", this.cannonAnimation);
-    this.sprites.push(this.cannonSprite);
+    this.spritesWithCollision.push(this.cannonSprite);
 
     /** @type {number} @default 0 */
     this.rotation = 0;
