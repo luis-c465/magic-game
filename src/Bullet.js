@@ -27,8 +27,8 @@ class Bullet extends GameObject {
     this.sprite = createSprite(
       this.initialPosition.x,
       this.initialPosition.y,
-      5,
-      5 * (240 / 112)
+      100,
+      100 * (240 / 112)
     );
 
     /** @type {number} */
