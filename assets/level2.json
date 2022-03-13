@@ -1,0 +1,15 @@
+{
+  "walls": [
+    { "x": 10, "y": 25, "width": 4000, "type": "indestructible" },
+    { "x": 10, "y": 875, "width": 4000, "type": "indestructible" },
+
+    { "x": 10, "y": 25, "height": 1900, "type": "indestructible" },
+    { "x": 1575, "y": 25, "height": 1900, "type": "indestructible" },
+
+    { "x": 400, "y": 200, "height": 300, "type": "indestructible" },
+    { "x": 400, "y": 500, "height": 300, "type": "indestructible" },
+
+    { "x": 800, "y": 700, "height": 200, "type": "indestructible" },
+    { "x": 1000, "y": 300, "height": 200, "type": "indestructible" }
+  ]
+}
