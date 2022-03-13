@@ -20,7 +20,7 @@ class Player extends GameObject {
     this.currentWand = this.reflectWand;
 
     /** @type {boolean} */
-    this.isMoving = false;
+    this.isMoving = true;
 
     /** @type {number} @default 2 */
     this.movementSpeed = 2;
@@ -101,6 +101,8 @@ class Player extends GameObject {
     this.cannonSprite.visible = false;
     this.sprites.push(this.cannonSprite);
 
+    this._updateWandPositions();
+
     this.setup();
   }
 
@@ -167,17 +169,7 @@ class Player extends GameObject {
       this.cannonSprite.position.x = this.bodySprite.position.x - 1;
       this.cannonSprite.position.y = this.bodySprite.position.y - 5;
 
-      this.iceWand.x = this.cannonSprite.position.x;
-      this.iceWand.y = this.cannonSprite.position.y;
-
-      this.fireWand.x = this.cannonSprite.position.x;
-      this.fireWand.y = this.cannonSprite.position.y;
-
-      this.reflectWand.x = this.cannonSprite.position.x;
-      this.reflectWand.y = this.cannonSprite.position.y;
-
-      this.dirWand.x = this.cannonSprite.position.x;
-      this.dirWand.y = this.cannonSprite.position.y;
+      this._updateWandPositions();
     }
 
     // If player is not moving (not arrow keys are pressed) set its velocity to zero
@@ -357,5 +349,19 @@ class Player extends GameObject {
 
   kill() {
     this.deleteCheck = true;
+  }
+
+  _updateWandPositions() {
+    this.iceWand.x = this.cannonSprite.position.x;
+    this.iceWand.y = this.cannonSprite.position.y;
+
+    this.fireWand.x = this.cannonSprite.position.x;
+    this.fireWand.y = this.cannonSprite.position.y;
+
+    this.reflectWand.x = this.cannonSprite.position.x;
+    this.reflectWand.y = this.cannonSprite.position.y;
+
+    this.dirWand.x = this.cannonSprite.position.x;
+    this.dirWand.y = this.cannonSprite.position.y;
   }
 }
