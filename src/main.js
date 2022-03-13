@@ -31,6 +31,8 @@ var canvasScale = 1;
 /** @type {Player} */
 var player;
 
+var finalScore;
+
 /**
  * Time between increasing the difficulty of the game
  *  @type {number}
@@ -195,6 +197,9 @@ function generalDisplay() {
 
   // If player is set to be deleted
   if (player.deleteCheck) {
+    if (!finalScore) {
+      finalScore = gameDifficulty;
+    }
     showGameOverScreen();
   }
 }
@@ -227,7 +232,7 @@ function showGameOverScreen() {
   strokeWeight(0);
   fill(color(150));
   text("Press <Space> to restart the game", middleX - 150, middleY + 100);
-  text(`Score: ${gameDifficulty}`, middleX - 50, middleY + 150);
+  text(`Score: ${finalScore}`, middleX - 50, middleY + 150);
 
   rectMode(CORNER);
 
