@@ -68,6 +68,13 @@ class GameObject {
     this.movementSpeed = 1;
 
     /**
+     * The number of times that the players `update` function has been called
+     *  @type {number}
+     * @default 0
+     */
+    this.updates = 0;
+
+    /**
      * Function called when the current life of the GameObject less than or equal to 0
      */
     this.whenNoLife = () => {};
@@ -155,7 +162,7 @@ class GameObject {
    *
    * @return {boolean} Returns if the update function should continue executing
    */
-  preUpdate() {
+  _preUpdate() {
     // If sprites life is zero (sprite does not exist) remove the sprites from the screen
     // and set object to be deleted
     if (this.life <= 0) {
@@ -175,6 +182,8 @@ class GameObject {
       return false;
     }
 
+    this.updates++;
+    this.preUpdate();
     return true;
   }
 
@@ -183,7 +192,9 @@ class GameObject {
    *
    * Updates the object collisions and the objects movements
    */
-  postUpdate() {
+  _postUpdate() {
+    this.postUpdate();
+
     this.updateMovement();
     this.updateCollisions();
   }
@@ -219,12 +230,22 @@ class GameObject {
    * Should be overridden by inheriting objects
    */
   update() {
-    if (!this.preUpdate()) return false;
+    if (!this._preUpdate()) return false;
 
     this._update();
 
-    this.postUpdate();
+    this._postUpdate();
   }
+
+  /**
+   * Function called in `_preUpdate` should be overridden to add extra functionality before updating the game object
+   */
+  preUpdate() {}
+
+  /**
+   * Function called in `_postUpdate` should be overridden to add extra functionality after updating the game object
+   */
+  postUpdate() {}
 
   /**
    * Updates the gameObject

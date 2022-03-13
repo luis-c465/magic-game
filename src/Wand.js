@@ -51,7 +51,7 @@ class Wand extends GameObject {
    * Update collision should only be called if the player is casting the wand currently
    */
   update() {
-    if (!this.preUpdate()) return;
+    if (!this._preUpdate()) return;
 
     this.wand.position.x = this.x + 28;
     this.wand.position.y = this.y;

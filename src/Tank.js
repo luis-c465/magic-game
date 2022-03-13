@@ -20,12 +20,6 @@ class Tank extends GameObject {
     this.collidesWith = ["wall"];
 
     /**
-     * The number of times that the players `update` function has been called
-     *  @type {number}
-     * @default 0
-     */
-    this.updates = 0;
-    /**
      * The number of updates that must happen till the player can shoot again
      * @type {number}
      * @constant
@@ -106,6 +100,12 @@ class Tank extends GameObject {
       updatedTrajectory,
       this.rotation
     );
+  }
+
+  preUpdate() {
+    if (!this.canShootNow) {
+      this.canShootNow = this.updates % this.SHOOT_EVERY_N_UPDATES === 0;
+    }
   }
 
   /**
