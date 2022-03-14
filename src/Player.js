@@ -32,7 +32,7 @@ class Player extends GameObject {
      * @type {number}
      * The number of updates that must happen between wand switched
      */
-    this.CAN_SWITCH_EVERY = 12;
+    this.CAN_SWITCH_EVERY = 25;
 
     /** @type {boolean} */
     this.canSwitchNow = true;
