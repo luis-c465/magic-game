@@ -161,6 +161,7 @@ class Player extends GameObject {
    * Updates the currently equipped wand to the corresponding key press
    */
   _updateCurrentWand() {
+    // If number keys are pressed sets players current wand equal to the numbers corresponding wand
     if (keyIsDown(KEY_CODES[1])) {
       this.currentWand = this.reflectWand;
     }
@@ -174,6 +175,7 @@ class Player extends GameObject {
       this.currentWand = this.dirWand;
     }
 
+    // If space bar is pressed cycle through the wands
     const keyPressed = keyIsDown(KEY_CODES.space);
     if (this.canSwitchNow && keyPressed) {
       this.canSwitchNow = false;
