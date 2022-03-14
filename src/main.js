@@ -189,11 +189,11 @@ function generalDisplay() {
   clear();
 
   // The order in which layers are drawn to the screen
-  playerLayer.display();
-  wandsLayer.display();
   wallsLayer.display();
   enemiesLayer.display();
   bulletsLayer.display();
+  wandsLayer.display();
+  playerLayer.display();
 
   // If player is set to be deleted
   if (player.deleteCheck) {
