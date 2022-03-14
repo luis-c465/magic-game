@@ -65,32 +65,18 @@ class Player extends GameObject {
       new SpriteSheet(images.player, 64, 64, 2)
     );
     this.bodyAnimation.frameDelay = 15;
-    /** @type {Animation} */
-    this.cannonAnimation = loadAnimation(
-      new SpriteSheet(images.tanks, [
-        {
-          name: "stand",
-          frame: { x: 79, y: 0, width: 40, height: 76 },
-        },
-      ])
-    );
 
-    this.lifeBarSprite = createSprite(this.x, this.y, 100, 20);
-    this.lifeBarSprite.draw = () => this.drawLifeBar.call(this);
-    this.spritesWithNoCollision.push(this.lifeBarSprite);
-
-    // Create sprites
+    // Body sprite
     /** @type {Sprite} */
     this.bodySprite = createSprite(x, y, 64, 64);
     this.bodySprite.addAnimation("stand", this.bodyAnimation);
-    // this.bodySprite.rotateToDirection = true;
     this.spritesWithCollision.push(this.bodySprite);
 
+    // Life bar sprite
     /** @type {Sprite} */
-    this.cannonSprite = createSprite(x, y, 70, 94);
-    this.cannonSprite.addAnimation("default", this.cannonAnimation);
-    this.cannonSprite.visible = false;
-    this.spritesWithCollision.push(this.cannonSprite);
+    this.lifeBarSprite = createSprite(this.x, this.y, 100, 20);
+    this.lifeBarSprite.draw = () => this.drawLifeBar.call(this);
+    this.spritesWithNoCollision.push(this.lifeBarSprite);
 
     this.setup();
   }
@@ -117,21 +103,7 @@ class Player extends GameObject {
   }
 
   /**
-   * Function called when mouse is dragged
-   */
-  mouseDragged() {
-    if (!this.updateCheck) return;
-
-    this.rotation = atan2(
-      mouseY - this.cannonSprite.position.y,
-      mouseX - this.cannonSprite.position.x
-    );
-    this.cannonSprite.rotation = this.rotation + 90;
-  }
-
-  /**
    * Updates the movement of the player
-   * @private
    */
   _updateMovement() {
     this.isMoving = false;
@@ -152,9 +124,6 @@ class Player extends GameObject {
     if (keyIsDown(KEY_CODES.s) || keyIsDown(DOWN_ARROW)) {
       this.bodySprite.velocity.y = this.movementSpeed;
       this.isMoving = true;
-    }
-
-    if (this.isMoving) {
     }
 
     // If player is not moving (not arrow keys are pressed) set its velocity to zero
@@ -247,30 +216,6 @@ class Player extends GameObject {
     this.currentWand.cast();
   }
 
-  /**
-   * Shoots a bullet from the cannon to the mouses current location
-   * @private
-   * @deprecated The player should not be able to shoot bullets
-   */
-  _shoot() {
-    this.canCastNow = false;
-
-    // Do calculations for bullet position
-    const mouseVector = createVector(mouseX, mouseY).sub(
-      this.bodySprite.position
-    );
-
-    const dirOffset = this.bodySprite.position.copy();
-    // dirOffset.add(this.bodySprite.position, mouseVector);
-    // dirOffset.x = this.bodySprite.position.x;
-    dirOffset.x += 50;
-
-    // Fire bullet
-    new Bullet(bulletsLayer, dirOffset, mouseVector, this.rotation);
-    // bulletsLayer.add(bullet);
-    // bullets.push(bullet);
-  }
-
   /** @param {Bullet} bullet */
   collisionWithBullet(bullet) {
     this.life -= bullet.damage;
@@ -345,21 +290,17 @@ class Player extends GameObject {
   }
 
   _updateAttachmentsPositions() {
-    // TODO: Remove unused cannon sprite
-    this.cannonSprite.position.x = this.bodySprite.position.x - 1;
-    this.cannonSprite.position.y = this.bodySprite.position.y - 5;
+    this.iceWand.x = this.bodySprite.position.x;
+    this.iceWand.y = this.bodySprite.position.y;
 
-    this.iceWand.x = this.cannonSprite.position.x;
-    this.iceWand.y = this.cannonSprite.position.y;
+    this.fireWand.x = this.bodySprite.position.x;
+    this.fireWand.y = this.bodySprite.position.y;
 
-    this.fireWand.x = this.cannonSprite.position.x;
-    this.fireWand.y = this.cannonSprite.position.y;
+    this.reflectWand.x = this.bodySprite.position.x;
+    this.reflectWand.y = this.bodySprite.position.y;
 
-    this.reflectWand.x = this.cannonSprite.position.x;
-    this.reflectWand.y = this.cannonSprite.position.y;
-
-    this.dirWand.x = this.cannonSprite.position.x;
-    this.dirWand.y = this.cannonSprite.position.y;
+    this.dirWand.x = this.bodySprite.position.x;
+    this.dirWand.y = this.bodySprite.position.y;
 
     this.lifeBarSprite.position = this.bodySprite.position.copy();
   }
