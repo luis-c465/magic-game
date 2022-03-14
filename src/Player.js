@@ -64,17 +64,6 @@ class Player extends GameObject {
      */
     this.canCastNow = true;
 
-    // Animations
-    /** @type {Animation} */
-    // this.bodyAnimation = loadAnimation(
-    //   new SpriteSheet(images.tanks, [
-    //     {
-    //       name: "stand",
-    //       frame: { x: 123, y: 11, width: 80, height: 89 },
-    //     },
-    //   ])
-    // );
-
     this.bodyAnimation = loadAnimation(
       new SpriteSheet(images.player, 64, 64, 2)
     );
@@ -149,8 +138,6 @@ class Player extends GameObject {
    */
   _updateMovement() {
     this.isMoving = false;
-    // this.bodySprite.addImage("bullet", images.bullet);
-    // this.bodySprite.changeImage("bullet");
 
     // If any arrow keys are pressed move the character in that direction
     if (keyIsDown(KEY_CODES.a) || keyIsDown(LEFT_ARROW)) {
@@ -263,21 +250,6 @@ class Player extends GameObject {
       this.bodySprite.position
     );
     mouseVector.setMag(90_000);
-
-    // this.iceWand.trajectory = mouseVector;
-    // this.iceWand.rotation = this.rotation;
-
-    // this.iceWand.cast();
-
-    // this.fireWand.trajectory = mouseVector;
-    // this.fireWand.rotation = this.rotation;
-
-    // this.fireWand.cast();
-
-    // this.reflectWand.trajectory = mouseVector;
-    // this.reflectWand.rotation = this.rotation;
-
-    // this.reflectWand.cast();
 
     this.currentWand.trajectory = mouseVector;
     this.currentWand.rotation = this.rotation;
