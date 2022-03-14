@@ -132,28 +132,6 @@ class GameObject {
     this._collidesWith(bulletsLayer, "bullet");
     this._collidesWith(wallsLayer, "wall");
     this._collidesWith(wandsLayer, "wand");
-
-    // if (this.collidesWith.includes("player")) {
-    //   this.spriteGroup.collide(
-    //     player.spriteGroup,
-    //     this._collisionWith("Player")
-    //   );
-    // }
-
-    // if (this.collidesWith.includes("bullet")) {
-    //   bullets.forEach((bullet) => {
-    //     this.spriteGroup.collide(
-    //       bullet.spriteGroup,
-    //       this._collisionWith("Bullet")
-    //     );
-    //   });
-    // }
-
-    // if (this.collidesWith.includes("wall")) {
-    //   walls.forEach((wall) => {
-    //     this.spriteGroup.collide(wall.spriteGroup, this._collisionWith("Wall"));
-    //   });
-    // }
   }
 
   /**
