@@ -46,6 +46,10 @@ class Player extends GameObject {
      * @default 0
      */
     this.updates = 0;
+
+    /** @type {number} */
+    this.updatesTillCanSwitch = 0;
+
     /**
      * The number of updates that must happen till the player can shoot again
      * @type {number}
@@ -87,7 +91,15 @@ class Player extends GameObject {
     }
 
     if (!this.canSwitchNow) {
-      this.canSwitchNow = this.updates % this.CAN_SWITCH_EVERY === 0;
+      this.canSwitchNow =
+        this.updatesTillCanSwitch <= 0 &&
+        this.updates % this.CAN_SWITCH_EVERY === 0;
+
+      if (this.canSwitchNow) {
+        this.updatesTillCanSwitch = this.CAN_SWITCH_EVERY;
+      } else {
+        this.updatesTillCanSwitch--;
+      }
     }
   }
 
