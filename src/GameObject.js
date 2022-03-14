@@ -23,7 +23,7 @@ class GameObject {
     this.sprite = undefined;
 
     /** @type {Sprite[] | undefined}  */
-    this.spritesWithNoCollision = undefined;
+    this.spritesWithNoCollision = [];
 
     /**
      * Defines weather `this.sprite` will have collision
@@ -111,6 +111,10 @@ class GameObject {
         this.spriteCollisionGroup.add(sprite);
       });
     }
+
+    this.spritesWithNoCollision.forEach((sprite) => {
+      this.spritesNoCollisionGroup.add(sprite);
+    });
   }
 
   /**

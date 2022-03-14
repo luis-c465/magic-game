@@ -28,7 +28,8 @@ class Player extends GameObject {
     /** @type {number} @default 0 */
     this.rotation = 0;
 
-    this.life = 5;
+    this.maxLife = 10;
+    this.life = this.maxLife;
 
     /**
      * @type {number}
@@ -87,6 +88,10 @@ class Player extends GameObject {
         },
       ])
     );
+
+    this.lifeBarSprite = createSprite(this.x, this.y, 100, 20);
+    this.lifeBarSprite.draw = () => this.drawLifeBar.call(this);
+    this.spritesWithNoCollision.push(this.lifeBarSprite);
 
     // Create sprites
     /** @type {Sprite} */
@@ -170,6 +175,8 @@ class Player extends GameObject {
       this.cannonSprite.position.y = this.bodySprite.position.y - 5;
 
       this._updateWandPositions();
+
+      this.lifeBarSprite.position = this.bodySprite.position.copy();
     }
 
     // If player is not moving (not arrow keys are pressed) set its velocity to zero
@@ -363,5 +370,28 @@ class Player extends GameObject {
 
     this.dirWand.x = this.cannonSprite.position.x;
     this.dirWand.y = this.cannonSprite.position.y;
+  }
+
+  drawLifeBar() {
+    const LIFE_BAR_OUTLINE = 2;
+    stroke(0);
+    strokeWeight(LIFE_BAR_OUTLINE);
+    rect(
+      0,
+      40,
+      this.lifeBarSprite.width + LIFE_BAR_OUTLINE,
+      this.lifeBarSprite.height + LIFE_BAR_OUTLINE
+    );
+
+    strokeWeight(0);
+    const lifePercentage = this.life / this.maxLife;
+    fill(color("red"));
+    const lifeWidth = this.lifeBarSprite.width * lifePercentage;
+    rect(
+      (lifeWidth - this.lifeBarSprite.width) / 2,
+      40,
+      lifeWidth,
+      this.lifeBarSprite.height
+    );
   }
 }
