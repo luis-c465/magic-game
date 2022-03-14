@@ -95,8 +95,6 @@ class Player extends GameObject {
     this.cannonSprite.visible = false;
     this.spritesWithCollision.push(this.cannonSprite);
 
-    this._updateWandPositions();
-
     this.setup();
   }
 
@@ -160,8 +158,6 @@ class Player extends GameObject {
     if (this.isMoving) {
       this.cannonSprite.position.x = this.bodySprite.position.x - 1;
       this.cannonSprite.position.y = this.bodySprite.position.y - 5;
-
-      this._updateWandPositions();
 
       this.lifeBarSprite.position = this.bodySprite.position.copy();
     }
@@ -330,20 +326,6 @@ class Player extends GameObject {
     this.deleteCheck = true;
   }
 
-  _updateWandPositions() {
-    this.iceWand.x = this.cannonSprite.position.x;
-    this.iceWand.y = this.cannonSprite.position.y;
-
-    this.fireWand.x = this.cannonSprite.position.x;
-    this.fireWand.y = this.cannonSprite.position.y;
-
-    this.reflectWand.x = this.cannonSprite.position.x;
-    this.reflectWand.y = this.cannonSprite.position.y;
-
-    this.dirWand.x = this.cannonSprite.position.x;
-    this.dirWand.y = this.cannonSprite.position.y;
-  }
-
   drawLifeBar() {
     const LIFE_BAR_OUTLINE = 2;
     stroke(0);
@@ -365,5 +347,19 @@ class Player extends GameObject {
       lifeWidth,
       this.lifeBarSprite.height
     );
+  }
+
+  _updateAttachmentsPositions() {
+    this.iceWand.x = this.cannonSprite.position.x;
+    this.iceWand.y = this.cannonSprite.position.y;
+
+    this.fireWand.x = this.cannonSprite.position.x;
+    this.fireWand.y = this.cannonSprite.position.y;
+
+    this.reflectWand.x = this.cannonSprite.position.x;
+    this.reflectWand.y = this.cannonSprite.position.y;
+
+    this.dirWand.x = this.cannonSprite.position.x;
+    this.dirWand.y = this.cannonSprite.position.y;
   }
 }
