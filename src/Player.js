@@ -19,9 +19,6 @@ class Player extends GameObject {
     /** @type {Wand} @default IceWand */
     this.currentWand = this.reflectWand;
 
-    /** @type {boolean} */
-    this.isMoving = true;
-
     /** @type {number} @default 2 */
     this.movementSpeed = 2;
 
@@ -98,7 +95,7 @@ class Player extends GameObject {
     this.setup();
   }
 
-  _update() {
+  preUpdate() {
     if (!this.canCastNow) {
       this.canCastNow = this.updates % this.CAST_EVERY_N_UPDATES === 0;
     }
@@ -106,11 +103,13 @@ class Player extends GameObject {
     if (!this.canSwitchNow) {
       this.canSwitchNow = this.updates % this.CAN_SWITCH_EVERY === 0;
     }
+  }
 
-    this._updateMovement();
+  _update() {
     this._updateCurrentWand();
+  }
 
-    // If mouse is pressed
+  postUpdate() {
     if (mouseIsPressed && this.canCastNow) {
       this._cast();
       this.canCastNow = false;
@@ -156,10 +155,6 @@ class Player extends GameObject {
     }
 
     if (this.isMoving) {
-      this.cannonSprite.position.x = this.bodySprite.position.x - 1;
-      this.cannonSprite.position.y = this.bodySprite.position.y - 5;
-
-      this.lifeBarSprite.position = this.bodySprite.position.copy();
     }
 
     // If player is not moving (not arrow keys are pressed) set its velocity to zero
@@ -350,6 +345,10 @@ class Player extends GameObject {
   }
 
   _updateAttachmentsPositions() {
+    // TODO: Remove unused cannon sprite
+    this.cannonSprite.position.x = this.bodySprite.position.x - 1;
+    this.cannonSprite.position.y = this.bodySprite.position.y - 5;
+
     this.iceWand.x = this.cannonSprite.position.x;
     this.iceWand.y = this.cannonSprite.position.y;
 
@@ -361,5 +360,7 @@ class Player extends GameObject {
 
     this.dirWand.x = this.cannonSprite.position.x;
     this.dirWand.y = this.cannonSprite.position.y;
+
+    this.lifeBarSprite.position = this.bodySprite.position.copy();
   }
 }
