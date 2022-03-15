@@ -20,7 +20,7 @@ class Player extends GameObject {
     this.currentWand = this.reflectWand;
 
     /** @type {number} @default 2 */
-    this.movementSpeed = 2;
+    this.movementSpeed = 4;
 
     /** @type {number} @default 0 */
     this.rotation = 0;
