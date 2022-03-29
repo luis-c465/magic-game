@@ -37,7 +37,7 @@ var finalScore;
  * Time between increasing the difficulty of the game
  *  @type {number}
  */
-var increaseDifficultlyTimer = 10_000;
+var increaseDifficultlyTimer = 5_000;
 
 /** @type {number} */
 var increaseDifficultyTimerId;
