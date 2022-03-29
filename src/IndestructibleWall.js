@@ -13,7 +13,8 @@ class IndestructibleWall extends Wall {
     this.sprite.immovable = true;
 
     // Enable debugging for sprite
-    this.sprite.debug = true;
+    this.sprite.debug = false;
+    this.sprite.shapeColor = color(201, 114, 85);
 
     this.setup();
   }

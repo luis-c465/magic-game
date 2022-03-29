@@ -106,7 +106,7 @@ class Wand extends GameObject {
       sprite.immovable = true;
       sprite.visible = false;
 
-      sprite.debug = true;
+      sprite.debug = false;
       // this.hitBox.push(sprite);
       return sprite;
     });

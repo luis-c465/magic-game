@@ -13,7 +13,8 @@ class DestructibleWall extends Wall {
     this.sprite.immovable = true;
 
     // Enable debugging for sprite
-    this.sprite.debug = true;
+    this.sprite.debug = false;
+    this.sprite.shapeColor = color(50, 34, 38);
 
     /** @type {number} @default 1 */
     this.life = 2;

@@ -53,7 +53,7 @@ class Bullet extends GameObject {
      */
     this.speed = 1;
 
-    this.sprite.debug = true;
+    this.sprite.debug = false;
 
     /** @type {gameSprite[]} */
     this.collidesWith = ["wall", "player"];
